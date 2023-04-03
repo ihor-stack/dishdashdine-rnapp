@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DishDash-Staging</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">G-Rj7zmI8jwtNK9QXUbIo_Q3dYWSk6-RcBTvL</string>
+</resources>

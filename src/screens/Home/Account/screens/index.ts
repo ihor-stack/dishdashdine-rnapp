@@ -1,0 +1,9 @@
+export {default as MyAccount} from './MyAccount';
+export {default as AccountDetails} from './AccountDetails';
+export {default as MyWallet} from './MyWallet';
+export {default as ManageAddresses} from './ManageAddresses';
+export {default as MyReviews} from './MyReviews';
+export {default as HelpAndSupport} from './HelpAndSupport';
+export {default as YourAppExperience} from './YourAppExperience';
+export {default as TermsOfService} from './TermsOfService';
+export {default as PrivacyPolicy} from './PrivacyPolicy';

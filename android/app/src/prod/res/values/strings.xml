@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DishDash</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">zVgYwtU-zOO_XESDHTWw_hC5KML8mYEMvpDj4</string>
+</resources>

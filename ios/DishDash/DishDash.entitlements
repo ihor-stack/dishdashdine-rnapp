@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>aps-environment</key>
+	<string>development</string>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:https://admin.dishdashdine.com</string>
+		<string>applinks:https://admin.dishdashdine.com/Identity/Account/ConfirmAccount</string>
+		<string>applinks:http://admin.dishdashdine.com</string>
+		<string>applinks:http://admin.dishdashdine.com/Identity/Account/ConfirmAccount</string>
+		<string>dishdashdine://ConfirmAccount</string>
+	</array>
+</dict>
+</plist>

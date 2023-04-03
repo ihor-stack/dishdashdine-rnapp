@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "247052550615",
+    "project_id": "dish-dash-dine-5788b",
+    "storage_bucket": "dish-dash-dine-5788b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247052550615:android:b3d1c9e444d603f74d0b92",
+        "android_client_info": {
+          "package_name": "com.dishdashdine.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247052550615-mlct2fb5honpq5sno2ojkgk1ln1j3hmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaaUaiHWz4hiRjokeZuNZ2aonUY7LCqBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247052550615-mlct2fb5honpq5sno2ojkgk1ln1j3hmu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "247052550615-d9g9djs18eo9fqi5hc2pvtb3nlv93tme.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dishdashdine.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247052550615:android:9f6d1569f2d2d5964d0b92",
+        "android_client_info": {
+          "package_name": "com.dishdashdine.app.stg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247052550615-mlct2fb5honpq5sno2ojkgk1ln1j3hmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaaUaiHWz4hiRjokeZuNZ2aonUY7LCqBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247052550615-mlct2fb5honpq5sno2ojkgk1ln1j3hmu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "247052550615-d9g9djs18eo9fqi5hc2pvtb3nlv93tme.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dishdashdine.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
