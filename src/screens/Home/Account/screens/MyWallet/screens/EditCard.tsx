@@ -84,6 +84,11 @@ const EditCard = () => {
         duration: 2000,
         render: () => {
           return (
+            // <DishToast
+            //   title="Success"
+            //   message="Your card has been successfully remove"
+            //   variant="success"
+            // />
             showSuccessMessage(
               'Success',
               'Your card has been successfully remove',

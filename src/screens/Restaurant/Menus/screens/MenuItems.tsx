@@ -118,7 +118,11 @@ const styles = StyleSheet.create({
     marginTop: 11,
     backgroundColor: '#fff',
     paddingHorizontal: 15,
-    paddingBottom: 20
+    paddingBottom: 20,
+    // borderTopWidth: 1,
+    // borderTopColor: Colors.border,
+    // borderBottomWidth: 1,
+    // borderBottomColor: Colors.border,
   },
   searchBarStyle: {
     backgroundColor: Colors.lightestGrey,

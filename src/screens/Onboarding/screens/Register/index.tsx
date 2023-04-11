@@ -137,6 +137,11 @@ const Register = (props: any) => {
       duration: 2500,
       render: () => {
         return (
+          // <DishToast
+          //   title="Registration Successful!"
+          //   message="Your registration has been successfully completed."
+          //   variant="success"
+          // />
           showSuccessMessage(
             'Registration Successful!',
             'Your registration has been successfully completed.',

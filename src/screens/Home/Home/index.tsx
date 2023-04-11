@@ -45,6 +45,15 @@ const Navigation = () => {
           name="DishInfo"
           options={{header: () => null}}
           component={DishInfo}
+          // sharedElements={route => {
+          //   const {id} = route.params;
+          //   return [
+          //     {
+          //       id: `item.${id}.bannerImagePath`,
+          //       animation: 'fade',
+          //     },
+          //   ];
+          // }}
         />
         <HomeStack.Screen
           options={{

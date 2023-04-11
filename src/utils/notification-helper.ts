@@ -4,6 +4,14 @@ import notifee from '@notifee/react-native';
 export const requestUserPermission = async () => {
   const status = await messaging().requestPermission();
   await notifee.requestPermission();
+  if (
+    status === messaging.AuthorizationStatus.AUTHORIZED ||
+    status === messaging.AuthorizationStatus.PROVISIONAL
+  ) {
+    console.log('User has provisional notification permissions.');
+  } else {
+    console.log('User has notification permissions disabled');
+  }
 };
 
 export const showPushNotification = async (title?: string, body?: string) => {

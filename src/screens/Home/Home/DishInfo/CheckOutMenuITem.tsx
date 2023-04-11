@@ -101,6 +101,11 @@ const CheckOutMenuITem = ({
           data: _order,
         }),
       ).unwrap();
+
+      if (__DEV__) {
+        console.log('success updateItemToOrder', JSON.stringify(result));
+      }
+
       onQuantityChanged();
     } catch (e: any) {
       captureErrorException(e);

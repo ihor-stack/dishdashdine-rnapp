@@ -20,6 +20,7 @@ const CollectLater = ({onChangeDate, value, prepTimeMin}: DatePickerProps) => {
       <DynamicView alignItems="center">
         <DatePicker
           date={value || date}
+          theme={'light'}
           mode="datetime"
           onDateChange={_date => {
             setDate(_date);

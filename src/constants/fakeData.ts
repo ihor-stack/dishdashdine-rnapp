@@ -25,7 +25,19 @@ export const fakeRegistration = {
   dateOfBirth: '2022-08-20T06:14:16.075Z',
   password: 'Test@12345',
   confirmPassword: 'Test@12345',
+  // password: '12345',
+  // confirmPassword: '12345',
 };
+
+// export const fakeRegistration = {
+//   firstName: '',
+//   lastName: '',
+//   email: '',
+//   phoneNumber: '',
+//   dateOfBirth: '',
+//   password: '',
+//   confirmPassword: '',
+// };
 
 export const fakeNewPassword = {
   currentPassword: 'Test@12345',
@@ -34,8 +46,11 @@ export const fakeNewPassword = {
 };
 
 export const fakeLogin = {
+  // emailAddress: 'restaurant@dishdashdine.dev', // 'james+1@mythdigital.co'
   emailAddress: 'john.doe61@yopmail.com',
   password: 'Test@12345',
+  // emailAddress: 'admin@dishdashdine.dev',
+  // password: 'Pa$$w0rd',
 };
 
 export const FAQs = [

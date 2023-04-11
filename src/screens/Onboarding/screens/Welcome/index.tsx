@@ -218,7 +218,19 @@ export default Welcome;
 
 const styles = StyleSheet.create({
   container: {
+    // alignSelf: '',
+    // width: widthPixel(600),
+    // overflow: 'hidden',
     height: heightPixel(355),
+  },
+  background: {
+    // backgroundColor: 'transparent',
+    // borderRadius: 400,
+    // width: widthPixel(600),
+    // height: heightPixel(700),
+    // position: 'absolute',
+    // bottom: 0,
+    // overflow: 'hidden',
   },
   image: {
     height: '100%',

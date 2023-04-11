@@ -157,6 +157,11 @@ const EntryMenu = () => {
       duration: 2500,
       render: () => {
         return (
+          // <DishToast
+          //   title="Menu created"
+          //   message="New menu details has been created."
+          //   variant="success"
+          // />
           showSuccessMessage(
             'Menu created',
             'New menu details has been created.',

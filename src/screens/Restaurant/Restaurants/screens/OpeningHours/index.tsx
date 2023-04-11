@@ -145,6 +145,11 @@ const OpeningHours = () => {
           duration: 2500,
           render: () => {
             return (
+              // <DishToast
+              //   title="Opening hours updated"
+              //   message="You have successfully updated the opening hours."
+              //   variant="success"
+              // />
               showSuccessMessage(
                 'Opening hours updated',
                 'You have successfully updated the opening hours.',

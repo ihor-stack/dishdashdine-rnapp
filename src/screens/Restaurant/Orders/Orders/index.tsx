@@ -396,6 +396,8 @@ export const styles = StyleSheet.create({
   indicatorStyle: {
     backgroundColor: Colors.ember,
     height: 2,
-    borderRadius: 3
+    borderRadius: 3,
+    // width: ms(width / 5),
+    // marginHorizontal: ms(width / 12),
   },
 });

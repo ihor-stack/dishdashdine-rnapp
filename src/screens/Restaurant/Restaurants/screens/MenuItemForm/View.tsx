@@ -28,6 +28,17 @@ const MenuItemFormView = (props: MenuItemFormViewProps) => {
   const [service, setService] = useState('');
   const {onSubmit, showLoading} = props;
 
+  // const tabBgStyle = useAnimatedStyle(
+  //   () => ({
+  //     backgroundColor: interpolateColor(
+  //       currentIndex.value,
+  //       [i, currentIndex.value],
+  //       [Colors.black, '#fff'],
+  //     ) as string,
+  //   }),
+  //   [currentIndex.value, i, Colors.black],
+  // );
+
   const HEADERS = () => {
     return (
       <DynamicView marginTop={15} marginLeft={12}>
@@ -70,6 +81,11 @@ const MenuItemFormView = (props: MenuItemFormViewProps) => {
         renderItem={FlatlistItems}
         horizontal={true}
       />
+
+      // <Tab value={0} variant="primary">
+      //   <Tab.Item>Tab</Tab.Item>
+      //   <Tab.Item>Tab</Tab.Item>
+      // </Tab>
     );
   };
 

@@ -11,6 +11,7 @@ export default StyleSheet.create({
   },
   textInputView: {
     marginTop: 4,
+    // justifyContent: 'center',
     marginBottom: 20,
     marginHorizontal: 10,
   },

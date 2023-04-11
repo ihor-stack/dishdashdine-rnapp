@@ -69,6 +69,11 @@ const YourAppExperience = () => {
         duration: 2500,
         render: () => {
           return (
+            // <DishToast
+            //   title="Review submitted"
+            //   message="Thank you for submitting your review."
+            //   variant="success"
+            // />
             showSuccessMessage(
               'Review submitted',
               'Thank you for submitting your review.',

@@ -32,6 +32,15 @@ const Navigation = () => {
         name="CustomizeItemOrder"
         options={{header: () => null}}
         component={CustomizeItemOrder}
+        // sharedElements={route => {
+        //   const {itemId} = route.params;
+        //   return [
+        //     {
+        //       id: `item.${itemId}.photo`,
+        //       animation: 'fade',
+        //     },
+        //   ];
+        // }}
       />
     </FavoritesStack.Navigator>
   );

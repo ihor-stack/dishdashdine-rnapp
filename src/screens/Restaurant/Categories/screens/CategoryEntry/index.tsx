@@ -77,6 +77,11 @@ const CategoryEntry = () => {
       duration: 2500,
       render: () => {
         return (
+          // <DishToast
+          //   title="Category created"
+          //   message="New category details has been created."
+          //   variant="success"
+          // />
           showSuccessMessage(
             'Category created',
             'New category details has been created.',

@@ -40,6 +40,8 @@ type RestaurantBasicInformationFormType = {
 
 const BasicInformation = () => {
   const [showLoading, setShowLoading] = useState(false);
+  // const [isBannerImage, setIsBannerImage] = useState(false);
+  // const [isLogoImage, setIsLogoImage] = useState(false);
   const details = useSelector(adminRestaurantSelectors.selectRestaurant);
   const dispatch = useDispatch<any>();
   const toast = useToast();
@@ -170,6 +172,7 @@ const BasicInformation = () => {
     } else {
       reset();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [action]);
 
   const handleErrorToast = (message: string) => {
@@ -182,6 +185,17 @@ const BasicInformation = () => {
       duration: 2500,
       render: () => {
         return (
+          // <DishToast
+          //   title={
+          //     action === 'update' ? 'Information updated' : 'Restaurant created'
+          //   }
+          //   message={
+          //     action === 'update'
+          //       ? 'Your information has been updated.'
+          //       : 'Your Restaurant has been created.'
+          //   }
+          //   variant="success"
+          // />
           showSuccessMessage(
             action === 'update' ? 'Information updated' : 'Restaurant created',
             action === 'update'

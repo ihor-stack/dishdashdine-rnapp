@@ -70,6 +70,11 @@ const RestaurantEventCateringModal = () => {
       duration: 2500,
       render: () => {
         return (
+          // <DishToast
+          //   title="Form submitted"
+          //   message="Thank you for submitting your form."
+          //   variant="success"
+          // />
           showSuccessMessage(
             'Form submitted',
             'Thank you for submitting your form.',

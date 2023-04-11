@@ -25,6 +25,15 @@ const MyAccount = () => {
     CustomActionSheet.current?.show();
   };
 
+  // const updateUserProfile = async (data, uri) => {
+  //   try {
+  //     const response = await UserService.updateUser(data);
+  //     if (response && response.code === Success) {
+  //       dispatch();
+  //     }
+  //   } catch (error) {}
+  // };
+
   const singleFilePicker = async () => {
     const fileData = await ImagePicker.openPicker({
       width: 300,

@@ -59,6 +59,8 @@ const Home = () => {
     addressSelectors.selectDefaultAddress,
   ) as IAddress;
 
+  const appPromo: any[] = useSelector(homeSelectors.selectAppPromo);
+
   useEffect(() => {
     if (!isInitialized && !refreshing) {
       getData(currentLocation)
@@ -69,9 +71,16 @@ const Home = () => {
     }
   }, [currentLocation])
 
+
+  useEffect(() => {
+    if (isInitialized && currentLocation) {
+      getData(currentLocation)
+    }
+  }, [homeOrderType])
+
   const onRefresh = useCallback(async () => {
     await getData(currentLocation)
-  }, [currentLocation, currentDistance, dispatch, currentUser, homeOrderType]);
+  }, [currentLocation, currentDistance, dispatch, currentUser]);
 
   const getData = async (currentLocationProps: any) => {
     setRefreshing(true);
@@ -112,10 +121,9 @@ const Home = () => {
 
   const ListHeaderComponent = () => (
     <VStack bgColor={Colors.lightGrey} space={3}>
-      <Box bgColor={Colors.white} pb={5}>
+      <Box bgColor={Colors.white} pb={ !isEmpty(appPromo) ? 5: 0}>
         <SearchAndSortFilters />
-        <Cards />
-        {/*<Dishes />*/}
+        { !isEmpty(appPromo) ?  <Cards /> : null}
       </Box>
 
       {!isEmpty(completedOrders) && (
@@ -160,6 +168,7 @@ const Home = () => {
       currentDistance,
       homeOrderType,
       defaultAddress,
+      onRefresh
     });
   };
 

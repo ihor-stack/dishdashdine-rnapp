@@ -17,6 +17,11 @@ const MenuItemForm = () => {
       duration: 2500,
       render: () => {
         return (
+          // <DishToast
+          //   title="Information updated"
+          //   message="Your information has been updated."
+          //   variant="success"
+          // />
           showSuccessMessage(
             'Information updated',
             'Your information has been updated.',

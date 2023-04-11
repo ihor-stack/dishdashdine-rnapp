@@ -179,6 +179,11 @@ const Address = () => {
       duration: 2500,
       render: () => {
         return (
+          // <DishToast
+          //   title="Address updated"
+          //   message="You have successfully updated your address/location"
+          //   variant="success"
+          // />
           showSuccessMessage(
             'Address updated',
             'You have successfully updated your address/location',

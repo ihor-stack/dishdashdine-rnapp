@@ -24,6 +24,7 @@ export interface RestaurantsProps {
   currentDistance: number;
   homeOrderType: number;
   defaultAddress: IAddress;
+  onRefresh: any;
 }
 
 export const Restaurants = ({
@@ -36,7 +37,9 @@ export const Restaurants = ({
   currentDistance,
   homeOrderType,
   defaultAddress,
+  onRefresh
 }: RestaurantsProps) => {
+  
   const onPressFavorite = async (
     restaurantId: string,
     isFavourite: boolean,
@@ -68,7 +71,7 @@ export const Restaurants = ({
           isFavourite: !isFavourite,
         },
       );
-
+     
       if (response) {
         showSuccessMessage(
           isFavourite ? 'Remove to Favourite' : ' Added to Favourite',
@@ -76,19 +79,7 @@ export const Restaurants = ({
             ? 'Successfully removed to your favourites!'
             : 'Successfully added to your favourites!',
         );
-
-        if (defaultAddress?.postCode) {
-          await dispatch(
-            fetchRestaurant({
-              ...params,
-              PostCode: defaultAddress?.postCode,
-            }),
-          );
-        } else {
-          await dispatch(fetchRestaurant(params));
-        }
-
-        await dispatch(fetchMyFavorites());
+        onRefresh()
       }
     } catch (error: any) {
       captureErrorException(error);
@@ -97,7 +88,6 @@ export const Restaurants = ({
 
   return (
     <Box key={`${index}-${restaurant?.restaurantId}`}>
-      {/* <SharedElement id={`item.${restaurant?.restaurantId}.bannerImagePath`}> */}
       <RestaurantItem
         item={restaurant}
         onPressFavorite={() =>
@@ -108,8 +98,6 @@ export const Restaurants = ({
           navigation.navigate('DishInfo', {id: restaurant?.restaurantId});
         }}
       />
-      {/* </SharedElement> */}
-      {/* {index === 4 && <Recommendations />} */}
     </Box>
   );
 };

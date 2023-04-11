@@ -92,7 +92,7 @@ const CheckOutModal = (props: CheckOutModalProps) => {
   return (
     <ActionSheet
       id={'CheckOutModal' || props.sheetId}
-      gestureEnabled={lineItem?.length > 5 ? false : true}
+      gestureEnabled={lineItem?.length > 4 ? false : true}
       onBeforeShow={(data: any) => {
         setSelectedOrder(data?.order);
         setIsFrom(data?.isFrom);
@@ -115,7 +115,7 @@ const CheckOutModal = (props: CheckOutModalProps) => {
           });
         }
       }}>
-      <DynamicView paddingTop={54}>
+      <DynamicView paddingTop={54} maxHeight={'90%'}>
         {selectedOrder && (
           <RestaurantInfoAvatar
             restaurant={selectedOrder.restaurant || restaurant}
@@ -125,8 +125,7 @@ const CheckOutModal = (props: CheckOutModalProps) => {
         )}
         <Divider bgColor={Colors.lightGrey} padding={1} />
         <ScrollView
-         style={{ backgroundColor: "#FFF" }}
-         contentContainerStyle={{ marginHorizontal: 11, paddingBottom: 20}}>
+         style={{ backgroundColor: "#FFF", minHeight: '100%' }}>
           <DynamicView paddingHorizontal={12}>
             <CheckOutMenuITem
               order={selectedOrder}
@@ -135,7 +134,7 @@ const CheckOutModal = (props: CheckOutModalProps) => {
             />
           </DynamicView>
           <Divider bgColor={Colors.lightGrey} padding={1} />
-          <DynamicView paddingHorizontal={12} marginBottom={50}>
+          <DynamicView paddingHorizontal={12}>
             {selectedOrder && Number(selectedOrder.lineItemCount) > 0 && (
               <DishButton
                 icon="arrowright"
@@ -144,6 +143,7 @@ const CheckOutModal = (props: CheckOutModalProps) => {
                 label="Go to checkout"
               />
             )}
+
             <DishButton
               icon="arrowright"
               label="Add more items"
@@ -155,8 +155,9 @@ const CheckOutModal = (props: CheckOutModalProps) => {
                 });
               }}
             />
+
             {
-              lineItem?.length > 5 ? 
+              lineItem?.length > 4 ? 
               <DishButton
                 icon="arrowright"
                 label="Cancel"
@@ -165,6 +166,7 @@ const CheckOutModal = (props: CheckOutModalProps) => {
                 }}
               /> : null
             }
+
           </DynamicView>
         </ScrollView>
       </DynamicView>

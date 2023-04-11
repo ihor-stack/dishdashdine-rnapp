@@ -51,6 +51,7 @@ const SplashScreen = () => {
         gotoApp();
       }, 600);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const gotoApp = () => {
@@ -62,9 +63,11 @@ const SplashScreen = () => {
         }),
       );
     };
+    
     if (isAuthenticated) {
       if (!isEmpty(currentUser)) {
         if (currentUser?.primaryUserRole === 'User') {
+          // navigation.navigate('HomeRoot');
           navigation.dispatch(
             CommonActions.reset({
               index: 0,
@@ -95,6 +98,7 @@ const SplashScreen = () => {
         break;
       case codePush.SyncStatus.DOWNLOADING_PACKAGE:
         setPushStatus('Downloading package.');
+        // SheetManager.show('app_dev_updater');
         setIsDownloading(true);
         break;
       case codePush.SyncStatus.INSTALLING_UPDATE:
@@ -113,6 +117,7 @@ const SplashScreen = () => {
       case codePush.SyncStatus.UPDATE_INSTALLED:
         setPushStatus('Update installed.');
         setIsDownloading(true);
+        // SheetManager.hideAll();
         codePush.restartApp(true);
         break;
     }

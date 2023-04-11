@@ -125,6 +125,7 @@ const HomeTabs = () => {
         }
       });
   }, [dispatch, currentUser]);
+  
   const initGeolocation = async () => {
     try {
       const position: any = await getCurrentGeolocation();

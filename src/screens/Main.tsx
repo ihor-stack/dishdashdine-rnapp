@@ -73,6 +73,7 @@ const MainScreen = () => {
 
   useEffect(() => {
     requestUserPermission();
+
     BackgroundTimer.runBackgroundTimer(() => {
       if (currentUser && !currentUser?.noAuth) {
         if (currentUser?.primaryUserRole === 'User') {
@@ -98,6 +99,9 @@ const MainScreen = () => {
     });
 
     messaging().onTokenRefresh(async token => {
+      if (__DEV__) {
+        console.log('onTokenRefresh: ', token);
+      }
       dispatch(setDevicePushToken(token));
       await UserService.savePushNotificationToken({
         deviceToken: token,
@@ -118,6 +122,9 @@ const MainScreen = () => {
 
   useEffect(() => {
     async function onMessageReceived(remoteMessage: FirebaseMessagingTypes.RemoteMessage) {
+      if (__DEV__) {
+        console.log('onMessageReceived: ', remoteMessage);
+      }
       ding.play();
 
       if (currentUser && !currentUser?.noAuth) {
@@ -140,6 +147,9 @@ const MainScreen = () => {
     messaging().setBackgroundMessageHandler(onMessageReceived);
 
     const unsubscribe = messaging().onMessage(async remoteMessage => {
+      if (__DEV__) {
+        console.log('A new FCM message arrived!', remoteMessage);
+      }
       const notification = remoteMessage?.notification;
       showPushNotification(notification?.title, notification?.body);
       onMessageReceived(remoteMessage);

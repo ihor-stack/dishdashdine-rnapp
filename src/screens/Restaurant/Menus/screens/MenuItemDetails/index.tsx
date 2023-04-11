@@ -215,6 +215,7 @@ const MenuItemDetails = () => {
             item => item.modifierGroupId,
           ),
           otherDietaryRequirement: '',
+          // largeImagePath: largeImage,
         },
       );
 
@@ -325,6 +326,15 @@ const MenuItemDetails = () => {
       duration: 2500,
       render: () => {
         return (
+          // <DishToast
+          //   title={action === 'add' ? 'Menu Item added' : 'Information updated'}
+          //   message={
+          //     action === 'add'
+          //       ? 'Your Menu Item has been added.'
+          //       : 'Your information has been updated.'
+          //   }
+          //   variant="success"
+          // />
           showSuccessMessage(
             action === 'add' ? 'Menu Item added' : 'Information updated',
             action === 'add'
@@ -413,6 +423,11 @@ const MenuItemDetails = () => {
         duration: 2000,
         render: () => {
           return (
+            // <DishToast
+            //   title="Success"
+            //   message="Menu item has been successfully remove"
+            //   variant="success"
+            // />
             showSuccessMessage(
               'Success',
               'Menu item has been successfully remove',

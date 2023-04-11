@@ -69,7 +69,8 @@ const AppIcon = () => {
         <DynamicPressable
           onPress={() => {
             changeIcon(Platform.OS === 'ios' ? 'default' : 'ic_launcher')
-              .then(setCurrentIconName);
+              .then(setCurrentIconName)
+              .catch(e => console.log(e.message));
           }}>
           <DynamicImage
             source={appIconDefault}
@@ -88,7 +89,8 @@ const AppIcon = () => {
         <DynamicPressable
           onPress={() => {
             changeIcon(Platform.OS === 'ios' ? 'light' : 'ic_launcher_light')
-              .then(setCurrentIconName);
+              .then(setCurrentIconName)
+              .catch(e => console.log(e.message));
           }}>
           <DynamicImage
             source={appIconLight}
@@ -107,7 +109,8 @@ const AppIcon = () => {
         <DynamicPressable
           onPress={() => {
             changeIcon(Platform.OS === 'ios' ? 'dark' : 'ic_launcher_dark')
-              .then(setCurrentIconName);
+              .then(setCurrentIconName)
+              .catch(e => console.log(e.message));
           }}>
           <DynamicImage
             source={appIconDark}

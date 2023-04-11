@@ -77,6 +77,11 @@ const HelpSupportRefund = () => {
       duration: 2500,
       render: () => {
         return (
+          // <DishToast
+          //   title="Refund request submitted"
+          //   message="Thank you for submitting your reguest."
+          //   variant="success"
+          // />
           showSuccessMessage(
             'Refund request submitted',
             'Thank you for submitting your reguest.',
