@@ -81,6 +81,7 @@ const OrderDetails = () => {
       setOrder(selectedOrder);
       setTipAmount(selectedOrder.tip);
     }
+
   }, [selectedOrder, order]);
 
   useEffect(() => {
@@ -188,6 +189,7 @@ const OrderDetails = () => {
           await dispatch(fetchCompletedOrder());
 
           if (paymentIntent.status === 'Succeeded') {
+
             toast.show({
               placement: 'top',
               duration: 1500,

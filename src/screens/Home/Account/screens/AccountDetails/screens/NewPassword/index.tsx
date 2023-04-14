@@ -70,18 +70,59 @@ const NewPassword = () => {
           'Warning',
           String(errors.currentPassword?.message),
         );
+        //  toast.show({
+        //   placement: 'top',
+        //   duration: 2500,
+        //   render: () => {
+        //     return (
+        //       <DishToast
+        //         title="Warning"
+        //         message={String(errors.currentPassword?.message)}
+        //         variant="warning"
+        //       />
+
+        //     );
+        //   },
+        // });
       }
       if (errors.newPassword) {
         return showWarningMessage(
           'Warning',
           String(errors.newPassword?.message),
         );
+        //  toast.show({
+        //   placement: 'top',
+        //   duration: 2500,
+        //   render: () => {
+        //     return (
+        //       <DishToast
+        //         title="Warning"
+        //         message={String(errors.newPassword?.message)}
+        //         variant="warning"
+        //       />
+
+        //     );
+        //   },
+        // });
       }
       if (errors.confirmPassword) {
         return showWarningMessage(
           'Warning',
           String(errors.confirmPassword?.message),
         );
+        // toast.show({
+        //   placement: 'top',
+        //   duration: 2500,
+        //   render: () => {
+        //     return (
+        //       <DishToast
+        //         title="Warning"
+        //         message={String(errors.confirmPassword?.message)}
+        //         variant="warning"
+        //       />
+        //     );
+        //   },
+        // });
       }
     }
 
@@ -99,6 +140,11 @@ const NewPassword = () => {
         duration: 2500,
         render: () => {
           return (
+            // <DishToast
+            //   title="Password Updated"
+            //   message="You have successfully updated your password."
+            //   variant="success"
+            // />
             showSuccessMessage(
               'Password Updated',
               'You have successfully updated your password',

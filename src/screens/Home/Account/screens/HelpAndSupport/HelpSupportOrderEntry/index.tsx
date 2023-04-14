@@ -58,6 +58,15 @@ const HelpSupportOrderEntry = () => {
   }, []);
 
   const handleErrorToast = (message: string) => {
+    // toast.show({
+    //   placement: 'top',
+    //   duration: 2500,
+    //   render: () => {
+    //     return (
+    //       <DishToast title="Warning" message={message} variant="warning" />
+    //     );
+    //   },
+    // });
     showWarningMessage('Warning', message);
   };
 
@@ -67,6 +76,11 @@ const HelpSupportOrderEntry = () => {
       duration: 2500,
       render: () => {
         return (
+          // <DishToast
+          //   title="Issue Submitted!"
+          //   message="Thank you for submitting your issue."
+          //   variant="success"
+          // />
           showSuccessMessage(
             'Issue Submitted!',
             'Thank you for submitting your issue.',
@@ -90,6 +104,8 @@ const HelpSupportOrderEntry = () => {
           ticketType: SUPPORT_TICKET_TYPE[0].code,
         },
       );
+
+      console.log('response: ', response);
 
       handleSuccessToast();
     } catch (error: any) {

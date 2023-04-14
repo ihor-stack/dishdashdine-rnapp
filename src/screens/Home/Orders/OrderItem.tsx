@@ -1,14 +1,14 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import {HStack, Image, Pressable, Text, VStack} from 'native-base';
-import {isEmpty} from 'lodash';
+import { HStack, Image, Pressable, Text, VStack } from 'native-base';
+import { isEmpty } from 'lodash';
 import FastImage from 'react-native-fast-image';
 import moment from 'moment';
 
-import {Colors, fonts} from '@/themes';
-import {DynamicText} from '@/components';
-import {IOrder, IRestaurant} from '@/api/generic';
+import { Colors, fonts } from '@/themes';
+import { DynamicText } from '@/components';
+import { IOrder, IRestaurant } from '@/api/generic';
 
 const noProfile = require('@/assets/images/no-profile.png');
 
@@ -47,7 +47,7 @@ const OrdersItem = (props: OrdersItemProps) => {
       ) : (
         <Image source={noProfile} style={styles.dishInfoLogo} alt="alt-image" />
       )}
-      <VStack ml={2} p={2} space="1" justifyContent="center">
+      <VStack ml={1} p={2} space="1" justifyContent="center">
         <Text bold>{restaurant?.name}</Text>
         <HStack space={2}>
           <Text fontSize="xs" color={Colors.grey}>
@@ -73,14 +73,13 @@ const OrdersItem = (props: OrdersItemProps) => {
         )}
         {showCollection && order?.collectionTime && (
           <Pressable>
-            <Text fontSize="xs" paddingBottom={1}>
-              Collection:
-              <DynamicText
+            <Text fontSize="xs">
+              Collection: <DynamicText
                 fontFamily={fonts.DMSans500Medium}
                 textDecorationLine="underline">
                 {momentDate.isSame(new Date(), 'day')
                   ? 'Today'
-                  : `${momentDate.format('MM/DD/YYYY, hh:mm a')}`}
+                  : `${momentDate.format('DD/MM/YYYY, hh:mm a')}`}
               </DynamicText>
             </Text>
           </Pressable>

@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
-import {FlatList, RefreshControl, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, RefreshControl, StyleSheet } from 'react-native';
 
-import {useNavigation} from '@react-navigation/native';
-import {Button, Divider} from 'native-base';
-import {useSelector} from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import { Button, Divider } from 'native-base';
+import { useSelector } from 'react-redux';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
-import {IOrder} from '@/api/generic';
-import {DynamicPressable, DynamicText, DynamicView} from '@/components';
+import { IOrder } from '@/api/generic';
+import { DynamicPressable, DynamicText, DynamicView } from '@/components';
 import DishSpinner from '@/components/DishSpinner';
-import {orderSelectors} from '@/store/order';
-import {fetchActiveOrder} from '@/store/order/thunk';
-import {Colors, fonts} from '@/themes';
+import { orderSelectors } from '@/store/order';
+import { fetchActiveOrder } from '@/store/order/thunk';
+import { Colors, fonts } from '@/themes';
 import NoOrder from '../NoOrder';
 import OrdersItem from '../OrderItem';
-import {ORDER_STATUS_ENUM} from '@/constants';
-import {useAppThunkDispatch} from '@/store';
+import { ORDER_STATUS_ENUM } from '@/constants';
+import { useAppThunkDispatch } from '@/store';
 
-const ItemLoader = ({index}: {index: number}) => (
+const ItemLoader = ({ index }: { index: number }) => (
   <SkeletonPlaceholder key={`loading-items-${index}`}>
     <SkeletonPlaceholder.Item
       flexDirection="row"
@@ -93,7 +93,7 @@ const UpcomingOders = () => {
     }
   };
 
-  const renderItem = ({item, index}: {item: IOrder; index: number}) => {
+  const renderItem = ({ item, index }: { item: IOrder; index: number }) => {
     if (!refresher && isLoadingOrders) {
       return <ItemLoader index={index} />;
     }
@@ -111,7 +111,7 @@ const UpcomingOders = () => {
             restaurant={item.restaurant}
             showCollection
           />
-          <DynamicView marginRight={11} marginTop={-45}>
+          <DynamicView marginRight={20} marginTop={-45}>
             <DynamicText
               fontSize={15}
               fontFamily={fonts.DMSans700Bold}
@@ -171,8 +171,8 @@ const UpcomingOders = () => {
 export default UpcomingOders;
 
 const styles = StyleSheet.create({
-  listStyle: {backgroundColor: Colors.white},
-  listContentContainerStyle: {flexGrow: 1, paddingBottom: 25},
+  listStyle: { backgroundColor: Colors.white },
+  listContentContainerStyle: { flexGrow: 1, paddingBottom: 25 },
 });
 
 const FAKE_DATA: any[] = Array.from({

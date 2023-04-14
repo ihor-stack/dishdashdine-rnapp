@@ -71,6 +71,19 @@ const Login = () => {
   }, [dispatch]);
 
   const showErrorToast = () => {
+    // toast.show({
+    //   placement: 'top',
+    //   duration: 2500,
+    //   render: () => {
+    //     return (
+    //       <DishToast
+    //         title="Warning"
+    //         message="Username or Password is invalid"
+    //         variant="error"
+    //       />
+    //     );
+    //   },
+    // });
     showErrorMessage('Warning', 'Username or Password is invalid');
   };
 

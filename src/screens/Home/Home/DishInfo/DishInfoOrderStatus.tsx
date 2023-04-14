@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {Colors, fonts} from '@/themes';
+import { View, Text, StyleSheet } from 'react-native';
+import { Colors, fonts } from '@/themes';
 import DishOrderProgress from '@/components/DishOrderProgress';
-import {DynamicText, DynamicView} from '@/components';
-import {ORDER_STATUS, ORDER_STATUS_ENUM} from '@/constants';
+import { DynamicText, DynamicView } from '@/components';
+import { ORDER_STATUS, ORDER_STATUS_ENUM } from '@/constants';
 import DishButton from '@/components/DishButton';
-import {IOrder} from '@/api/generic';
-import {useNavigation} from '@react-navigation/native';
+import { IOrder } from '@/api/generic';
+import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
 
 export interface DishInfoOrderStatusProps {

@@ -1,5 +1,5 @@
-import {ORDER_STATUS} from '@/constants';
-import {number, string} from 'yup';
+import { ORDER_STATUS } from '@/constants';
+import { number, string } from 'yup';
 
 export interface NewResponseFormat {
   $id: string;
@@ -281,11 +281,11 @@ export interface IFindRestaurantParams {
   FavouritesOnly?: boolean;
   AssignedTaxonomy?: string;
   SortOption?: number | SortOption;
-  LocationQuery?: boolean;
+  LocationQuery?: boolean | null;
   IncludeOpenOnly?: boolean;
   OrderType?: number;
-  IncludeCateringRestaurants?: boolean;
-  IncludeOrderRestaurants?: boolean;
+  IncludeCateringRestaurants?: boolean | null;
+  IncludeOrderRestaurants?: boolean | null;
 }
 
 export interface IMenu {

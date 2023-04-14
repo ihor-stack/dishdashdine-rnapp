@@ -46,6 +46,7 @@ const YourAppExperience = () => {
   }, []);
 
   const onSubmit = async () => {
+    console.log('onSubmit: ', errors);
     if (showLoading) {
       return;
     }
@@ -53,6 +54,19 @@ const YourAppExperience = () => {
     if (errors) {
       if (errors.message) {
         return showWarningMessage('Warning', String(errors.message?.message));
+        // toast.show({
+        //   placement: 'top',
+        //   duration: 2500,
+        //   render: () => {
+        //     return (
+        //       <DishToast
+        //         title="Warning"
+        //         message={String(errors.message?.message)}
+        //         variant="warning"
+        //       />
+        //     );
+        //   },
+        // });
       }
     }
 

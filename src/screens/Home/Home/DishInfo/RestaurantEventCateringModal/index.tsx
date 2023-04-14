@@ -61,6 +61,15 @@ const RestaurantEventCateringModal = () => {
     ),
   });
   const handleErrorToast = (message: string) => {
+    // toast.show({
+    //   placement: 'top',
+    //   duration: 2500,
+    //   render: () => {
+    //     return (
+    //       <DishToast title="Warning" message={message} variant="warning" />
+    //     );
+    //   },
+    // });
     showWarningMessage('Warning', message);
   };
 

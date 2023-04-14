@@ -1,7 +1,7 @@
-import {IFindRestaurantParams} from '@/api/generic';
+import { IFindRestaurantParams } from '@/api/generic';
 import RestaurantService from '@/api/restaurant';
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {isArray} from 'lodash';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { isArray } from 'lodash';
 
 export const fetchRestaurant = createAsyncThunk<any, IFindRestaurantParams>(
   'restaurant/getAllRestaurants',
@@ -43,7 +43,7 @@ export const getRestaurantMenus = createAsyncThunk(
 
 export const getRestaurantPopularMenus = createAsyncThunk(
   'restaurant/getRestaurantPopularMenus',
-  async (params: {id: string; menuId: string}) => {
+  async (params: { id: string; menuId: string }) => {
     const response: any = await RestaurantService.getRestaurantPopularMenus(
       params.id,
       params.menuId,

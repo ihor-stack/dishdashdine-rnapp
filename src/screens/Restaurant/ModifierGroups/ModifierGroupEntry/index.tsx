@@ -162,6 +162,7 @@ const ModifierGroupEntry = () => {
 
       if (response) {
         const result = await dispatch(fetchRestaurantModifiers(restaurantId));
+
         handleSuccessToast();
       }
     } catch (error: any) {

@@ -74,6 +74,7 @@ const MainScreen = () => {
   useEffect(() => {
     requestUserPermission();
 
+    console.log('BackgroundTimer.runBackgroundTimer');
     BackgroundTimer.runBackgroundTimer(() => {
       if (currentUser && !currentUser?.noAuth) {
         if (currentUser?.primaryUserRole === 'User') {

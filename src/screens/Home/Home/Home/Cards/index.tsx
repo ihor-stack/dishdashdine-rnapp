@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {FlatList, ScrollView, StyleSheet} from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { FlatList, ScrollView, StyleSheet } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {
@@ -9,16 +9,16 @@ import {
   DynamicView,
   SafeAreaViewContainer,
 } from '@/components';
-import {fonts} from '@/themes/fonts';
-import {HOME_CARDS} from '@/constants/fakeData';
-import {useIsMounted} from '@/hooks/useIsMounted';
+import { fonts } from '@/themes/fonts';
+import { HOME_CARDS } from '@/constants/fakeData';
+import { useIsMounted } from '@/hooks/useIsMounted';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import {useDispatch, useSelector} from 'react-redux';
-import {fetchAppPromo} from '@/store/home/thunk';
-import {IAppPromo} from '@/api/generic';
-import {homeSelectors} from '@/store/home';
-import {Colors} from '@/themes';
-import {isEmpty} from 'lodash';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAppPromo } from '@/store/home/thunk';
+import { IAppPromo } from '@/api/generic';
+import { homeSelectors } from '@/store/home';
+import { Colors } from '@/themes';
+import { isEmpty } from 'lodash';
 
 const Cards = () => {
   const FAKE_DATA: any[] = Array.from({
@@ -32,7 +32,7 @@ const Cards = () => {
     return (
       <DynamicImageBackground
         key={index}
-        source={{uri: item.imagePath}}
+        source={{ uri: item.imagePath }}
         resizeMode="cover"
         aspectRatio={316 / 144}
         width={316}
@@ -111,12 +111,12 @@ const Cards = () => {
       style={styles.contentContainer}>
       {isLoading
         ? FAKE_DATA.map((_, index) => {
-            return renderCardLoading(index);
-          })
+          return renderCardLoading(index);
+        })
         : !isEmpty(appPromo) &&
-          appPromo?.map((item, index) => {
-            return renderCardItem(item, index);
-          })}
+        appPromo?.map((item, index) => {
+          return renderCardItem(item, index);
+        })}
     </ScrollView>
   );
 };

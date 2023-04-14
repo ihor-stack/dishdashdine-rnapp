@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {DynamicPressable, DynamicText, DynamicView} from '@/components';
-import {Colors, fonts} from '@/themes';
-import {useSelector} from 'react-redux';
-import {homeSelectors} from '@/store/home';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { DynamicPressable, DynamicText, DynamicView } from '@/components';
+import { Colors, fonts } from '@/themes';
+import { useSelector } from 'react-redux';
+import { homeSelectors } from '@/store/home';
 
 export interface CollectionDeliveryProps {
   onSelectedIndex?: (index: number | null) => void;
 }
 
-const CollectionDelivery = ({onSelectedIndex}: CollectionDeliveryProps) => {
+const CollectionDelivery = ({ onSelectedIndex }: CollectionDeliveryProps) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(0);
   const homeOrderType = useSelector(homeSelectors.showOrderType);
 
@@ -53,15 +53,15 @@ const CollectionDelivery = ({onSelectedIndex}: CollectionDeliveryProps) => {
       <DynamicPressable
         style={[
           styles.defaultStyle,
-          homeOrderType === 2 ? styles.selectedStyle : styles.unSelectedStyle,
+          homeOrderType === null ? styles.selectedStyle : styles.unSelectedStyle,
         ]}
         onPress={() => {
-          onSelectedIndex && onSelectedIndex(2);
-          setSelectedIndex(2);
+          onSelectedIndex && onSelectedIndex(null);
+          setSelectedIndex(null);
         }}>
         <DynamicText
           style={styles.textStyle}
-          color={homeOrderType === 2 ? Colors.white : Colors.black}>
+          color={homeOrderType === null ? Colors.white : Colors.black}>
           Events
         </DynamicText>
       </DynamicPressable>

@@ -68,6 +68,15 @@ const CategoryEntry = () => {
   }, [category]);
 
   const handleErrorToast = (message: string) => {
+    // toast.show({
+    //   placement: 'top',
+    //   duration: 2500,
+    //   render: () => {
+    //     return (
+    //       <DishToast title="Warning" message={message} variant="warning" />
+    //     );
+    //   },
+    // });
     showWarningMessage('Warning', message);
   };
 
@@ -144,8 +153,34 @@ const CategoryEntry = () => {
     if (errors) {
       if (errors.name) {
         return showWarningMessage('Warning', 'Name is required');
+        // toast.show({
+        //   placement: 'top',
+        //   duration: 2500,
+        //   render: () => {
+        //     return (
+        //       <DishToast
+        //         title="Warning"
+        //         message="Name is required"
+        //         variant="warning"
+        //       />
+        //     );
+        //   },
+        // });
       } else if (errors.description) {
         return showWarningMessage('Warning', 'Description is required');
+        // toast.show({
+        //   placement: 'top',
+        //   duration: 2500,
+        //   render: () => {
+        //     return (
+        //       <DishToast
+        //         title="Warning"
+        //         message="Description is required"
+        //         variant="warning"
+        //       />
+        //     );
+        //   },
+        // });
       }
     }
 

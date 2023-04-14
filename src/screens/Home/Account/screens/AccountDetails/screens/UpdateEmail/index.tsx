@@ -61,6 +61,19 @@ const UpdateEmail = () => {
     if (errors) {
       if (errors.email) {
         return showWarningMessage('Warning', String(errors.email?.message));
+        //  toast.show({
+        //   placement: 'top',
+        //   duration: 2500,
+        //   render: () => {
+        //     return (
+        //       <DishToast
+        //         title="Warning"
+        //         message={String(errors.email?.message)}
+        //         variant="warning"
+        //       />
+        //     );
+        //   },
+        // });
       }
     }
 
@@ -78,6 +91,11 @@ const UpdateEmail = () => {
         duration: 2500,
         render: () => {
           return (
+            // <DishToast
+            //   title="Email updated"
+            //   message="You have successfully updated your email."
+            //   variant="success"
+            // />
             showSuccessMessage(
               'Email updated',
               'You have successfully updated your email.',

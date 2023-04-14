@@ -13,6 +13,8 @@ export default class ExampleComponent extends Component {
   constructor(props, context) {
     super(props, context);
   }
+  _handlePress() {
+  }
   render() {
     return (
       <Button

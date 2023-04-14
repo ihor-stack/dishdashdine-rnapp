@@ -64,6 +64,20 @@ const UpdateNumber = () => {
           'Warning',
           String(errors.phoneNumber?.message),
         );
+        //  toast.show({
+        //   placement: 'top',
+        //   duration: 2500,
+        //   render: () => {
+        //     return (
+        //       // <DishToast
+        //       //   title="Warning"
+        //       //   message={String(errors.phoneNumber?.message)}
+        //       //   variant="warning"
+        //       // />
+
+        //     );
+        //   },
+        // });
       }
     }
 
@@ -81,6 +95,11 @@ const UpdateNumber = () => {
         duration: 2500,
         render: () => {
           return (
+            // <DishToast
+            //   title="Phone number updated"
+            //   message="You have successfully updated your number."
+            //   variant="success"
+            // />
             showSuccessMessage(
               'Phone number updated',
               'You have successfully updated your number.',

@@ -81,6 +81,8 @@ const DishCurrentLocation = ({onPressLocation}: DishCurrentLocationProps) => {
     <DynamicPressable
       paddingVertical={22}
       paddingHorizontal={12}
+      // borderBottomWidth={1}
+      // borderBottomColor="#F2F4F5"
       backgroundColor={Colors.white}
       flexDirection="row"
       justifyContent="space-between"

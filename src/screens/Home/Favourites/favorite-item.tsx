@@ -77,6 +77,19 @@ const FavoriteItem = ({
       });
 
       if (response) {
+        // toast.show({
+        //   placement: 'top',
+        //   duration: 2500,
+        //   render: () => {
+        //     return (
+        //       <DishToast
+        //         title="Remove to Favourite"
+        //         message="Successfully removed to your favourites!"
+        //         variant="success"
+        //       />
+        //     );
+        //   },
+        // });
         showSuccessMessage(
           'Remove to Favourite',
           'Successfully removed to your favourites!',

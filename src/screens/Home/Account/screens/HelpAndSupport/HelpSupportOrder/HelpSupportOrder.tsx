@@ -1,15 +1,15 @@
-import {IOrder, IRestaurant} from '@/api/generic';
-import {DynamicPressable, DynamicText, DynamicView} from '@/components';
+import { IOrder, IRestaurant } from '@/api/generic';
+import { DynamicPressable, DynamicText, DynamicView } from '@/components';
 import NoOrder from '@/screens/Home/Orders/NoOrder';
 import OrdersItem from '@/screens/Home/Orders/OrderItem';
-import {orderSelectors} from '@/store/order';
-import {restaurantSelectors} from '@/store/restaurants';
-import {Colors, fonts} from '@/themes';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {Divider} from 'native-base';
+import { orderSelectors } from '@/store/order';
+import { restaurantSelectors } from '@/store/restaurants';
+import { Colors, fonts } from '@/themes';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { Divider } from 'native-base';
 import React from 'react';
-import {FlatList} from 'react-native';
-import {useSelector} from 'react-redux';
+import { FlatList } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const HelpSupportOrder = () => {
   const Order: IOrder[] = useSelector(orderSelectors.selectCompletedOrder);
@@ -31,7 +31,7 @@ const HelpSupportOrder = () => {
     }
   };
 
-  const renderItem = ({item, index}: {item: IOrder; index: number}) => {
+  const renderItem = ({ item, index }: { item: IOrder; index: number }) => {
     return (
       <DynamicView backgroundColor={Colors.white} flex={1} key={index}>
         <DynamicPressable onPress={() => onSelectOrder(item)} key={index}>
@@ -59,7 +59,7 @@ const HelpSupportOrder = () => {
 
   return (
     <FlatList
-      style={{backgroundColor: Colors.white}}
+      style={{ backgroundColor: Colors.white }}
       contentContainerStyle={{
         flexGrow: 1,
         paddingBottom: 25,

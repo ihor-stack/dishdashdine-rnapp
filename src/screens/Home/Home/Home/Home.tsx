@@ -25,7 +25,6 @@ import DistanceFilter from '@/screens/Home/DistanceFilter';
 import SortAndFilter from '@/screens/Home/SortAndFilter';
 import { homeSelectors } from '@/store/home';
 import { IAddress, IOrder } from '@/api/generic';
-import { orderSelectors } from '@/store/order';
 import { IUser } from '@/api/user';
 import { addressSelectors } from '@/store/address';
 import { fetchAppPromo } from '@/store/home/thunk';
@@ -51,9 +50,6 @@ const Home = () => {
     restaurantSelectors.showLoadingRestaurant,
   );
   const homeOrderType: number | null = useSelector(homeSelectors.showOrderType);
-  const completedOrders: IOrder[] = useSelector(
-    orderSelectors.selectCompletedOrder,
-  );
   const currentUser = useSelector(accountSelectors.selectCurrentUser) as IUser;
   const defaultAddress = useSelector(
     addressSelectors.selectDefaultAddress,
@@ -69,7 +65,7 @@ const Home = () => {
     if (isInitialized) {
       getData(currentLocation)
     }
-  }, [currentLocation])
+  }, [currentLocation, homeOrderType])
 
 
   useEffect(() => {
@@ -80,7 +76,7 @@ const Home = () => {
 
   const onRefresh = useCallback(async () => {
     await getData(currentLocation)
-  }, [currentLocation, currentDistance, dispatch, currentUser]);
+  }, [currentLocation, currentDistance, dispatch, currentUser, homeOrderType]);
 
   const getData = async (currentLocationProps: any) => {
     setRefreshing(true);
@@ -92,6 +88,9 @@ const Home = () => {
           RadiusMiles: currentDistance || DEFAULT_DISTANCE,
           OrderType: homeOrderType,
           // IncludeOpenOnly: true,
+          IncludeOrderRestaurants: homeOrderType === 0 ? true : null,
+          IncludeCateringRestaurants: homeOrderType === null ? true : null,
+          LocationQuery: homeOrderType === 0 || homeOrderType === 1 ? true : null
         }),
       );
 
@@ -121,16 +120,10 @@ const Home = () => {
 
   const ListHeaderComponent = () => (
     <VStack bgColor={Colors.lightGrey} space={3}>
-      <Box bgColor={Colors.white} pb={ !isEmpty(appPromo) ? 5: 0}>
+      <Box bgColor={Colors.white} pb={!isEmpty(appPromo) ? 5 : 0}>
         <SearchAndSortFilters />
-        { !isEmpty(appPromo) ?  <Cards /> : null}
+        {!isEmpty(appPromo) ? <Cards /> : null}
       </Box>
-
-      {!isEmpty(completedOrders) && (
-        <Box bgColor={Colors.white}>
-          <Orders />
-        </Box>
-      )}
 
       <Box bgColor={Colors.white}>
         <DynamicView marginHorizontal={14} marginBottom={15}>

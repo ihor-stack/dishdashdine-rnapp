@@ -1,10 +1,10 @@
 import React from 'react';
-import {DynamicText, DynamicView} from '@/components';
-import {Colors, fonts} from '@/themes';
+import { DynamicText, DynamicView } from '@/components';
+import { Colors, fonts } from '@/themes';
 import Feather from 'react-native-vector-icons/Feather';
-import {IOrder} from '@/api/generic';
+import { IOrder } from '@/api/generic';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import {ORDER_TYPE} from '@/constants';
+import { ORDER_TYPE } from '@/constants';
 import moment from 'moment';
 
 export interface MyOrderCollectionTimeProps {
@@ -36,7 +36,7 @@ const MyOrderCollectionTime = ({
             {order?.orderType === ORDER_TYPE.COLLECTION
               ? 'Collection'
               : 'Delivery'}
-            time
+            {' '}time
           </DynamicText>
         </DynamicView>
       </DynamicView>
@@ -57,7 +57,7 @@ const MyOrderCollectionTime = ({
           lineHeight={20.83}
           color={Colors.black}>
           {order?.collectionTime
-            ? moment(order.collectionTime).format('MM/DD/YYYY HH:mm')
+            ? moment(order.collectionTime).format('DD/MM/YYYY HH:mm')
             : 'No collection time'}
         </DynamicText>
       )}

@@ -234,6 +234,11 @@ const AddressFilter = () => {
         duration: 2500,
         render: () => {
           return (
+            // <DishToast
+            //   title="Address updated"
+            //   message="You have successfully updated your address"
+            //   variant="success"
+            // />
             showSuccessMessage(
               'Address updated',
               'You have successfully updated your address',

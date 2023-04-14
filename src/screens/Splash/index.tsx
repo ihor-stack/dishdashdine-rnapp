@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Progress from 'react-native-progress';
-import {DynamicImage, DynamicView} from '@/components';
-import {Colors} from '@/themes';
-import {ActivityIndicator} from 'react-native';
+import { DynamicImage, DynamicView } from '@/components';
+import { Colors } from '@/themes';
+import { ActivityIndicator } from 'react-native';
 import codePush from 'react-native-code-push';
 import RNBootSplash from 'react-native-bootsplash';
-import {captureErrorException} from '@/utils/error-handler';
-import {CommonActions, useNavigation} from '@react-navigation/native';
-import {isEmpty} from 'lodash';
-import {useSelector} from 'react-redux';
-import {authSelectors} from '@/store/authentication';
-import {accountSelectors} from '@/store/account';
+import { captureErrorException } from '@/utils/error-handler';
+import { CommonActions, useNavigation } from '@react-navigation/native';
+import { isEmpty } from 'lodash';
+import { useSelector } from 'react-redux';
+import { authSelectors } from '@/store/authentication';
+import { accountSelectors } from '@/store/account';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -59,11 +59,11 @@ const SplashScreen = () => {
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{name: 'Onboarding', params: {screen: 'Welcome'}}],
+          routes: [{ name: 'Onboarding', params: { screen: 'Welcome' } }],
         }),
       );
     };
-    
+
     if (isAuthenticated) {
       if (!isEmpty(currentUser)) {
         if (currentUser?.primaryUserRole === 'User') {
@@ -71,14 +71,14 @@ const SplashScreen = () => {
           navigation.dispatch(
             CommonActions.reset({
               index: 0,
-              routes: [{name: 'HomeRoot'}],
+              routes: [{ name: 'HomeRoot' }],
             }),
           );
         } else {
           navigation.dispatch(
             CommonActions.reset({
               index: 0,
-              routes: [{name: 'AdminRootRestaurants'}],
+              routes: [{ name: 'AdminRootRestaurants' }],
             }),
           );
         }

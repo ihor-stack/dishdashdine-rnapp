@@ -1,12 +1,12 @@
-import {ActivityIndicator, Platform, StatusBar, Linking} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import { ActivityIndicator, Platform, StatusBar, Linking } from 'react-native';
+import React, { useEffect, useState } from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import isEmpty from 'lodash/isEmpty';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {showMessage} from 'react-native-flash-message';
-import {useDispatch, useSelector} from 'react-redux';
-import {filter} from 'lodash';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { showMessage } from 'react-native-flash-message';
+import { useDispatch, useSelector } from 'react-redux';
+import { filter } from 'lodash';
 import moment from 'moment';
 import {
   NavigationProp,
@@ -21,15 +21,15 @@ import {
   DynamicText,
   DynamicView,
 } from '@/components';
-import {Colors} from '@/themes';
+import { Colors } from '@/themes';
 import DishOrderProgress from '@/components/DishOrderProgress';
 import DishButton from '@/components/DishButton';
-import {IOrder} from '@/api/generic';
+import { IOrder } from '@/api/generic';
 import styles from './styles';
-import {ORDER_STATUS, ORDER_STATUS_ENUM, ORDER_TYPE} from '@/constants';
+import { ORDER_STATUS, ORDER_STATUS_ENUM, ORDER_TYPE } from '@/constants';
 import OrderStatusHistory from '@/screens/Home/Orders/OrderStatus/OrderStatusHistory';
-import {orderSelectors} from '@/store/order';
-import {fetchOrderRestaurant} from '@/store/order/thunk';
+import { orderSelectors } from '@/store/order';
+import { fetchOrderRestaurant } from '@/store/order/thunk';
 import DishSpinner from '@/components/DishSpinner';
 
 const chef = require('@/assets/images/chef.png');
@@ -48,7 +48,7 @@ const OrderStatus = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [timer, setTimer] = useState<any>();
 
-  const {top} = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
   const navigation = useNavigation<NavigationProp<any>>();
   const dispatch = useDispatch<any>();
   const params = useRoute().params as any;
@@ -269,10 +269,10 @@ const OrderStatus = () => {
             {isReadyCollection
               ? readyForCollectionView()
               : isOutForDelivery
-              ? readyForDeliveryView()
-              : isCancelled
-              ? orderCancelView()
-              : renderImage()}
+                ? readyForDeliveryView()
+                : isCancelled
+                  ? orderCancelView()
+                  : renderImage()}
           </DynamicView>
           {!isReadyCollection && !isOutForDelivery && !isCancelled && (
             <>
@@ -322,7 +322,7 @@ const OrderStatus = () => {
                     :{' '}
                     {moment(order.collectionTime)
                       .utc()
-                      .format('MM/DD/YYYY, hh:mm a')}
+                      .format('DD/MM/YYYY, hh:mm a')}
                   </DynamicText>
                 )}
               </DynamicView>

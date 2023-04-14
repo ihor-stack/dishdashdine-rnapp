@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
-import {Platform, StatusBar} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {DynamicImage} from '@/components';
+import React, { useEffect } from 'react';
+import { Platform, StatusBar } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { DynamicImage } from '@/components';
 import Home from './Home';
 import Browse from './Browse/index';
 import Orders from './Orders';
 import FavoritesStack from './Favourites';
 import Account from './Account';
-import {HomeBottomTabParamList} from '@/navigation/types';
-import {useDispatch, useSelector} from 'react-redux';
-import {getUserCurrentAddress} from '@/store/account/thunk';
+import { HomeBottomTabParamList } from '@/navigation/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserCurrentAddress } from '@/store/account/thunk';
 import {
   accountSelectors,
   setDevicePushToken,
@@ -20,25 +20,25 @@ import {
   requestGeolocationAuthorization,
   requestGeolocationAuthorizationAndroid,
 } from '@/utils/geolocation';
-import {fetchMyFavorites} from '@/store/restaurants/thunk';
-import {captureErrorException} from '@/utils/error-handler';
-import {fetchAddress, getDefaultAddress} from '@/store/address/thunk';
-import {fetchTaxonomy} from '@/store/taxonomy/thunk';
-import {fetchActiveOrder, fetchCompletedOrder} from '@/store/order/thunk';
+import { fetchMyFavorites } from '@/store/restaurants/thunk';
+import { captureErrorException } from '@/utils/error-handler';
+import { fetchAddress, getDefaultAddress } from '@/store/address/thunk';
+import { fetchTaxonomy } from '@/store/taxonomy/thunk';
+import { fetchActiveOrder, fetchCompletedOrder } from '@/store/order/thunk';
 import PromoCodeModal from './Orders/PromoCodeModal';
 import DishMoreInfo from './Home/DishInfo/DishMoreInfo';
 import CheckOutModal from './Home/DishInfo/CheckOutModal';
 import OrderReviewModal from './Orders/OrderReviewModal';
-import {getAllCards} from '@/store/my-wallet/thunk';
+import { getAllCards } from '@/store/my-wallet/thunk';
 import PaymentMethodListModal from './Orders/PaymentMethodListModal';
-import {isEmpty} from 'lodash';
-import {fonts} from '@/themes';
-import {fetchMyReviews} from '@/store/my-reviews/thunk';
+import { isEmpty } from 'lodash';
+import { fonts } from '@/themes';
+import { fetchMyReviews } from '@/store/my-reviews/thunk';
 import messaging from '@react-native-firebase/messaging';
 import UserService from '@/api/user';
-import {IUser} from '@/api/user';
+import { IUser } from '@/api/user';
 import RestaurantEventCateringModal from './Home/DishInfo/RestaurantEventCateringModal';
-import {fetchAppPromo} from '@/store/home/thunk';
+import { fetchAppPromo } from '@/store/home/thunk';
 
 const homeActive = require('@/assets/images/home-active.png');
 const homeInActive = require('@/assets/images/home-inactive.png');
@@ -58,12 +58,8 @@ const HomeTabs = () => {
   const currentLocation = useSelector(
     accountSelectors.selectCurrentUserLocation,
   );
-  // const currentDistance = useSelector(accountSelectors.selectCurrentUserRadius);
-  // const homeOrderType = useSelector(homeSelectors.showOrderType);
+
   const currentUser = useSelector(accountSelectors.selectCurrentUser) as IUser;
-  // const defaultAddress = useSelector(
-  //   addressSelectors.selectDefaultAddress,
-  // ) as IAddress;
 
   useEffect(() => {
     const requestIOSPermission = async () => {
@@ -125,12 +121,12 @@ const HomeTabs = () => {
         }
       });
   }, [dispatch, currentUser]);
-  
+
   const initGeolocation = async () => {
     try {
       const position: any = await getCurrentGeolocation();
       if (position) {
-        const {latitude, longitude} = position.coords;
+        const { latitude, longitude } = position.coords;
         dispatch(
           setCurrentUserLocation({
             latitude,
@@ -151,7 +147,7 @@ const HomeTabs = () => {
         backgroundColor={'transparent'}
       />
       <HomeBottomTab.Navigator
-        screenOptions={({route}) => ({
+        screenOptions={({ route }) => ({
           tabBarStyle: {
             ...Platform.select({
               android: {
@@ -180,7 +176,7 @@ const HomeTabs = () => {
           options={{
             title: 'Home',
             header: () => null,
-            tabBarIcon: ({focused}) => (
+            tabBarIcon: ({ focused }) => (
               <DynamicImage
                 resizeMode="contain"
                 source={focused ? homeActive : homeInActive}
@@ -194,7 +190,7 @@ const HomeTabs = () => {
         <HomeBottomTab.Screen
           options={{
             header: () => null,
-            tabBarIcon: ({focused}) => (
+            tabBarIcon: ({ focused }) => (
               <DynamicImage
                 resizeMode="contain"
                 source={focused ? browseActive : browseInActive}
@@ -213,7 +209,7 @@ const HomeTabs = () => {
               options={{
                 tabBarLabel: 'Orders',
                 header: () => null,
-                tabBarIcon: ({focused}) => (
+                tabBarIcon: ({ focused }) => (
                   <DynamicImage
                     resizeMode="contain"
                     source={focused ? ordersActive : ordersInActive}
@@ -229,7 +225,7 @@ const HomeTabs = () => {
               options={{
                 tabBarLabel: 'Favorites',
                 header: () => null,
-                tabBarIcon: ({focused}) => (
+                tabBarIcon: ({ focused }) => (
                   <DynamicImage
                     resizeMode="contain"
                     source={focused ? favouritesActive : favouritesInActive}
@@ -243,7 +239,7 @@ const HomeTabs = () => {
             <HomeBottomTab.Screen
               options={{
                 headerShown: false,
-                tabBarIcon: ({focused}) => (
+                tabBarIcon: ({ focused }) => (
                   <DynamicImage
                     resizeMode="contain"
                     source={focused ? accountActive : accountInActive}

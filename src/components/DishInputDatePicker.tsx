@@ -72,6 +72,7 @@ const DishInputDatePicker: React.FC<DishInputDatePickerProps> = ({
           setOpen(false);
           onDateChanged && onDateChanged(val);
           setFormatted(val.formatted);
+          // setValue('eventDate', val.formatted);
         }}
       />
     </>

@@ -1,21 +1,21 @@
 import React from 'react';
-import {DynamicText, DynamicView} from '@/components';
-import {StyleSheet} from 'react-native';
-import {Colors, fonts} from '@/themes';
-import {Divider} from 'native-base';
-import {isEmpty} from 'lodash';
+import { DynamicText, DynamicView } from '@/components';
+import { StyleSheet } from 'react-native';
+import { Colors, fonts } from '@/themes';
+import { Divider } from 'native-base';
+import { isEmpty } from 'lodash';
 import AdminOrderStatus from './AdminOrderStatus';
-import {IAdminOrders} from '@/api/admin_restaurant/model';
+import { IAdminOrders } from '@/api/admin_restaurant/model';
 import moment from 'moment';
 import MyOrderCollectionTime from '@/screens/Home/Orders/OrderSummary/MyOrderCollectionTime';
 import Feather from 'react-native-vector-icons/Feather';
-import {ORDER_TYPE} from '@/constants';
+import { ORDER_TYPE } from '@/constants';
 
 export interface OrderDetailsProps {
   order: IAdminOrders;
 }
 
-const OrderDetails = ({order}: OrderDetailsProps) => {
+const OrderDetails = ({ order }: OrderDetailsProps) => {
   return (
     <DynamicView marginTop={15} marginBottom={10}>
       <DynamicView
@@ -32,7 +32,7 @@ const OrderDetails = ({order}: OrderDetailsProps) => {
                 ...styles.textLabelStyle,
                 color: Colors.black,
               }}>
-              {moment(order.submittedAt).format('DD/M/YYYY, HH:mm A')}
+              {moment(order.submittedAt).format('DD/MM/YYYY, HH:mm A')}
             </DynamicText>
           )}
         </DynamicView>
@@ -66,7 +66,7 @@ const OrderDetails = ({order}: OrderDetailsProps) => {
           lineHeight={20.83}
           color={Colors.black}>
           {order?.collectionTime
-            ? moment(order.collectionTime).format('MM/DD/YYYY HH:mm')
+            ? moment(order.collectionTime).format('DD/MM/YYYY HH:mm')
             : 'No collection time'}
         </DynamicText>
       </DynamicView>

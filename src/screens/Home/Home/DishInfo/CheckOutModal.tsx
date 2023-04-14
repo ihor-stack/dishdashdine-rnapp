@@ -1,29 +1,29 @@
-import React, {useEffect, useState} from 'react';
-import {DynamicView} from '@/components';
+import React, { useEffect, useState } from 'react';
+import { DynamicView } from '@/components';
 import RestaurantInfoAvatar from './RestaurantInfoAvatar';
-import {Divider} from 'native-base';
-import {Colors} from '@/themes';
+import { Divider } from 'native-base';
+import { Colors } from '@/themes';
 import CheckOutMenuITem from './CheckOutMenuITem';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import ActionSheet, {
   SheetManager,
   SheetProps,
 } from 'react-native-actions-sheet';
 import { ScrollView } from "react-native";
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DishButton from '@/components/DishButton';
-import {restaurantSelectors, setSelectedRestaurant} from '@/store/restaurants';
+import { restaurantSelectors, setSelectedRestaurant } from '@/store/restaurants';
 import {
   fetchOrderRestaurant,
   fetchRestaurantOrder,
   setOrderOrderType,
 } from '@/store/order/thunk';
-import {IOrder, IOrderLineItem} from '@/api/generic';
-import {homeSelectors} from '@/store/home';
-import {orderSelectors} from '@/store/order';
-import {isEmpty} from 'lodash';
+import { IOrder, IOrderLineItem } from '@/api/generic';
+import { homeSelectors } from '@/store/home';
+import { orderSelectors } from '@/store/order';
+import { isEmpty } from 'lodash';
 
-export interface CheckOutModalProps extends SheetProps {}
+export interface CheckOutModalProps extends SheetProps { }
 
 const CheckOutModal = (props: CheckOutModalProps) => {
   const navigation = useNavigation();
@@ -84,7 +84,7 @@ const CheckOutModal = (props: CheckOutModalProps) => {
     setIsCheckOut(true);
     // SET ORDER TYPE
     await dispatch(
-      setOrderOrderType({id: selectedOrder.id, data: {orderType}}),
+      setOrderOrderType({ id: selectedOrder.id, data: { orderType } }),
     );
     await SheetManager.hide('CheckOutModal');
   };
@@ -105,17 +105,25 @@ const CheckOutModal = (props: CheckOutModalProps) => {
       }}
       onClose={() => {
         if (isFrom === 'dish-info' && !isCheckOut) {
+
         } else if (isFrom === 'dish-info' && isCheckOut) {
+          if (__DEV__) {
+            console.log('selected: ', selectedOrder);
+          }
           navigation.navigate('OrderDetails', {
             order: selectedOrder,
           });
         } else if (isFrom === 'order' && isCheckOut) {
+          if (__DEV__) {
+            console.log('onClose 118');
+          }
           navigation.navigate('OrderDetails', {
             order: selectedOrder,
           });
+        } else {
         }
       }}>
-      <DynamicView paddingTop={54} maxHeight={'90%'}>
+      <DynamicView paddingTop={54}>
         {selectedOrder && (
           <RestaurantInfoAvatar
             restaurant={selectedOrder.restaurant || restaurant}
@@ -125,7 +133,7 @@ const CheckOutModal = (props: CheckOutModalProps) => {
         )}
         <Divider bgColor={Colors.lightGrey} padding={1} />
         <ScrollView
-         style={{ backgroundColor: "#FFF", minHeight: '100%' }}>
+          style={{ backgroundColor: "#FFF" }}>
           <DynamicView paddingHorizontal={12}>
             <CheckOutMenuITem
               order={selectedOrder}
@@ -134,7 +142,7 @@ const CheckOutModal = (props: CheckOutModalProps) => {
             />
           </DynamicView>
           <Divider bgColor={Colors.lightGrey} padding={1} />
-          <DynamicView paddingHorizontal={12}>
+          <DynamicView paddingHorizontal={12} paddingBottom={20}>
             {selectedOrder && Number(selectedOrder.lineItemCount) > 0 && (
               <DishButton
                 icon="arrowright"
@@ -156,19 +164,9 @@ const CheckOutModal = (props: CheckOutModalProps) => {
               }}
             />
 
-            {
-              lineItem?.length > 4 ? 
-              <DishButton
-                icon="arrowright"
-                label="Cancel"
-                onPress={async () => {
-                  await SheetManager.hide('CheckOutModal');
-                }}
-              /> : null
-            }
-
           </DynamicView>
         </ScrollView>
+
       </DynamicView>
     </ActionSheet>
   );
