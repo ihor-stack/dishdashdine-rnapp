@@ -29,6 +29,7 @@ import { IUser } from '@/api/user';
 import { addressSelectors } from '@/store/address';
 import { fetchAppPromo } from '@/store/home/thunk';
 import { fetchMyReviews } from '@/store/my-reviews/thunk';
+import { orderSelectors } from '@/store/order';
 
 const FAKE_DATA: any[] = Array.from({
   length: 10,
@@ -54,6 +55,9 @@ const Home = () => {
   const defaultAddress = useSelector(
     addressSelectors.selectDefaultAddress,
   ) as IAddress;
+  const completedOrders: IOrder[] = useSelector(
+    orderSelectors.selectCompletedOrder,
+  );
 
   const appPromo: any[] = useSelector(homeSelectors.selectAppPromo);
 

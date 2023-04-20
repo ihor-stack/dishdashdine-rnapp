@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
 
-import React, {useEffect} from 'react';
-import {Provider} from 'react-redux';
-import {Image, Linking, Platform} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { Image, Linking, Platform } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import RNBootSplash from 'react-native-bootsplash';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -14,14 +14,14 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Octicons from 'react-native-vector-icons/Octicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FastImage from 'react-native-fast-image';
-import {PersistGate} from 'redux-persist/integration/react';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import RootNavigator from '@/navigation/root-navigator';
-import {store, persistor} from './store';
-import {NativeBaseProvider} from 'native-base';
-import {theme} from '@/themes/customTheme';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {SheetProvider} from 'react-native-actions-sheet';
+import { store, persistor } from './store';
+import { NativeBaseProvider } from 'native-base';
+import { theme } from '@/themes/customTheme';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SheetProvider } from 'react-native-actions-sheet';
 import FlipperAsyncStorage from 'rn-flipper-async-storage-advanced';
 
 import FlashMessage from 'react-native-flash-message';
@@ -37,7 +37,7 @@ import MainScreen from '@/screens/Main';
 import Orientation from 'react-native-orientation-locker';
 import DishSpinner from '@/components/DishSpinner';
 import Config from 'react-native-config';
-import {ActionSheetProvider} from '@expo/react-native-action-sheet';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import AxiosProviders from './AxiosProviders';
 
 const homeActive = require('@/assets/images/home-active.png');
@@ -128,7 +128,7 @@ let App = () => {
     },
     subscribe(listener: any) {
       // Listen to incoming links from deep linking
-      Linking.addEventListener('url', ({url}) => {
+      Linking.addEventListener('url', ({ url }) => {
         listener(url);
       });
     },
@@ -146,7 +146,7 @@ let App = () => {
     };
 
     initialize().finally(async () => {
-      await RNBootSplash.hide({fade: true});
+      await RNBootSplash.hide({ fade: true });
     });
 
     (global as any).dispath = store.dispatch;
@@ -158,7 +158,7 @@ let App = () => {
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             {__DEV__ && <FlipperAsyncStorage />}
-            <GestureHandlerRootView style={{flex: 1}}>
+            <GestureHandlerRootView style={{ flex: 1 }}>
               <AxiosProviders>
                 <ActionSheetProvider>
                   <SheetProvider>
@@ -186,8 +186,8 @@ const codePushOptions = {
         ? IOS_CODEPUSH_KEY_PROD
         : IOS_CODEPUSH_KEY
       : Config.PRODUCTION
-      ? ANDROID_CODEPUSH_KEY_PROD
-      : ANDROID_CODEPUSH_KEY,
+        ? ANDROID_CODEPUSH_KEY_PROD
+        : ANDROID_CODEPUSH_KEY,
 };
 
 if (__DEV__) {

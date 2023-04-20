@@ -1,33 +1,33 @@
-import React, {useState, useEffect} from 'react';
-import {Icon, Text, HStack, VStack, Divider, Button} from 'native-base';
+import React, { useState, useEffect } from 'react';
+import { Icon, Text, HStack, VStack, Divider, Button } from 'native-base';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 // import Slider from '@react-native-community/slider'
 import FilterContainer from './FilterContainer';
 import Colors from '@/themes/colors';
-import {Dimensions, useWindowDimensions} from 'react-native';
-import {homeSelectors, setShowDistanceFilter} from '@/store/home';
-import {useDispatch, useSelector} from 'react-redux';
+import { Dimensions, useWindowDimensions } from 'react-native';
+import { homeSelectors, setShowDistanceFilter } from '@/store/home';
+import { useDispatch, useSelector } from 'react-redux';
 import DishMapView from '@/components/DishMapView';
-import {accountSelectors, setCurrentUserDistance} from '@/store/account';
-import {DynamicText, DynamicView} from '@/components';
+import { accountSelectors, setCurrentUserDistance } from '@/store/account';
+import { DynamicText, DynamicView } from '@/components';
 import DishSlider from '@/components/DishSlider';
-import {DEFAULT_DISTANCE} from '@/constants';
-import {fonts} from '@/themes';
+import { DEFAULT_DISTANCE } from '@/constants';
+import { fonts } from '@/themes';
 import DishSpinner from '@/components/DishSpinner';
-import {fetchRestaurant} from '@/store/restaurants/thunk';
-import {restaurantSelectors} from '@/store/restaurants';
-import {isArray, isNull} from 'lodash';
-import {authSelectors} from '@/store/authentication';
-import {IUser} from '@/api/user';
-import {addressSelectors} from '@/store/address';
-import {IAddress, IFindRestaurantParams} from '@/api/generic';
+import { fetchRestaurant } from '@/store/restaurants/thunk';
+import { restaurantSelectors } from '@/store/restaurants';
+import { isArray, isNull } from 'lodash';
+import { authSelectors } from '@/store/authentication';
+import { IUser } from '@/api/user';
+import { addressSelectors } from '@/store/address';
+import { IAddress, IFindRestaurantParams } from '@/api/generic';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 const DistanceFilter = () => {
   const dispatch = useDispatch<any>();
-  const {width} = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   const [isSaving, setIsSaving] = useState(false);
   const [distance, setDistance] = useState(DEFAULT_DISTANCE);
@@ -174,36 +174,16 @@ const DistanceFilter = () => {
           </DynamicText>
         </HStack>
         <DynamicView
-          marginBottom={12}
+          marginBottom={20}
           marginRight={20}
           marginLeft={20}
+          marginTop={5}
           position="relative">
           <DishSlider
             value={Number(distance)}
             onChange={onChangeDistance}
             onChangeEnd={onDistanceChanged}
           />
-          <DynamicView
-            flexDirection="row"
-            alignItems="center"
-            justifyContent="space-between">
-            <DynamicText
-              zIndex={1}
-              fontFamily={fonts.DMSans700Bold}
-              fontSize={13}
-              lineHeight={15.62}
-              color={Colors.black}>
-              0
-            </DynamicText>
-            <DynamicText
-              zIndex={1}
-              fontFamily={fonts.DMSans700Bold}
-              fontSize={13}
-              lineHeight={15.62}
-              color={Colors.black}>
-              20
-            </DynamicText>
-          </DynamicView>
         </DynamicView>
       </VStack>
       <DynamicView width={width} height={380}>

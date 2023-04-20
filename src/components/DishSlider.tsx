@@ -1,8 +1,8 @@
 import React from 'react';
-import {Colors, fonts} from '@/themes';
-import {Platform, StyleSheet} from 'react-native';
-import {ISliderProps, Slider} from 'native-base';
-import {DynamicText, DynamicView} from '@/components';
+import { Colors, fonts } from '@/themes';
+import { Platform, StyleSheet } from 'react-native';
+import { ISliderProps, Slider } from 'native-base';
+import { DynamicText, DynamicView } from '@/components';
 
 export interface DishSliderProps extends ISliderProps {
   value: number;
@@ -39,11 +39,12 @@ export default DishSlider;
 const styles = StyleSheet.create({
   sliderText: {
     fontFamily: fonts.DMSans400Regular,
-    color: Colors.grey,
+    color: Colors.black,
     height: 16,
     width: '100%',
     lineHeight: 16,
     fontSize: 11,
+    fontWeight: '700'
   },
   SliderThumb: {
     position: 'absolute',

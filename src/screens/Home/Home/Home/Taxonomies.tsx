@@ -88,6 +88,8 @@ const Taxonomies = () => {
     );
   };
 
+  console.log(loadingTaxonomy)
+
   return (
     <ScrollView
       bounces={false}
@@ -96,9 +98,11 @@ const Taxonomies = () => {
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.contentContainer}>
-      {taxonomies.map((item, index) => {
-        return renderFilterItem(item, index);
-      })}
+      <>
+        {taxonomies.map((item, index) => {
+          return renderFilterItem(item, index);
+        })}
+      </>
     </ScrollView>
   );
 };
