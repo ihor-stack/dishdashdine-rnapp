@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   Address,
   Distance,
@@ -8,9 +8,9 @@ import {
   Register,
   ForgotPassword,
 } from '../screens';
-import {NavigationHeader} from '@/components';
+import { NavigationHeader } from '@/components';
 import AddnewAddress from '@/screens/Home/Account/screens/AddNewAddress';
-import {PrivacyPolicy, TermsOfService} from '@/screens/Home/Account/screens';
+import { PrivacyPolicy, TermsOfService } from '@/screens/Home/Account/screens';
 import Home from '@/screens/Home/Home/Home';
 import DishInfo from '@/screens/Home/Home/DishInfo';
 import VerificationSent from '@/screens/Onboarding/screens/Verification/VerificationSent';
@@ -40,12 +40,12 @@ const Navigation = (stackProps: any) => {
       <OnboardingStack.Navigator initialRouteName="Welcome">
         <OnboardingStack.Screen
           name="Welcome"
-          options={{header: () => null}}
+          options={{ header: () => null }}
           component={Welcome}
         />
         <OnboardingStack.Screen
           name="Address"
-          options={{header: () => null}}
+          options={{ header: () => null }}
           component={Address}
         />
         <OnboardingStack.Screen
@@ -114,7 +114,7 @@ const Navigation = (stackProps: any) => {
         />
         <OnboardingStack.Screen
           name="DishInfo"
-          options={{header: () => null}}
+          options={{ header: () => null }}
           component={DishInfo}
         />
         <OnboardingStack.Screen

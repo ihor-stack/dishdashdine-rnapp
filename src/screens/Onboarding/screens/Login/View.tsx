@@ -6,15 +6,16 @@ import {
   DynamicTextInput,
   DynamicView,
 } from '@/components';
-import {fonts} from '@/themes/fonts';
-import {Controller} from 'react-hook-form';
+import { fonts } from '@/themes/fonts';
+import { Controller } from 'react-hook-form';
 import DishButton from '@/components/DishButton';
-import {Colors} from '@/themes';
-import {KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
-import {IUser} from '@/api/user';
+import { Colors } from '@/themes';
+import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { IUser } from '@/api/user';
 import DishSpinner from '@/components/DishSpinner';
+import { useNavigation } from '@react-navigation/native';
 
-const {DMSans400Regular, DMSans500Medium, DMSans700Bold} = fonts;
+const { DMSans400Regular, DMSans500Medium, DMSans700Bold } = fonts;
 
 export interface LoginViewProps {
   control: any;
@@ -40,18 +41,19 @@ const LoginView = ({
   onSubmit,
   onHungry,
 }: LoginViewProps) => {
+  const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
       keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{flex: 1}}>
+      style={{ flex: 1 }}>
       <ScrollView
         keyboardShouldPersistTaps="handled"
         accessible={false}
         contentContainerStyle={{
           flexGrow: 1,
         }}
-        style={{backgroundColor: Colors.white, paddingHorizontal: 11}}>
+        style={{ backgroundColor: Colors.white, paddingHorizontal: 11 }}>
         {showLoading && <DishSpinner />}
         <DynamicView marginTop={21}>
           <DynamicText
@@ -63,8 +65,8 @@ const LoginView = ({
           </DynamicText>
           <Controller
             control={control}
-            rules={{required: true}}
-            render={({field: {onChange, onBlur, value}}) => (
+            rules={{ required: true }}
+            render={({ field: { onChange, onBlur, value } }) => (
               <DynamicTextInput
                 testID="@test-id/login-input-email"
                 onBlur={onBlur}
@@ -112,8 +114,8 @@ const LoginView = ({
           </DynamicView>
           <Controller
             control={control}
-            rules={{required: true}}
-            render={({field: {onChange, onBlur, value}}) => (
+            rules={{ required: true }}
+            render={({ field: { onChange, onBlur, value } }) => (
               <DynamicView
                 justifyContent="center"
                 position="relative"

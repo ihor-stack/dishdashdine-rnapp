@@ -1,23 +1,23 @@
-import React, {useLayoutEffect, useState} from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 
-import {useNavigation, useRoute} from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import storage from '@/utils/storage';
-import {AUTH_TOKEN} from '@/constants';
-import {useDispatch} from 'react-redux';
-import {setIsAuthenticated} from '@/store/authentication';
-import {setCurrentUserLocation} from '@/store/account';
-import {captureErrorException} from '@/utils/error-handler';
-import {useToast} from 'native-base';
+import { AUTH_TOKEN } from '@/constants';
+import { useDispatch } from 'react-redux';
+import { setIsAuthenticated } from '@/store/authentication';
+import { setCurrentUserLocation } from '@/store/account';
+import { captureErrorException } from '@/utils/error-handler';
+import { useToast } from 'native-base';
 import DishToast from '@/components/DishToast';
-import {IAddressResolveResponse} from '@/api/generic';
-import PlacesService, {PredictionType} from '@/api/google-places';
+import { IAddressResolveResponse } from '@/api/generic';
+import PlacesService, { PredictionType } from '@/api/google-places';
 import AddressView from './View';
-import {NavigationHeader} from '@/components';
-import {useDebounce} from '@/hooks/useDebounce';
-import {getCurrentLocationAddressByLatLng} from '@/utils/geolocation';
-import {showSuccessMessage} from '@/components/DishFlashMessage';
-import {isEmpty} from 'lodash';
-import {fetchCurrentUser} from '@/store/account/thunk';
+import { NavigationHeader } from '@/components';
+import { useDebounce } from '@/hooks/useDebounce';
+import { getCurrentLocationAddressByLatLng } from '@/utils/geolocation';
+import { showSuccessMessage } from '@/components/DishFlashMessage';
+import { isEmpty } from 'lodash';
+import { fetchCurrentUser } from '@/store/account/thunk';
 
 const Address = () => {
   const [isSaving, setIsSaving] = useState(false);
@@ -62,7 +62,7 @@ const Address = () => {
       try {
         const response: any = await PlacesService.placePredictions(searchText);
         if (response && response?.predictions) {
-          const {predictions} = response;
+          const { predictions } = response;
           setPredictions(predictions);
         }
         setShowLoading(false);
@@ -75,10 +75,10 @@ const Address = () => {
 
   useDebounce(getPlacePredictions, 1000, [searchText]);
 
-  const onSaveCurrentLocation = async ({latitude, longitude}) => {
+  const onSaveCurrentLocation = async ({ latitude, longitude }) => {
     setIsSaving(true);
     try {
-      setGeolocation({latitude, longitude});
+      setGeolocation({ latitude, longitude });
       const response = await getCurrentLocationAddressByLatLng(
         latitude,
         longitude,
@@ -92,7 +92,7 @@ const Address = () => {
         streetNumber: response.streetNumber,
         isFrom: 'register',
         action: 'add',
-        geolocation: {latitude, longitude},
+        geolocation: { latitude, longitude },
       });
     } catch (error) {
       setIsSaving(false);
@@ -141,15 +141,15 @@ const Address = () => {
       if (response) {
         const {
           result: {
-            geometry: {location},
+            geometry: { location },
           },
         } = response;
         if (location) {
-          const {lat, lng} = location;
-          setGeolocation({latitude: lat, longitude: lng});
+          const { lat, lng } = location;
+          setGeolocation({ latitude: lat, longitude: lng });
         }
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const onSaveAddress = async () => {

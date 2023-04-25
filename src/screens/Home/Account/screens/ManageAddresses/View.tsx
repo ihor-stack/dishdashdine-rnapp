@@ -1,16 +1,16 @@
-import {FlatList, RefreshControl, StyleSheet} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {DynamicText, DynamicView} from '@/components';
-import {Colors, fonts} from '@/themes';
-import {IAddress} from '@/api/generic';
-import {useDispatch} from 'react-redux';
-import {fetchAddress, getDefaultAddress} from '@/store/address/thunk';
+import { FlatList, RefreshControl, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { DynamicText, DynamicView } from '@/components';
+import { Colors, fonts } from '@/themes';
+import { IAddress } from '@/api/generic';
+import { useDispatch } from 'react-redux';
+import { fetchAddress, getDefaultAddress } from '@/store/address/thunk';
 import NoAddressAdded from './NoAddressAdded';
-import {filter, isEmpty} from 'lodash';
+import { filter, isEmpty } from 'lodash';
 import DishAddressItem from '@/components/DishAddressItem';
 import DishButton from '@/components/DishButton';
-import {AddressType} from '@/constants';
-import {useNavigation} from '@react-navigation/native';
+import { AddressType } from '@/constants';
+import { useNavigation } from '@react-navigation/native';
 
 export interface ManageAddressesViewProps {
   myAddresses: IAddress[];
@@ -20,8 +20,8 @@ export interface ManageAddressesViewProps {
 }
 
 const ManageAddressesView = (props: ManageAddressesViewProps) => {
-  const {navigate} = useNavigation<any>();
-  const {myAddresses, refreshing, onRefresh, defaultAddress} = props;
+  const { navigate } = useNavigation<any>();
+  const { myAddresses, refreshing, onRefresh, defaultAddress } = props;
   const [currentAddress, setCurrentAddress] = useState<IAddress>({});
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const ManageAddressesView = (props: ManageAddressesViewProps) => {
     }
   }, [myAddresses]);
 
-  const renderAddressItem = ({item, index}) => {
+  const renderAddressItem = ({ item, index }) => {
     return (
       <DishAddressItem
         formattedAddress={item.formattedAddress}

@@ -1,14 +1,14 @@
 import React from 'react';
-import {Box, HStack, Icon, Image, Text, VStack} from 'native-base';
+import { Box, HStack, Icon, Image, Text, VStack } from 'native-base';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import {ms} from 'react-native-size-matters';
+import { ms } from 'react-native-size-matters';
 import Colors from '@/themes/colors';
-import {IPreparationTimes, IRestaurant} from '@/api/generic';
+import { IPreparationTimes, IRestaurant } from '@/api/generic';
 import FastImage from 'react-native-fast-image';
-import {DynamicPressable, DynamicView} from '@/components';
+import { DynamicPressable, DynamicView } from '@/components';
 import ChefHat from '@/assets/svg/chefHat.svg';
 
 const logo = require('@/assets/images/restaurants/maghera_inn.png');
@@ -50,17 +50,17 @@ const RestaurantItem = ({
     }
 
     let minTimeText = ""
-    if (prepTimeMin < 60) {
+    if (prepTimeMin <= 60) {
       minTimeText += `${prepTimeMin}${prepTimeMax < 120 ? "mins" : "mins"}`
     } else if (prepTimeMin > 60 && prepTimeMin < 1440) {
       const hrs = Math.trunc(prepTimeMin / 60)
-      minTimeText += `${hrs > 1 ? hrs : prepTimeMin}${hrs > 1 ? "" : "mins"}`
+      minTimeText += `${hrs > 1 ? hrs : prepTimeMin}${hrs > 1 ? "hrs" : "mins"}`
     } else if (prepTimeMin >= 1440) {
       const days = Math.trunc(prepTimeMin / 1440)
       const hrs = Math.trunc(prepTimeMin / 60)
       minTimeText += `${days >= 1 ? days : hrs}${days >= 1 ? days > 1 ? "days" : "day" : "hrs"}`
     }
-    
+
     let maxTimeText = ""
     if (prepTimeMax < 60) {
       maxTimeText += `${prepTimeMax} mins`
@@ -79,7 +79,7 @@ const RestaurantItem = ({
 
     if (minTimeText !== "" && maxTimeText !== "") {
       return minTimeText + "-" + maxTimeText
-    } else  if (minTimeText === "") {
+    } else if (minTimeText === "") {
       return maxTimeText
     } else if (maxTimeText === "") {
       return minTimeText
@@ -118,7 +118,7 @@ const RestaurantItem = ({
         {restaurant?.bannerImagePath !== '' ? (
           <FastImage
             borderRadius={4}
-            style={{width: '100%', height: ms(202)}}
+            style={{ width: '100%', height: ms(202) }}
             source={{
               uri: restaurant?.bannerImagePath,
               priority: FastImage.priority.normal,
@@ -162,7 +162,7 @@ const RestaurantItem = ({
           <HStack space={1} alignItems="center">
             <Icon as={<Feather name="clock" />} color={Colors.black} />
 
-             <Text fontSize="sm" fontWeight="500">
+            <Text fontSize="sm" fontWeight="500">
               {displayPrepTime()}
             </Text>
           </HStack>

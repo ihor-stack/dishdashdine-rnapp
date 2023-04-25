@@ -1,9 +1,9 @@
-import {View, Text, FlatList} from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import React from 'react';
-import {DynamicText, DynamicView} from '@/components';
-import {Colors, fonts} from '@/themes';
-import {IPreparationTimes} from '@/api/generic';
-import {ORDER_TYPE} from '@/constants';
+import { DynamicText, DynamicView } from '@/components';
+import { Colors, fonts } from '@/themes';
+import { IPreparationTimes } from '@/api/generic';
+import { ORDER_TYPE } from '@/constants';
 
 export interface CollectNowProps {
   orderType: number;
@@ -11,7 +11,7 @@ export interface CollectNowProps {
   prepTimeMax: number;
 }
 
-const CollectNow = ({orderType, prepTimeMin, prepTimeMax}: CollectNowProps) => {
+const CollectNow = ({ orderType, prepTimeMin, prepTimeMax }: CollectNowProps) => {
   const displayPrepTime = () => {
     let minTimeText = '';
     if (prepTimeMin < 60) {
@@ -22,9 +22,8 @@ const CollectNow = ({orderType, prepTimeMin, prepTimeMax}: CollectNowProps) => {
     } else if (prepTimeMin >= 1440) {
       const days = Math.trunc(prepTimeMin / 1440);
       const hrs = Math.trunc(prepTimeMin / 60);
-      minTimeText += `${days >= 1 ? days : hrs}${
-        days >= 1 ? (days > 1 ? 'days' : 'day') : 'hrs'
-      }`;
+      minTimeText += `${days >= 1 ? days : hrs}${days >= 1 ? (days > 1 ? 'days' : 'day') : 'hrs'
+        }`;
     }
 
     let maxTimeText = '';
@@ -36,9 +35,8 @@ const CollectNow = ({orderType, prepTimeMin, prepTimeMax}: CollectNowProps) => {
     } else if (prepTimeMax >= 1440) {
       const days = Math.trunc(prepTimeMax / 1440);
       const hrs = Math.trunc(prepTimeMax / 60);
-      maxTimeText += `${days >= 1 ? days : hrs}${
-        days >= 1 ? (days > 1 ? 'days' : 'day') : 'hrs'
-      }`;
+      maxTimeText += `${days >= 1 ? days : hrs}${days >= 1 ? (days > 1 ? 'days' : 'day') : 'hrs'
+        }`;
     }
 
     if (prepTimeMin === 0 && prepTimeMax === 0) {

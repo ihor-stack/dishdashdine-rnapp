@@ -1,14 +1,14 @@
 import React from 'react';
-import {Pressable, Text} from 'native-base';
-import {ms} from 'react-native-size-matters';
+import { Pressable, Text } from 'native-base';
+import { ms } from 'react-native-size-matters';
 import Colors from '@/themes/colors';
-import {useNavigation} from '@react-navigation/core';
-import {useWindowDimensions} from 'react-native';
-import {DynamicImage, DynamicView} from '@/components';
-import {isEmpty} from 'lodash';
+import { useNavigation } from '@react-navigation/core';
+import { useWindowDimensions } from 'react-native';
+import { DynamicImage, DynamicView } from '@/components';
+import { isEmpty } from 'lodash';
 import FastImage from 'react-native-fast-image';
-import {ITaxonomy} from '@/api/generic';
-import {fonts} from '@/themes';
+import { ITaxonomy } from '@/api/generic';
+import { fonts } from '@/themes';
 
 const noImageFound = require('@/assets/images/no-image-found.jpeg');
 
@@ -16,8 +16,8 @@ export interface TopPicksProps {
   categories: any[];
 }
 
-const TopPicks = ({categories}: TopPicksProps) => {
-  const {width} = useWindowDimensions();
+const TopPicks = ({ categories }: TopPicksProps) => {
+  const { width } = useWindowDimensions();
   const navigation = useNavigation<any>();
 
   const handleOnPressCategory = (taxonomy: ITaxonomy) => {
@@ -59,7 +59,7 @@ const TopPicks = ({categories}: TopPicksProps) => {
           />
         ) : (
           <FastImage
-            style={{width: ms(40), height: ms(40), marginBottom: 8}}
+            style={{ width: ms(40), height: ms(40), marginBottom: 8 }}
             source={{
               uri: item.iconPath,
               priority: FastImage.priority.normal,
