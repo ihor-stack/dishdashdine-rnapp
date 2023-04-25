@@ -46,6 +46,7 @@
 		00E356EE1AD99517003FC87E /* DishDashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DishDashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* DishDashTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DishDashTests.m; sourceTree = "<group>"; };
+		03EEEC6129F7EE2700F877EB /* DishDash copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DishDash copy-Info.plist"; path = "/Users/niallmclaughlin/Documents/GitHub/dishdashdine-rnapp/ios/DishDash copy-Info.plist"; sourceTree = "<absolute>"; };
 		0417067428DDAD840042D3D2 /* light@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light@3x.png"; sourceTree = "<group>"; };
 		0417067528DDAD840042D3D2 /* light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light@2x.png"; sourceTree = "<group>"; };
 		0417067A28DDADE30042D3D2 /* dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dark@2x.png"; sourceTree = "<group>"; };
@@ -236,6 +237,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				E233CBF5F47BEE60B243DCF8 /* Pods */,
 				39DC980A1E864D8F8DA5A9F6 /* Resources */,
+				03EEEC6129F7EE2700F877EB /* DishDash copy-Info.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -672,7 +674,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DishDash/DishDash.entitlements;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = VKJGUYZ4X3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DishDash/Info.plist;
@@ -705,7 +707,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DishDash/DishDash.entitlements;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = VKJGUYZ4X3;
 				INFOPLIST_FILE = DishDash/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DishDash;
@@ -790,7 +792,7 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -803,7 +805,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DishDash/DishDash.entitlements;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = VKJGUYZ4X3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DishDash/Info.plist;
@@ -925,7 +927,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DishDash/DishDash.entitlements;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = VKJGUYZ4X3;
 				INFOPLIST_FILE = DishDash/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DishDash;
@@ -1036,7 +1038,7 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -1095,6 +1097,7 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1114,7 +1117,7 @@
 				5A2F5D7E2935205900830AED /* ReleaseStaging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "DishDash" */ = {
 			isa = XCConfigurationList;
@@ -1125,7 +1128,7 @@
 				5A2F5D7D2935205900830AED /* ReleaseStaging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "DishDash" */ = {
 			isa = XCConfigurationList;
@@ -1136,7 +1139,7 @@
 				5A2F5D7C2935205900830AED /* ReleaseStaging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

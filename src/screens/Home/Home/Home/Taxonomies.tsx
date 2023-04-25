@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import { ITaxonomy } from '@/api/generic';
 import { DynamicImage, DynamicPressable, DynamicText } from '@/components';
@@ -20,9 +20,7 @@ const noImageFound = require('@/assets/images/no-image-found.jpeg');
 const Taxonomies = () => {
   const { navigate } = useNavigation<any>();
   const taxonomies = useSelector(taxonomySelectors.selectTaxonomies);
-  const loadingTaxonomy = useSelector(
-    taxonomySelectors.selectLoadingTaxonomies,
-  );
+  const loadingTaxonomy = false;
 
   const onFilterTaxonomy = (taxonomy: ITaxonomy) => {
     navigate('Search', {
@@ -53,6 +51,7 @@ const Taxonomies = () => {
   };
 
   const renderFilterItem = (item: ITaxonomy, i: number) => {
+    console.log(item.iconPath)
     return (
       <DynamicPressable
         key={`food-cat:${i}`}
@@ -88,8 +87,6 @@ const Taxonomies = () => {
     );
   };
 
-  console.log(loadingTaxonomy)
-
   return (
     <ScrollView
       bounces={false}
@@ -98,11 +95,13 @@ const Taxonomies = () => {
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.contentContainer}>
-      <>
-        {taxonomies.map((item, index) => {
+      {loadingTaxonomy
+        ? FAKE_DATA.map((_, index) => {
+          return renderFilterLoading(index);
+        })
+        : taxonomies.map((item, index) => {
           return renderFilterItem(item, index);
         })}
-      </>
     </ScrollView>
   );
 };
