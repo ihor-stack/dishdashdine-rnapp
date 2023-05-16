@@ -36,7 +36,7 @@ const AddressService = {
   updateAddress(id: string, data: IAddressData) {
     return API({
       url: `/api/Address/${id}`,
-      method: 'PUT',
+      method: 'POST',
       data,
     });
   },

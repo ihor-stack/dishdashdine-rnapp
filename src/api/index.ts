@@ -1,6 +1,6 @@
-import { API_BASE_URL, AUTH_TOKEN } from '@/constants';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { isEmpty } from 'lodash';
+import {API_BASE_URL, AUTH_TOKEN} from '@/constants';
+import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
+import {isEmpty} from 'lodash';
 import storage from '../utils/storage';
 
 const request = async (options: AxiosRequestConfig) => {
@@ -14,12 +14,12 @@ const request = async (options: AxiosRequestConfig) => {
   if (authToken) {
     headers = {
       ...headers,
-      Authorization: `Bearer ${isEmpty(authToken) ? '' : authToken?.accessToken
-        }`,
+      Authorization: `Bearer ${
+        isEmpty(authToken) ? '' : authToken?.accessToken
+      }`,
     };
   }
   axios.defaults.baseURL = API_BASE_URL;
-  console.log(API_BASE_URL)
   axios.defaults.timeout = 30000;
   axios.defaults.transformResponse = data => {
     try {

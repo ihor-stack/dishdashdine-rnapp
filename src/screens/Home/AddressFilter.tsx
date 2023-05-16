@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Box,
   Icon,
@@ -16,30 +16,30 @@ import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Colors from '@/themes/colors';
 import FilterContainer from './FilterContainer';
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import { homeSelectors, setShowAddressFilter } from '@/store/home';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {homeSelectors, setShowAddressFilter} from '@/store/home';
 import {
   accountSelectors,
   setCurrentUserAddress,
   setCurrentUserLocation,
 } from '@/store/account';
 import DishSpinner from '@/components/DishSpinner';
-import { getUserCurrentAddress } from '@/store/account/thunk';
-import { captureErrorException } from '@/utils/error-handler';
-import { IAddress } from '@/api/generic';
-import { addressSelectors } from '@/store/address';
-import { getAddressTypeLabel } from '@/utils/common';
-import { FlatList, StyleSheet } from 'react-native';
+import {getUserCurrentAddress} from '@/store/account/thunk';
+import {captureErrorException} from '@/utils/error-handler';
+import {IAddress} from '@/api/generic';
+import {addressSelectors} from '@/store/address';
+import {getAddressTypeLabel} from '@/utils/common';
+import {FlatList, StyleSheet} from 'react-native';
 import DishCurrentLocation from '@/components/DishCurrentLocation';
-import { DynamicPressable, DynamicText, DynamicView } from '@/components';
+import {DynamicPressable, DynamicText, DynamicView} from '@/components';
 import EmptyState from '@/components/EmptyState';
-import { isEmpty } from 'lodash';
-import { fonts } from '@/themes';
-import { IUser } from '@/api/user';
+import {isEmpty} from 'lodash';
+import {fonts} from '@/themes';
+import {IUser} from '@/api/user';
 import DishRestaurantSearchBar from '@/components/DishRestaurantSearchBar';
-import PlacesService, { PredictionType } from '@/api/google-places';
-import { showSuccessMessage } from '@/components/DishFlashMessage';
+import PlacesService, {PredictionType} from '@/api/google-places';
+import {showSuccessMessage} from '@/components/DishFlashMessage';
 
 const AddressFilter = () => {
   const [isSaving, setIsSaving] = useState(false);
@@ -123,7 +123,7 @@ const AddressFilter = () => {
     try {
       const response: any = await PlacesService.placePredictions(searchText);
       if (response && response?.predictions) {
-        const { predictions } = response;
+        const {predictions} = response;
         setPredictions(predictions);
       }
       setShowLoading(false);
@@ -140,13 +140,13 @@ const AddressFilter = () => {
       if (response) {
         const {
           result: {
-            geometry: { location },
+            geometry: {location},
           },
         } = response;
         if (location) {
-          const { lat, lng } = location;
+          const {lat, lng} = location;
           await dispatch(
-            setCurrentUserLocation({ latitude: lat, longitude: lng }),
+            setCurrentUserLocation({latitude: lat, longitude: lng}),
           );
           await dispatch(setShowAddressFilter());
           setSearchLocation('');
@@ -180,7 +180,7 @@ const AddressFilter = () => {
     dispatch(setShowAddressFilter());
     setIsSaving(true);
     try {
-      await dispatch(setCurrentUserAddress(item.formattedAddress))
+      await dispatch(setCurrentUserAddress(item.formattedAddress));
       await dispatch(
         setCurrentUserLocation({
           latitude: item?.latitude,
@@ -191,11 +191,9 @@ const AddressFilter = () => {
         placement: 'top',
         duration: 2500,
         render: () => {
-          return (
-            showSuccessMessage(
-              'Address updated',
-              'You have successfully updated your address',
-            )
+          return showSuccessMessage(
+            'Address updated',
+            'You have successfully updated your address',
           );
         },
         onCloseComplete() {
@@ -208,7 +206,13 @@ const AddressFilter = () => {
     }
   };
 
-  const onSaveCurrentLocation = async ({ latitude, longitude }: { latitude: number, longitude: number }) => {
+  const onSaveCurrentLocation = async ({
+    latitude,
+    longitude,
+  }: {
+    latitude: number;
+    longitude: number;
+  }) => {
     if (currentUser?.noAuth) {
       return;
     }
@@ -315,7 +319,7 @@ const AddressFilter = () => {
     }
   };
 
-  const renderAddressListitem = ({ item }: { item: IAddress }) => {
+  const renderAddressListitem = ({item}: {item: IAddress}) => {
     return (
       <HStack space={1} p={4}>
         {getAddressIcon(item.addressType)}
@@ -403,7 +407,7 @@ const AddressFilter = () => {
           </DynamicPressable>
           <VStack space={1} bgColor={Colors.white} p={3}>
             <FlatList
-              style={myAddresses?.length > 3 ? { height: 250 } : { height: 'auto' }}
+              style={myAddresses?.length > 3 ? {height: 250} : {height: 'auto'}}
               data={myAddresses}
               keyExtractor={item => item.id}
               renderItem={renderAddressListitem}
@@ -440,8 +444,8 @@ const AddressFilter = () => {
               />
             )}
             <DishCurrentLocation
-              onPressLocation={({ latitude, longitude }) =>
-                onSaveCurrentLocation({ latitude, longitude })
+              onPressLocation={({latitude, longitude}) =>
+                onSaveCurrentLocation({latitude, longitude})
               }
             />
             <Divider bgColor={Colors.lightGrey} />
@@ -470,8 +474,8 @@ const AddressFilter = () => {
                 <FlatList
                   style={
                     predictionsArr?.length > 3
-                      ? { height: 250 }
-                      : { height: 'auto' }
+                      ? {height: 250}
+                      : {height: 'auto'}
                   }
                   data={predictionsArr}
                   renderItem={predictedLocationItem}

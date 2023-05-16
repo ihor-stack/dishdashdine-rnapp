@@ -1,15 +1,15 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import { ITaxonomy } from '@/api/generic';
-import { DynamicImage, DynamicPressable, DynamicText } from '@/components';
-import { isEmpty } from 'lodash';
+import {ITaxonomy} from '@/api/generic';
+import {DynamicImage, DynamicPressable, DynamicText} from '@/components';
+import {isEmpty} from 'lodash';
 import FastImage from 'react-native-fast-image';
-import { ms } from 'react-native-size-matters';
-import { fonts } from '@/themes';
-import { taxonomySelectors } from '@/store/taxonomy';
-import { useSelector } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
+import {ms} from 'react-native-size-matters';
+import {fonts} from '@/themes';
+import {taxonomySelectors} from '@/store/taxonomy';
+import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
 const FAKE_DATA: any[] = Array.from({
   length: 10,
@@ -18,7 +18,7 @@ const FAKE_DATA: any[] = Array.from({
 const noImageFound = require('@/assets/images/no-image-found.jpeg');
 
 const Taxonomies = () => {
-  const { navigate } = useNavigation<any>();
+  const {navigate} = useNavigation<any>();
   const taxonomies = useSelector(taxonomySelectors.selectTaxonomies);
   const loadingTaxonomy = false;
 
@@ -51,7 +51,6 @@ const Taxonomies = () => {
   };
 
   const renderFilterItem = (item: ITaxonomy, i: number) => {
-    console.log(item.iconPath)
     return (
       <DynamicPressable
         key={`food-cat:${i}`}
@@ -68,7 +67,7 @@ const Taxonomies = () => {
           />
         ) : (
           <FastImage
-            style={{ width: ms(40), height: ms(40), marginBottom: 8 }}
+            style={{width: ms(40), height: ms(40), marginBottom: 8}}
             source={{
               uri: item.iconPath,
               priority: FastImage.priority.normal,
@@ -97,11 +96,11 @@ const Taxonomies = () => {
       contentContainerStyle={styles.contentContainer}>
       {loadingTaxonomy
         ? FAKE_DATA.map((_, index) => {
-          return renderFilterLoading(index);
-        })
+            return renderFilterLoading(index);
+          })
         : taxonomies.map((item, index) => {
-          return renderFilterItem(item, index);
-        })}
+            return renderFilterItem(item, index);
+          })}
     </ScrollView>
   );
 };

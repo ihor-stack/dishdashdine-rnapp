@@ -1,35 +1,35 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import { Box, Text, useToast, VStack } from 'native-base';
-import { DynamicView, SafeAreaViewContainer } from '@/components';
+import React, {useCallback, useState, useEffect} from 'react';
+import {Box, Text, useToast, VStack} from 'native-base';
+import {DynamicView, SafeAreaViewContainer} from '@/components';
 import Colors from '@/themes/colors';
 import Orders from './Orders';
 import Cards from './Cards';
 import Header from './Header';
 import SearchAndSortFilters from './SearchAndSortFilters';
-import { FlatList, RefreshControl, StyleSheet } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { restaurantSelectors } from '@/store/restaurants';
-import { accountSelectors } from '@/store/account';
-import { DEFAULT_DISTANCE } from '@/constants';
-import { fetchMyFavorites, fetchRestaurant } from '@/store/restaurants/thunk';
-import { isEmpty, size } from 'lodash';
+import {FlatList, RefreshControl, StyleSheet} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {restaurantSelectors} from '@/store/restaurants';
+import {accountSelectors} from '@/store/account';
+import {DEFAULT_DISTANCE} from '@/constants';
+import {fetchMyFavorites, fetchRestaurant} from '@/store/restaurants/thunk';
+import {isEmpty, size} from 'lodash';
 import NoRestaurants from './NoRestaurants';
-import { RestaurantsLoading } from '../Home/Orders/Restaurants/RestaurantsLoading';
-import { Restaurants } from '../Home/Orders/Restaurants';
-import { useNavigation } from '@react-navigation/core';
-import { fetchTaxonomy } from '@/store/taxonomy/thunk';
-import { fetchActiveOrder, fetchCompletedOrder } from '@/store/order/thunk';
-import { fetchAddress, getDefaultAddress } from '@/store/address/thunk';
+import {RestaurantsLoading} from '../Home/Orders/Restaurants/RestaurantsLoading';
+import {Restaurants} from '../Home/Orders/Restaurants';
+import {useNavigation} from '@react-navigation/core';
+import {fetchTaxonomy} from '@/store/taxonomy/thunk';
+import {fetchActiveOrder, fetchCompletedOrder} from '@/store/order/thunk';
+import {fetchAddress, getDefaultAddress} from '@/store/address/thunk';
 import AddressFilter from '@/screens/Home/AddressFilter';
 import DistanceFilter from '@/screens/Home/DistanceFilter';
 import SortAndFilter from '@/screens/Home/SortAndFilter';
-import { homeSelectors } from '@/store/home';
-import { IAddress, IOrder } from '@/api/generic';
-import { IUser } from '@/api/user';
-import { addressSelectors } from '@/store/address';
-import { fetchAppPromo } from '@/store/home/thunk';
-import { fetchMyReviews } from '@/store/my-reviews/thunk';
-import { orderSelectors } from '@/store/order';
+import {homeSelectors} from '@/store/home';
+import {IAddress, IOrder} from '@/api/generic';
+import {IUser} from '@/api/user';
+import {addressSelectors} from '@/store/address';
+import {fetchAppPromo} from '@/store/home/thunk';
+import {fetchMyReviews} from '@/store/my-reviews/thunk';
+import {orderSelectors} from '@/store/order';
 
 const FAKE_DATA: any[] = Array.from({
   length: 10,
@@ -63,23 +63,22 @@ const Home = () => {
 
   useEffect(() => {
     if (!isInitialized && !refreshing) {
-      getData(currentLocation)
-      setInitialized(true)
+      getData(currentLocation);
+      setInitialized(true);
     }
     if (isInitialized) {
-      getData(currentLocation)
+      getData(currentLocation);
     }
-  }, [currentLocation, homeOrderType])
-
+  }, [currentLocation, homeOrderType]);
 
   useEffect(() => {
     if (isInitialized && currentLocation) {
-      getData(currentLocation)
+      getData(currentLocation);
     }
-  }, [homeOrderType])
+  }, [homeOrderType]);
 
   const onRefresh = useCallback(async () => {
-    await getData(currentLocation)
+    await getData(currentLocation);
   }, [currentLocation, currentDistance, dispatch, currentUser, homeOrderType]);
 
   const getData = async (currentLocationProps: any) => {
@@ -94,7 +93,8 @@ const Home = () => {
           // IncludeOpenOnly: true,
           IncludeOrderRestaurants: homeOrderType === 0 ? true : null,
           IncludeCateringRestaurants: homeOrderType === null ? true : null,
-          LocationQuery: homeOrderType === 0 || homeOrderType === 1 ? true : null
+          LocationQuery:
+            homeOrderType === 0 || homeOrderType === 1 ? true : null,
         }),
       );
 
@@ -120,7 +120,7 @@ const Home = () => {
     } catch (e) {
       setRefreshing(false);
     }
-  }
+  };
 
   const ListHeaderComponent = () => (
     <VStack bgColor={Colors.lightGrey} space={3}>
@@ -149,12 +149,12 @@ const Home = () => {
   );
 
   // @ts-ignore
-  const renderLoadingItem = ({ _, index }) => {
+  const renderLoadingItem = ({_, index}) => {
     return RestaurantsLoading(index);
   };
 
   // @ts-ignore
-  const renderItem = ({ item, index }) => {
+  const renderItem = ({item, index}) => {
     return Restaurants({
       restaurant: item,
       index,
@@ -165,7 +165,7 @@ const Home = () => {
       currentDistance,
       homeOrderType,
       defaultAddress,
-      onRefresh
+      onRefresh,
     });
   };
 
