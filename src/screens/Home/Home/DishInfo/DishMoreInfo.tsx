@@ -11,34 +11,25 @@ import {isEmpty} from 'lodash';
 import moment from 'moment';
 import DishFoodHygieneRating from '@/components/DishFoodHygieneRating';
 
-export interface DishMoreInfoProps extends SheetProps {}
+export interface DishMoreInfoProps extends SheetProps {
+  restaurant: any;
+}
 
 const DishMoreInfo = (props: DishMoreInfoProps) => {
   const rateImg = require('@/assets/images/rate.png');
   const [restaurant, setRestaurant] = useState<IRestaurant>({});
+  const [distance, setDistance] = useState();
 
   const takingOrdersUntil = moment(restaurant.takingOrdersUntil).format(
     'hh:mma',
   );
-  const getDistance = () => {
-    if (!isEmpty(restaurant)) {
-      if (restaurant?.distanceMiles && restaurant?.distanceMiles < 0.1) {
-        return `${restaurant?.distanceMetres.toFixed(1)} meters`;
-      } else if (restaurant?.distanceMetres) {
-        return `${restaurant?.distanceMiles.toFixed(1)} miles`;
-      } else {
-        return '0 miles';
-      }
-    } else {
-      return '0 miles';
-    }
-  };
 
   return (
     <ActionSheet
       id={'DishMoreInfo' || props.sheetId}
       onBeforeShow={(data: any) => {
         setRestaurant(data?.restaurant);
+        setDistance(data?.distance);
       }}>
       <DynamicView position="relative" paddingTop={54}>
         <RestaurantInfoAvatar showProfile restaurant={restaurant} />
@@ -80,7 +71,7 @@ const DishMoreInfo = (props: DishMoreInfoProps) => {
                     fontSize={13}
                     lineHeight={16}
                     color={Colors.black}>
-                    {getDistance()}
+                    {distance}
                   </DynamicText>
                 </DynamicView>
               </DynamicView>

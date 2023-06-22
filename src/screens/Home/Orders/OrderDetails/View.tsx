@@ -156,13 +156,13 @@ const OrderDetailsView = (props: OrderDetailsViewProps) => {
           subTotal={Number(order?.subTotal).toFixed(2)}
           tip={Number(tipAmount).toFixed(2) || Number(order?.tip).toFixed(2)}
           debit={Number(order?.serviceFee).toFixed(2)}
-          total={Number(order?.total + tipAmount).toFixed(2)}
+          total={Number(order?.subTotal + order?.serviceFee + tipAmount).toFixed(2)}
         />
         <Divider bgColor={Colors.lightGrey} />
         <DynamicView paddingHorizontal={12} paddingVertical={20}>
           <DishButton
             icon="arrowright"
-            label={`Pay £${Number(order?.total + tipAmount).toFixed(2)} now`}
+            label={`Pay £${Number(order?.subTotal + order?.serviceFee + tipAmount).toFixed(2)} now`}
             variant="primary"
             showSpinner={isLoading}
             onPress={onCheckOutOrder}

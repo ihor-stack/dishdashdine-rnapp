@@ -77,6 +77,11 @@ const PaymentMethodListModal = (props: PaymentMethodListModalProps) => {
         };
       }
     });
+    setTimeout(() => {
+      SheetManager.hide('PaymentMethodListModal', {
+        payload: paymentMethodId,
+      });
+    }, 1000);
     setWallets(newData);
   };
 

@@ -110,84 +110,79 @@ const AddCard = () => {
   return (
     <>
       {isLoading && <DishSpinner />}
-      <KeyboardAvoidingView
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{flex: 1}}>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          style={styles.containter}
-          contentContainerStyle={styles.contentContainerStyle}>
-          <DynamicView height={200} width={width - 22} alignItems="center">
-            <Card
-              name={cardName}
-              brand={lowerCase(cardBrand)}
-              number={last4}
-              expiry={expiry}
-              cvc={cvc}
-            />
-          </DynamicView>
-
-          <DynamicTextInput
-            marginTop={50}
-            borderRadius={4}
-            placeholder={'Card Holder'}
-            placeholderTextColor={Colors.grey}
-            backgroundColor="#F8F8F8"
-            paddingHorizontal={21}
-            height={40}
-            fontSize={14}
-            lineHeight={18.23}
-            fontFamily={fonts.DMSans700Bold}
-            color="#303030"
-            onChangeText={setCardName}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.containter}
+        contentContainerStyle={styles.contentContainerStyle}>
+        <DynamicView height={200} width={width - 22} alignItems="center">
+          <Card
+            name={cardName}
+            brand={lowerCase(cardBrand)}
+            number={last4}
+            expiry={expiry}
+            cvc={cvc}
           />
-          <CardField
-            postalCodeEnabled={false}
-            placeholders={{
-              number: '•••• •••• •••• ••••',
-            }}
-            cardStyle={styles.cardStyle}
-            style={styles.cardView}
-            onCardChange={card => {
-              if (card.validNumber === 'Valid' && card?.last4) {
-                setLast4(card.last4);
+        </DynamicView>
+
+        <DynamicTextInput
+          marginTop={50}
+          borderRadius={4}
+          placeholder={'Card Holder'}
+          placeholderTextColor={Colors.grey}
+          backgroundColor="#F8F8F8"
+          paddingHorizontal={21}
+          height={40}
+          fontSize={14}
+          lineHeight={18.23}
+          fontFamily={fonts.DMSans700Bold}
+          color="#303030"
+          onChangeText={setCardName}
+        />
+        <CardField
+          postalCodeEnabled={false}
+          placeholders={{
+            number: '•••• •••• •••• ••••',
+          }}
+          cardStyle={styles.cardStyle}
+          style={styles.cardView}
+          onCardChange={card => {
+            if (card.validNumber === 'Valid' && card?.last4) {
+              setLast4(card.last4);
+            } else {
+              setLast4('');
+            }
+
+            if (card?.brand) {
+              if (card.brand === 'AmericanExpress') {
+                setCardBrand('american-express');
               } else {
-                setLast4('');
+                setCardBrand(card.brand);
               }
+            }
 
-              if (card?.brand) {
-                if (card.brand === 'AmericanExpress') {
-                  setCardBrand('american-express');
-                } else {
-                  setCardBrand(card.brand);
-                }
-              }
+            if (card?.expiryMonth) {
+              setExpiryMonth(card.expiryMonth);
+            }
 
-              if (card?.expiryMonth) {
-                setExpiryMonth(card.expiryMonth);
-              }
+            if (card?.expiryYear) {
+              setExpiryYear(card.expiryYear);
+            }
 
-              if (card?.expiryYear) {
-                setExpiryYear(card.expiryYear);
-              }
+            if (card.validExpiryDate === 'Valid') {
+              setExpiry(`${card.expiryMonth}/${card.expiryYear}`);
+            }
+          }}
+        />
 
-              if (card.validExpiryDate === 'Valid') {
-                setExpiry(`${card.expiryMonth}/${card.expiryYear}`);
-              }
-            }}
+        <DynamicView marginTop="auto" marginBottom={20} paddingVertical={12}>
+          <DishButton
+            variant="primary"
+            label="Add Card"
+            onPress={onAddCardPress}
+            icon="arrowright"
           />
-
-          <DynamicView marginTop="auto" marginBottom={20} paddingVertical={12}>
-            <DishButton
-              variant="primary"
-              label="Add Card"
-              onPress={onAddCardPress}
-              icon="arrowright"
-            />
-          </DynamicView>
-        </ScrollView>
-      </KeyboardAvoidingView>
+        </DynamicView>
+      </ScrollView>
     </>
   );
 };

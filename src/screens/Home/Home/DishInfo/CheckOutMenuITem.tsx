@@ -1,21 +1,21 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { DynamicView } from '@/components';
-import { Colors } from '@/themes';
-import { Divider, useToast } from 'native-base';
-import { isEmpty, size } from 'lodash';
+import React, {Fragment, useEffect, useState} from 'react';
+import {DynamicView} from '@/components';
+import {Colors} from '@/themes';
+import {Divider, useToast} from 'native-base';
+import {isEmpty, size} from 'lodash';
 import {
   Collapse,
   CollapseHeader,
   CollapseBody,
 } from 'accordion-collapse-react-native';
 import SwipeableFlatList from 'react-native-swipeable-list';
-import { Pressable, StyleSheet, View, ScrollView } from 'react-native';
-import { useDispatch } from 'react-redux';
+import {Pressable, StyleSheet, View, ScrollView} from 'react-native';
+import {useDispatch} from 'react-redux';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Animated } from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {Animated} from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import { SheetManager } from 'react-native-actions-sheet';
+import {SheetManager} from 'react-native-actions-sheet';
 
 import CheckoutMenutItemHeader from '@/screens/Home/Home/DishInfo/CheckoutMenutItemHeader';
 import CheckoutMenutitemBody from '@/screens/Home/Home/DishInfo/CheckoutMenutitemBody';
@@ -26,13 +26,13 @@ import {
   fetchOrderRestaurant,
   removeItemToOrder,
 } from '@/store/order/thunk';
-import { IOrder, IOrderLineItem } from '@/api/generic';
+import {IOrder, IOrderLineItem} from '@/api/generic';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import NoOrder from '../../Orders/NoOrder';
 import DishSpinner from '@/components/DishSpinner';
-import { captureErrorException } from '@/utils/error-handler';
+import {captureErrorException} from '@/utils/error-handler';
 import DishStepperButton from '@/components/DishStepperButton';
-import { showWarningMessage } from '@/components/DishFlashMessage';
+import {showWarningMessage} from '@/components/DishFlashMessage';
 
 export interface CheckOutMenuITemProps {
   order?: IOrder;
@@ -77,6 +77,7 @@ const CheckOutMenuITem = ({
   const toast = useToast();
   const [disableBtn, setDisableBtn] = useState(false);
   const [orderLineItems, setOrderLineItems] = useState<any[]>([]);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch<any>();
@@ -135,8 +136,11 @@ const CheckOutMenuITem = ({
     const total = Number(item.itemPrice + item.modifierPrice) * quantity;
 
     newData = newData.map(i => {
-      if (i.orderLineItemId === item.orderLineItemId && i.itemId === item.itemId) {
-        newItem = { ...i, quantity, total };
+      if (
+        i.orderLineItemId === item.orderLineItemId &&
+        i.itemId === item.itemId
+      ) {
+        newItem = {...i, quantity, total};
 
         return newItem;
       } else {
@@ -146,15 +150,19 @@ const CheckOutMenuITem = ({
 
     setOrderLineItems(newData);
     setDisableBtn(true);
-    const modifierGroupSelections = newItem.selectedModifierGroups?.map((i: { modifierGroupId: any; selectedItems: any[]; }) => {
-      return {
-        modifierGroupId: i.modifierGroupId,
-        modifierGroupItemSelections: i.selectedItems.map((j: { modifierGroupItemId: any; quantity: any; }) => ({
-          modifierGroupItemId: j.modifierGroupItemId,
-          quantity: j.quantity,
-        })),
-      };
-    });
+    const modifierGroupSelections = newItem.selectedModifierGroups?.map(
+      (i: {modifierGroupId: any; selectedItems: any[]}) => {
+        return {
+          modifierGroupId: i.modifierGroupId,
+          modifierGroupItemSelections: i.selectedItems.map(
+            (j: {modifierGroupItemId: any; quantity: any}) => ({
+              modifierGroupItemId: j.modifierGroupItemId,
+              quantity: j.quantity,
+            }),
+          ),
+        };
+      },
+    );
     await updateOrderItems({
       itemId: newItem.itemId,
       menuId: newItem.menuId,
@@ -214,7 +222,7 @@ const CheckOutMenuITem = ({
               itemName={item?.itemName}
               itemPrice={item?.total}
             />
-            {/* )} */}
+            
           </CollapseHeader>
           <CollapseBody marginLeft={30} marginBottom={15} marginTop={-15}>
             {!isEmpty(item.selectedModifierGroups) && (
@@ -276,7 +284,7 @@ const CheckOutMenuITem = ({
             key={`Swipeable_${index}`}
             renderRightActions={() => {
               return (
-                <Animated.View style={{ width: disableSwipe ? 0 : 60 }}>
+                <Animated.View style={{width: disableSwipe ? 0 : 60}}>
                   {QuickActions(index, item)}
                 </Animated.View>
               );
@@ -313,9 +321,9 @@ const CheckOutMenuITem = ({
     <SwipeableFlatList
       keyExtractor={(item: any) => item.orderLineItemId}
       data={orderLineItems}
-      renderItem={({ item, index }: any) => renderCartItems(item, index)}
+      renderItem={({item, index}: any) => renderCartItems(item, index)}
       maxSwipeDistance={disableSwipe ? 0 : 60}
-      renderQuickActions={({ index, item }: any) => QuickActions(index, item)}
+      renderQuickActions={({index, item}: any) => QuickActions(index, item)}
       contentContainerStyle={styles.contentContainerStyle}
       shouldBounceOnMount={true}
       ItemSeparatorComponent={() => (

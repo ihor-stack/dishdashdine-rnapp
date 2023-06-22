@@ -201,7 +201,6 @@ const CustomizeItemOrder = () => {
           ).unwrap();
         }
 
-      
         latestOrder = response;
 
         const orderItem: IOrderItem = {
@@ -214,7 +213,6 @@ const CustomizeItemOrder = () => {
           itemPrice: prices,
           itemTotal: quantity * prices,
         };
-
 
         const resp: IOrder = await OrderService.addItemToOrder(
           response.id,

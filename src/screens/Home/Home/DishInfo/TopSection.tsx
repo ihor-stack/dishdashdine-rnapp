@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dimensions, Platform, StyleSheet} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Animated, {
@@ -24,7 +24,6 @@ import {isEmpty} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import {SharedElement} from 'react-navigation-shared-element';
 import ChefHat from '@/assets/svg/chefHat.svg';
-import { VStack, Text } from 'native-base';
 
 const noProfile = require('@/assets/images/no-image-found.jpeg');
 const noBanner = require('@/assets/images/blank.jpg');
@@ -37,7 +36,7 @@ type TopSectionProps = {
 };
 
 const TopSection = ({y, restaurant}: TopSectionProps) => {
-  const [distance, setDistance] = useState<string>("");
+  const [distance, setDistance] = useState<string>('');
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
   const takingOrdersUntil = moment(restaurant.takingOrdersUntil).format(
@@ -48,68 +47,72 @@ const TopSection = ({y, restaurant}: TopSectionProps) => {
     if (!isInitialized) {
       if (restaurant?.distanceMiles) {
         if (restaurant?.distanceMiles < 0.1) {
-          setDistance(`${restaurant?.distanceMetres?.toFixed(1)} meters`)
+          setDistance(`${restaurant?.distanceMetres?.toFixed(1)} meters`);
         } else {
-          setDistance(`${restaurant?.distanceMiles?.toFixed(1)} miles`)
+          setDistance(`${restaurant?.distanceMiles?.toFixed(1)} miles`);
         }
       } else {
         setDistance('0 miles');
       }
     }
-    setIsInitialized(true)
+    setIsInitialized(true);
   }, [restaurant]);
 
   const displayPrepTime = () => {
-    const { preparationTimes } = restaurant;
-    let prepTimeMin = restaurant.prepTimeMin
-    let prepTimeMax = restaurant.prepTimeMax
+    const {preparationTimes} = restaurant;
+    let prepTimeMin = restaurant.prepTimeMin;
+    let prepTimeMax = restaurant.prepTimeMax;
     const enabledTime = preparationTimes.filter((item: IPreparationTimes) => {
-      return item.enabled
-    })
+      return item.enabled;
+    });
 
     if (enabledTime.length > 0) {
-      prepTimeMin = enabledTime[0].prepTimeMin
-      prepTimeMax = enabledTime[0].prepTimeMax
+      prepTimeMin = enabledTime[0].prepTimeMin;
+      prepTimeMax = enabledTime[0].prepTimeMax;
     }
 
-    let minTimeText = ""
+    let minTimeText = '';
     if (prepTimeMin < 60) {
-      minTimeText += `${prepTimeMin}${prepTimeMax < 120 ? "mins" : "mins"}`
+      minTimeText += `${prepTimeMin}${prepTimeMax < 120 ? 'mins' : 'mins'}`;
     } else if (prepTimeMin > 60 && prepTimeMin < 1440) {
-      const hrs = Math.trunc(prepTimeMin / 60)
-      minTimeText += `${hrs > 1 ? hrs : prepTimeMin}${hrs > 1 ? "" : "mins"}`
+      const hrs = Math.trunc(prepTimeMin / 60);
+      minTimeText += `${hrs > 1 ? hrs : prepTimeMin}${hrs > 1 ? '' : 'mins'}`;
     } else if (prepTimeMin >= 1440) {
-      const days = Math.trunc(prepTimeMin / 1440)
-      const hrs = Math.trunc(prepTimeMin / 60)
-      minTimeText += `${days >= 1 ? days : hrs}${days >= 1 ? days > 1 ? "days" : "day" : "hrs"}`
+      const days = Math.trunc(prepTimeMin / 1440);
+      const hrs = Math.trunc(prepTimeMin / 60);
+      minTimeText += `${days >= 1 ? days : hrs}${
+        days >= 1 ? (days > 1 ? 'days' : 'day') : 'hrs'
+      }`;
     }
-    
-    let maxTimeText = ""
+
+    let maxTimeText = '';
     if (prepTimeMax < 60) {
-      maxTimeText += `${prepTimeMax} mins`
+      maxTimeText += `${prepTimeMax} mins`;
     } else if (prepTimeMax > 60 && prepTimeMax < 1440) {
-      const hrs = Math.trunc(prepTimeMax / 60)
-      maxTimeText += `${hrs}${hrs > 1 ? "hrs" : "hr"}`
+      const hrs = Math.trunc(prepTimeMax / 60);
+      maxTimeText += `${hrs}${hrs > 1 ? 'hrs' : 'hr'}`;
     } else if (prepTimeMax >= 1440) {
-      const days = Math.trunc(prepTimeMax / 1440)
-      const hrs = Math.trunc(prepTimeMax / 60)
-      maxTimeText += `${days >= 1 ? days : hrs}${days >= 1 ? days > 1 ? "days" : "day" : "hrs"}`
+      const days = Math.trunc(prepTimeMax / 1440);
+      const hrs = Math.trunc(prepTimeMax / 60);
+      maxTimeText += `${days >= 1 ? days : hrs}${
+        days >= 1 ? (days > 1 ? 'days' : 'day') : 'hrs'
+      }`;
     }
 
     if (prepTimeMin === 0 && prepTimeMax === 0) {
-      return ""
+      return '';
     }
 
-    if (minTimeText !== "" && maxTimeText !== "") {
-      return minTimeText + "-" + maxTimeText
-    } else  if (minTimeText === "") {
-      return maxTimeText
-    } else if (maxTimeText === "") {
-      return minTimeText
+    if (minTimeText !== '' && maxTimeText !== '') {
+      return minTimeText + '-' + maxTimeText;
+    } else if (minTimeText === '') {
+      return maxTimeText;
+    } else if (maxTimeText === '') {
+      return minTimeText;
     }
-    return ""
+    return '';
   };
-  
+
   const topImgStyle = useAnimatedStyle(() => {
     const inputRange = [0, Platform.OS === 'ios' ? 96 : 96 - 10];
     const height = interpolate(
@@ -234,24 +237,24 @@ const TopSection = ({y, restaurant}: TopSectionProps) => {
               </DynamicView>
             </DynamicView>
             <DynamicView marginRight={25}>
-                <DynamicView flexDirection="row" alignItems="center">
-                  <AntDesign
-                    name="clockcircleo"
-                    color={Colors.black}
-                    size={27 / 2}
-                  />
-                  <DynamicView marginLeft={4}>
-                    <DynamicText
-                      fontFamily={fonts.DMSans500Medium}
-                      fontSize={13}
-                      lineHeight={16}
-                      marginTop={0}
-                      color={Colors.black}>
-                        {displayPrepTime()}
-                    </DynamicText>
-                  </DynamicView>
+              <DynamicView flexDirection="row" alignItems="center">
+                <AntDesign
+                  name="clockcircleo"
+                  color={Colors.black}
+                  size={27 / 2}
+                />
+                <DynamicView marginLeft={4}>
+                  <DynamicText
+                    fontFamily={fonts.DMSans500Medium}
+                    fontSize={13}
+                    lineHeight={16}
+                    marginTop={0}
+                    color={Colors.black}>
+                    {displayPrepTime()}
+                  </DynamicText>
                 </DynamicView>
               </DynamicView>
+            </DynamicView>
             <DynamicView>
               <DynamicView flexDirection="row" alignItems="center">
                 <AntDesign
@@ -264,7 +267,8 @@ const TopSection = ({y, restaurant}: TopSectionProps) => {
                   onPress={() => {
                     SheetManager.show('DishMoreInfo', {
                       payload: {
-                        restaurant,
+                        restaurant: restaurant,
+                        distance: distance,
                       },
                     });
                   }}>

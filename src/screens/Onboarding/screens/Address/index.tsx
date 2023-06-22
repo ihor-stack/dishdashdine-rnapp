@@ -63,6 +63,7 @@ const Address = () => {
         const response: any = await PlacesService.placePredictions(searchText);
         if (response && response?.predictions) {
           const { predictions } = response;
+
           setPredictions(predictions);
         }
         setShowLoading(false);

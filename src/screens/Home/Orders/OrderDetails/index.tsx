@@ -43,6 +43,7 @@ const OrderDetails = () => {
 
   const [order, setOrder] = useState<IOrder>({});
   const [tipAmount, setTipAmount] = useState<number>(0);
+
   const [collectDate, setCollectDate] = useState(new Date());
   const [collectionTime, setCollectionTime] = useState<any>({
     collectNow: true,
@@ -81,7 +82,6 @@ const OrderDetails = () => {
       setOrder(selectedOrder);
       setTipAmount(selectedOrder.tip);
     }
-
   }, [selectedOrder, order]);
 
   useEffect(() => {
@@ -189,7 +189,6 @@ const OrderDetails = () => {
           await dispatch(fetchCompletedOrder());
 
           if (paymentIntent.status === 'Succeeded') {
-
             toast.show({
               placement: 'top',
               duration: 1500,

@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { DynamicView } from '@/components';
+import React, {useEffect, useState} from 'react';
+import {DynamicText, DynamicView} from '@/components';
 import RestaurantInfoAvatar from './RestaurantInfoAvatar';
-import { Divider } from 'native-base';
-import { Colors } from '@/themes';
+import {Divider} from 'native-base';
+import {Colors} from '@/themes';
 import CheckOutMenuITem from './CheckOutMenuITem';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import ActionSheet, {
   SheetManager,
   SheetProps,
 } from 'react-native-actions-sheet';
-import { ScrollView } from "react-native";
-import { useDispatch, useSelector } from 'react-redux';
+import {ScrollView} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import DishButton from '@/components/DishButton';
-import { restaurantSelectors, setSelectedRestaurant } from '@/store/restaurants';
+import {restaurantSelectors, setSelectedRestaurant} from '@/store/restaurants';
 import {
   fetchOrderRestaurant,
   fetchRestaurantOrder,
   setOrderOrderType,
 } from '@/store/order/thunk';
-import { IOrder, IOrderLineItem } from '@/api/generic';
-import { homeSelectors } from '@/store/home';
-import { orderSelectors } from '@/store/order';
-import { isEmpty } from 'lodash';
+import {IOrder, IOrderLineItem} from '@/api/generic';
+import {homeSelectors} from '@/store/home';
+import {orderSelectors} from '@/store/order';
+import {isEmpty} from 'lodash';
 
-export interface CheckOutModalProps extends SheetProps { }
+export interface CheckOutModalProps extends SheetProps {}
 
 const CheckOutModal = (props: CheckOutModalProps) => {
   const navigation = useNavigation();
@@ -84,7 +84,7 @@ const CheckOutModal = (props: CheckOutModalProps) => {
     setIsCheckOut(true);
     // SET ORDER TYPE
     await dispatch(
-      setOrderOrderType({ id: selectedOrder.id, data: { orderType } }),
+      setOrderOrderType({id: selectedOrder.id, data: {orderType}}),
     );
     await SheetManager.hide('CheckOutModal');
   };
@@ -105,7 +105,6 @@ const CheckOutModal = (props: CheckOutModalProps) => {
       }}
       onClose={() => {
         if (isFrom === 'dish-info' && !isCheckOut) {
-
         } else if (isFrom === 'dish-info' && isCheckOut) {
           if (__DEV__) {
             console.log('selected: ', selectedOrder);
@@ -132,8 +131,7 @@ const CheckOutModal = (props: CheckOutModalProps) => {
           />
         )}
         <Divider bgColor={Colors.lightGrey} padding={1} />
-        <ScrollView
-          style={{ backgroundColor: "#FFF" }}>
+        <ScrollView style={{backgroundColor: '#FFF'}}>
           <DynamicView paddingHorizontal={12}>
             <CheckOutMenuITem
               order={selectedOrder}
@@ -163,10 +161,8 @@ const CheckOutModal = (props: CheckOutModalProps) => {
                 });
               }}
             />
-
           </DynamicView>
         </ScrollView>
-
       </DynamicView>
     </ActionSheet>
   );

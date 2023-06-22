@@ -12,7 +12,7 @@ import {restaurantSelectors} from '@/store/restaurants';
 import {accountSelectors} from '@/store/account';
 import {DEFAULT_DISTANCE} from '@/constants';
 import {fetchMyFavorites, fetchRestaurant} from '@/store/restaurants/thunk';
-import {isEmpty, size} from 'lodash';
+import {isEmpty, rest, size} from 'lodash';
 import NoRestaurants from './NoRestaurants';
 import {RestaurantsLoading} from '../Home/Orders/Restaurants/RestaurantsLoading';
 import {Restaurants} from '../Home/Orders/Restaurants';
@@ -43,6 +43,7 @@ const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [isInitialized, setInitialized] = useState(false);
   const restaurants: any[] = useSelector(restaurantSelectors.selectRestaurants);
+
   const currentLocation = useSelector(
     accountSelectors.selectCurrentUserLocation,
   );
@@ -81,7 +82,50 @@ const Home = () => {
     await getData(currentLocation);
   }, [currentLocation, currentDistance, dispatch, currentUser, homeOrderType]);
 
+  const onPullToRefresh = useCallback(async () => {
+    await getDataRefresh(currentLocation);
+  }, [currentLocation, currentDistance, dispatch, currentUser, homeOrderType]);
+
   const getData = async (currentLocationProps: any) => {
+    try {
+      await dispatch(
+        fetchRestaurant({
+          Latitude: currentLocationProps.latitude,
+          Longitude: currentLocationProps.longitude,
+          RadiusMiles: currentDistance || DEFAULT_DISTANCE,
+          OrderType: homeOrderType,
+          // IncludeOpenOnly: true,
+          IncludeOrderRestaurants: homeOrderType === 0 ? true : null,
+          IncludeCateringRestaurants: homeOrderType === null ? true : null,
+          LocationQuery:
+            homeOrderType === 0 || homeOrderType === 1 ? true : null,
+        }),
+      );
+
+      if (!currentUser?.noAuth) {
+        await dispatch(fetchMyFavorites());
+        await dispatch(fetchAppPromo());
+
+        await dispatch(fetchAddress());
+        await dispatch(getDefaultAddress());
+
+        await dispatch(fetchTaxonomy());
+        await dispatch(fetchMyReviews());
+
+        if (currentUser?.emailConfirmed) {
+          await Promise.allSettled([
+            dispatch(fetchActiveOrder()),
+            dispatch(fetchCompletedOrder()),
+          ]);
+        }
+      }
+
+    } catch (e) {
+      setRefreshing(false);
+    }
+  };
+
+  const getDataRefresh = async (currentLocationProps: any) => {
     setRefreshing(true);
     try {
       await dispatch(
@@ -177,7 +221,7 @@ const Home = () => {
           style={styles.FlatList}
           contentContainerStyle={styles.FlatListContainer}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            <RefreshControl refreshing={refreshing} onRefresh={onPullToRefresh} />
           }
           data={FAKE_DATA}
           ListHeaderComponent={ListHeaderComponent}
@@ -191,7 +235,7 @@ const Home = () => {
           style={styles.FlatList}
           contentContainerStyle={styles.FlatListContainer}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            <RefreshControl refreshing={refreshing} onRefresh={onPullToRefresh} />
           }
           data={restaurants}
           ListHeaderComponent={ListHeaderComponent}
