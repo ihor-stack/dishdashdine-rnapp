@@ -115,8 +115,8 @@ const OrderInfoAvatar = ({restaurant, showLoading}: OrderInfoAvatarProps) => {
               fontSize={13}
               lineHeight={16}
               color={Colors.black}>
-              Open: {moment(openingHours?.openTime).format('hh:mma')} -{' '}
-              {moment(openingHours?.closeTime).format('hh:mma')}
+              Open: {moment.utc(openingHours?.openTime).format('hh:mma')} -{' '}
+              {moment.utc(openingHours?.closeTime).format('hh:mma')}
             </DynamicText>
           </DynamicView>
         </DynamicView>
