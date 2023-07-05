@@ -259,6 +259,19 @@ const TopSection = ({y, restaurant}: TopSectionProps) => {
               </DynamicText>
             </DynamicView>
           </DynamicView>
+        ) || (
+          <DynamicView flexDirection="row" alignItems="center">
+            <MaterialIcons size={12} name="stop-circle" color="#F3000B" />
+            <DynamicView marginLeft={9}>
+              <DynamicText
+                fontFamily={fonts.DMSans400Regular}
+                color={Colors.black}
+                fontSize={13}
+                lineHeight={16}>
+                Restaurant not currently taking orders
+              </DynamicText>
+            </DynamicView>
+          </DynamicView>
         )}
         {restaurant.offersEventCatering && (
           <DynamicPressable

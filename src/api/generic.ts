@@ -251,7 +251,7 @@ export interface IRestaurant {
   distanceMiles: number;
   prepTimeMin: number;
   prepTimeMax: number;
-  takingOrders: true;
+  takingOrders: boolean;
   takingOrdersUntil: string;
   latitude: number;
   longitude: number;
