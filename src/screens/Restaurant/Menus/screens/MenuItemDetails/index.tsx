@@ -200,24 +200,28 @@ const MenuItemDetails = () => {
   const onAddMenuItem = async (data: MenuItemDetailsFormType) => {
     setShowLoading(true);
     try {
+      const menuItemParams = {
+        ...data,
+        temperature: Number(temperature),
+        largeImage,
+        glutenFree: isGlutenFree,
+        vegan: isVegan,
+        vegetarian: isVegetarian,
+        soldOut: isChecked,
+        assignedCategories: menuItemCategories.map(item => item.categoryId),
+        assignedModifierGroups: menuItemModifiers.map(
+          item => item.modifierGroupId,
+        ),
+        otherDietaryRequirement: '',
+        // largeImagePath: largeImage,
+      };
       const response = await RestaurantService.createRestaurantMenuItem(
         restaurantId || restaurant.restaurantId,
-        {
-          ...data,
-          temperature: Number(temperature),
-          largeImage,
-          glutenFree: isGlutenFree,
-          vegan: isVegan,
-          vegetarian: isVegetarian,
-          soldOut: isChecked,
-          assignedCategories: menuItemCategories.map(item => item.categoryId),
-          assignedModifierGroups: menuItemModifiers.map(
-            item => item.modifierGroupId,
-          ),
-          otherDietaryRequirement: '',
-          // largeImagePath: largeImage,
-        },
+        menuItemParams,
       );
+
+      console.log(`request restaurant_id:${restaurantId || restaurant.restaurantId} params:${JSON.stringify(params)}`);
+      console.log('response:', response);
 
       if (response) {
         await dispatch(
@@ -228,6 +232,7 @@ const MenuItemDetails = () => {
         setShowLoading(false);
       }
     } catch (error: any) {
+      console.log('error:', error);
       const errs = error.errors;
       captureErrorException(error);
       setShowLoading(false);
