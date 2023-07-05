@@ -3,7 +3,12 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {Home, Onboarding} from '../screens';
 import {useDispatch, useSelector} from 'react-redux';
-import {accountSelectors, setDevicePushToken, setWillUpdate, clearCurrentUser} from '@/store/account';
+import {
+  accountSelectors,
+  setDevicePushToken,
+  setWillUpdate,
+  clearCurrentUser,
+} from '@/store/account';
 import {clearSelectedRestaurant} from '@/store/admin_restaurant/restaurant';
 import {DynamicText, NavigationHeader} from '@/components';
 import Restaurants from '@/screens/Restaurant/Restaurants/screens';
@@ -15,7 +20,7 @@ import DeleteAccountDeleted from '@/screens/Home/Account/screens/AccountDetails/
 import {CommonActions, useNavigation} from '@react-navigation/native';
 import {authSelectors} from '@/store/authentication';
 import {isEmpty} from 'lodash';
-import { Colors, fonts } from '@/themes';
+import {Colors, fonts} from '@/themes';
 
 import {adminRestaurantSelectors} from '@/store/admin_restaurant/restaurant';
 import UserService from '@/api/user';
@@ -70,10 +75,23 @@ const AdminRestaurantNavigator = () => {
         name="AdminRestaurants"
         component={Restaurants}
         options={{
-          header: () => <NavigationHeader restaurant title="Restaurants" slotEnd={<DynamicText fontFamily={fonts.DMSans500Medium}
-          fontWeight="500"
-          color={Colors.white}
-          fontSize={18} onPress={onSignOut}>Logout</DynamicText>}/>,
+          header: () => (
+            <NavigationHeader
+              restaurant
+              title="Restaurants"
+              slotEnd={
+                <DynamicText
+                  fontFamily={fonts.DMSans500Medium}
+                  fontWeight="500"
+                  color={Colors.white}
+                  fontSize={18}
+                  onPress={onSignOut}
+                >
+                  Logout
+                </DynamicText>
+              }
+            />
+          )
         }}
       />
       <RestaurantStackNav.Screen

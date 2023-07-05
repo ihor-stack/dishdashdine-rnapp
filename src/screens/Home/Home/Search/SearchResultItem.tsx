@@ -8,6 +8,9 @@ import {ms} from 'react-native-size-matters';
 import {IPreparationTimes, IRestaurant} from '@/api/generic';
 import FastImage from 'react-native-fast-image';
 import {DynamicPressable, DynamicView} from '@/components';
+
+import { displayPrepTime } from '@/utils/restaurant';
+
 // import {SharedElement} from 'react-navigation-shared-element';
 const moment = require('moment');
 
@@ -32,58 +35,6 @@ const SearchResultItem = ({item, onPressRestaurant}: Props) => {
       return '0 mile';
     }
   };
-
-  const displayPrepTime = () => {
-    const { preparationTimes } = restaurant;
-    let prepTimeMin = restaurant.prepTimeMin
-    let prepTimeMax = restaurant.prepTimeMax
-    const enabledTime = preparationTimes.filter((item: IPreparationTimes) => {
-      return item.enabled
-    })
-
-    if (enabledTime.length > 0) {
-      prepTimeMin = enabledTime[0].prepTimeMin
-      prepTimeMax = enabledTime[0].prepTimeMax
-    }
-
-    let minTimeText = ""
-    if (prepTimeMin < 60) {
-      minTimeText += `${prepTimeMin}${prepTimeMax < 120 ? "mins" : "mins"}`
-    } else if (prepTimeMin > 60 && prepTimeMin < 1440) {
-      const hrs = Math.trunc(prepTimeMin / 60)
-      minTimeText += `${hrs > 1 ? hrs : prepTimeMin}${hrs > 1 ? "" : "mins"}`
-    } else if (prepTimeMin >= 1440) {
-      const days = Math.trunc(prepTimeMin / 1440)
-      const hrs = Math.trunc(prepTimeMin / 60)
-      minTimeText += `${days >= 1 ? days : hrs}${days >= 1 ? days > 1 ? "days" : "day" : "hrs"}`
-    }
-    
-    let maxTimeText = ""
-    if (prepTimeMax < 60) {
-      maxTimeText += `${prepTimeMax} mins`
-    } else if (prepTimeMax > 60 && prepTimeMax < 1440) {
-      const hrs = Math.trunc(prepTimeMax / 60)
-      maxTimeText += `${hrs}${hrs > 1 ? "hrs" : "hr"}`
-    } else if (prepTimeMax >= 1440) {
-      const days = Math.trunc(prepTimeMax / 1440)
-      const hrs = Math.trunc(prepTimeMax / 60)
-      maxTimeText += `${days >= 1 ? days : hrs}${days >= 1 ? days > 1 ? "days" : "day" : "hrs"}`
-    }
-
-    if (prepTimeMin === 0 && prepTimeMax === 0) {
-      return ""
-    }
-
-    if (minTimeText !== "" && maxTimeText !== "") {
-      return minTimeText + "-" + maxTimeText
-    } else  if (minTimeText === "") {
-      return maxTimeText
-    } else if (maxTimeText === "") {
-      return minTimeText
-    }
-    return ""
-  };
-
 
   return (
     <DynamicPressable onPress={onPressRestaurant} paddingVertical={20}>
@@ -124,7 +75,7 @@ const SearchResultItem = ({item, onPressRestaurant}: Props) => {
 
             <HStack space={1} alignItems="center">
               <Icon as={<Feather name="clock" />} />
-              <Text fontSize="xs">{displayPrepTime()}</Text>
+              <Text fontSize="xs">{displayPrepTime(restaurant)}</Text>
             </HStack>
           </HStack>
         </VStack>
