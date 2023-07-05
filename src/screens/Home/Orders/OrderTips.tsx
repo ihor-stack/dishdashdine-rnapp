@@ -8,7 +8,7 @@ const tipsArray = [
     id: 1,
     label: 'Not \n now',
     value: 0,
-    selected: false,
+    selected: true,
   },
   {
     id: 2,
