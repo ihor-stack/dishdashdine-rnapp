@@ -23,6 +23,12 @@ const AvailableOption = ({
   index,
   updateRowItem,
 }: AvailableOptionProps) => {
+  // Normalize price to 2 decimal places
+  let price = item.price;
+  if (typeof(price) === 'number') {
+    price = price.toFixed(2);
+  }
+
   return (
     <DynamicView
       marginBottom={10}
@@ -44,8 +50,15 @@ const AvailableOption = ({
           placeholder=""
           placeholderTextColor={Colors.grey}
           style={styles.textInputStyle}
-          value={String(item.price)}
+          value={String(price)}
           onChangeText={text => updateRowItem(index, 'price', text)}
+          onBlur={() => {
+            // Round to 2 decimal places
+            const p = parseFloat(price);
+            if (!isNaN(p)) {
+              updateRowItem(index, 'price', p.toFixed(2));
+            }
+          }}
         />
       </DynamicView>
       <DynamicView flex={1} marginLeft={4}>

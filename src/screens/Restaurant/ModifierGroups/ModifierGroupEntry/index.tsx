@@ -190,7 +190,7 @@ const ModifierGroupEntry = () => {
   ) => {
     let newData = [...availableOptions];
 
-    let rowItem = newData.at(index);
+    let rowItem = newData[index];
 
     const newRowItem = {...rowItem, [key]: value};
 

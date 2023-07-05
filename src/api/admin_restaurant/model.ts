@@ -336,7 +336,7 @@ export interface IAdminRestaurantCategoryParams {
 export interface IAdminRestaurantModifierGroupAvailableParams {
   modifierGroupItemId?: string;
   name: string;
-  price: number;
+  price: number | string;
   minSelections: number;
   maxSelections: number;
 }
