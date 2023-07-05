@@ -199,13 +199,12 @@ const OrderStatus = () => {
         <DynamicImage width={150} height={150} source={restaurant} />
         <DynamicView paddingTop={33}>
           <DynamicText style={styles.orderStatusDesc}>
-            Your order has been cancelled
+            Your order has been cancelled by the restaurant
           </DynamicText>
         </DynamicView>
         <DynamicView paddingTop={10}>
           <DynamicText style={styles.colorGreyText}>
-            We had to cancel your order; don't worry, you'll be be refunded.
-            {'\n'} See you next time!
+            Don't worry, you haven't been charged for this order. We apologise for the inconvenience.
           </DynamicText>
         </DynamicView>
       </>

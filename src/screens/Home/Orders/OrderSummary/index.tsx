@@ -129,7 +129,7 @@ const OrderSummary = () => {
         fontFamily={fonts.DMSans500Medium}
         fontSize={24}
         lineHeight={31.25}>
-        Your order has been cancelled{'\n'}
+        Your order has been cancelled by the restaurant
       </DynamicText>
       <DynamicText
         textAlign="center"
@@ -137,8 +137,7 @@ const OrderSummary = () => {
         fontSize={13}
         lineHeight={15.62}
         color={Colors.grey}>
-        We had to cancel your order; don't worry, you'll be be refunded.
-        {'\n'} See you next time!
+        Don't worry, you haven't been charged for this order. We apologise for the inconvenience.
       </DynamicText>
     </DynamicView>
   );
