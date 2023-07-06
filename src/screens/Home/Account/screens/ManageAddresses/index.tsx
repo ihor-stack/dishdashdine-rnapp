@@ -1,9 +1,12 @@
 import {useDispatch, useSelector} from 'react-redux';
 import React, {useEffect, useState} from 'react';
-import {fetchAddress, getDefaultAddress} from '@/store/address/thunk';
-import ManageAddressesView from './View';
-import {addressSelectors} from '@/store/address';
+
+import AddressService from '@/api/address';
 import {IAddress} from '@/api/generic';
+import {fetchAddress, deleteAddress, getDefaultAddress} from '@/store/address/thunk';
+import {addressSelectors} from '@/store/address';
+
+import ManageAddressesView from './View';
 
 const Address = () => {
   const dispatch = useDispatch();
@@ -24,10 +27,23 @@ const Address = () => {
     setRefreshing(false);
   }, []);
 
+  const onDelete = async (id: string) => {
+    setRefreshing(true);
+    // try {
+    //   const response: any = await AddressService.deleteAddress(id);
+    //   console.log('response:', response);
+    // } catch (error) {
+    //   console.log('error:', error);
+    // }
+    await dispatch(fetchAddress());
+    setRefreshing(false);
+  };
+
   return (
     <ManageAddressesView
       refreshing={refreshing}
       onRefresh={onRefresh}
+      onDelete={onDelete}
       myAddresses={myAddresses}
       defaultAddress={defaultAddress}
     />

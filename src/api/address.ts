@@ -40,6 +40,12 @@ const AddressService = {
       data,
     });
   },
+  deleteAddress(id: string) {
+    return API({
+      url: `/api/Address/${id}`,
+      method: 'DELETE',
+    });
+  },
   getAddress(id: string) {
     return API({
       url: `/api/Address/${id}`,

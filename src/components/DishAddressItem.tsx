@@ -1,27 +1,34 @@
 import React from 'react';
 import {Divider, Icon} from 'native-base';
-import {Colors, fonts} from '@/themes';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {DynamicText, DynamicView, DynamicPressable} from '@/components/index';
-import {getAddressTypeLabel} from '@/utils/common';
 import {isEmpty} from 'lodash';
 
+import {DynamicText, DynamicView, DynamicPressable} from '@/components/index';
+import {Colors, fonts} from '@/themes';
+import {getAddressTypeLabel} from '@/utils/common';
+
 export interface DishAddressItemProps {
+  id: string;
   addressType: number;
   formattedAddress: string;
-  otherAddressType: string;
+  otherAddressType?: string;
+  defaultAddressId?: string;
   showDivider?: boolean;
   onPress?: any;
+  onDelete?: (id: string) => void;
 }
 
 const DishAddressItem = ({
+  id,
   addressType,
   formattedAddress,
   otherAddressType,
+  defaultAddressId,
   showDivider,
   onPress,
+  onDelete,
 }: DishAddressItemProps) => {
   const getAddressIcon = (type: number) => {
     switch (type) {
@@ -60,28 +67,46 @@ const DishAddressItem = ({
     <>
       <DynamicPressable
         flexDirection="row"
+        justifyContent="space-between"
         marginVertical={20}
         onPress={onPress}>
-        {getAddressIcon(addressType)}
-        <DynamicView paddingLeft={12}>
-          <DynamicText
-            fontFamily={fonts.DMSans500Medium}
-            fontSize={15}
-            lineHeight={18}
-            color={Colors.black}>
-            {!isEmpty(otherAddressType)
-              ? otherAddressType
-              : getAddressTypeLabel(addressType)}
-          </DynamicText>
+        <DynamicView flexDirection="row" alignItems="center">
+          {getAddressIcon(addressType)}
+          <DynamicView paddingLeft={12}>
+            <DynamicText
+              fontFamily={fonts.DMSans500Medium}
+              fontSize={15}
+              lineHeight={18}
+              color={Colors.black}>
+              {!isEmpty(otherAddressType)
+                ? otherAddressType
+                : getAddressTypeLabel(addressType)}
+            </DynamicText>
+            <DynamicText
+              fontFamily={fonts.DMSans400Regular}
+              fontSize={13}
+              lineHeight={15.62}
+              color={Colors.grey}
+              numberOfLines={2}>
+              {formattedAddress}
+            </DynamicText>
+          </DynamicView>
+        </DynamicView>
+        {defaultAddressId && (defaultAddressId != id && (
+          <DynamicPressable
+            onPress={() => onDelete(id)}>
+            <Icon as={<Feather name="trash" />} color={Colors.ember} size={6} />
+          </DynamicPressable>
+        ) || (
           <DynamicText
             fontFamily={fonts.DMSans400Regular}
             fontSize={13}
             lineHeight={15.62}
             color={Colors.grey}
             numberOfLines={2}>
-            {formattedAddress}
+            Default
           </DynamicText>
-        </DynamicView>
+        ))}
       </DynamicPressable>
       {showDivider && <Divider bgColor={Colors.lightGrey} />}
     </>

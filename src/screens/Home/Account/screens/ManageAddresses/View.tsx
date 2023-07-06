@@ -17,11 +17,12 @@ export interface ManageAddressesViewProps {
   defaultAddress: IAddress | any;
   refreshing: boolean;
   onRefresh: any;
+  onDelete: (id: string) => void;
 }
 
 const ManageAddressesView = (props: ManageAddressesViewProps) => {
   const { navigate } = useNavigation<any>();
-  const { myAddresses, refreshing, onRefresh, defaultAddress } = props;
+  const { myAddresses, refreshing, onRefresh, onDelete, defaultAddress } = props;
   const [currentAddress, setCurrentAddress] = useState<IAddress>({});
 
   useEffect(() => {
@@ -39,9 +40,11 @@ const ManageAddressesView = (props: ManageAddressesViewProps) => {
   const renderAddressItem = ({ item, index }) => {
     return (
       <DishAddressItem
+        id={item.id}
         formattedAddress={item.formattedAddress}
         addressType={item.addressType}
         otherAddressType={item.otherAddressType}
+        defaultAddressId={defaultAddress?.id}
         key={index}
         onPress={() =>
           navigate('AddNewAddress', {
@@ -50,6 +53,7 @@ const ManageAddressesView = (props: ManageAddressesViewProps) => {
             address: item,
           })
         }
+        onDelete={onDelete}
       />
     );
   };
@@ -64,6 +68,7 @@ const ManageAddressesView = (props: ManageAddressesViewProps) => {
           <>
             {!isEmpty(defaultAddress) && (
               <DishAddressItem
+                id={defaultAddress.id}
                 formattedAddress={defaultAddress.formattedAddress}
                 addressType={AddressType.ComputedCurrentAddress.code}
                 showDivider
