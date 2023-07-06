@@ -192,16 +192,6 @@ export interface IAddressResponse extends IAddressResolveResponse {
   id: string;
 }
 
-export interface IAddress {
-  streetNumber: string;
-  street: string;
-  city: string;
-  country: string;
-  postCode: string;
-  county: string;
-  addressType: number;
-}
-
 export interface ISupportTicket {
   rating: number;
   title: string;
