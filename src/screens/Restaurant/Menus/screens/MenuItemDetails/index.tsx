@@ -62,7 +62,6 @@ const MenuItemDetails = () => {
   const menu = params?.menu;
   const action: any = params?.action;
 
-  const [isChecked, setIsChecked] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [largeImagePath, setLargeImagePath] = useState<string>();
   const [service, setService] = useState<string>('');
@@ -206,7 +205,7 @@ const MenuItemDetails = () => {
         glutenFree: isGlutenFree,
         vegan: isVegan,
         vegetarian: isVegetarian,
-        soldOut: isChecked,
+        soldOut: menuDetails.soldOut,
         assignedCategories: menuItemCategories.map(item => item.categoryId),
         assignedModifierGroups: menuItemModifiers.map(
           item => item.modifierGroupId,
@@ -256,7 +255,7 @@ const MenuItemDetails = () => {
         glutenFree: isGlutenFree,
         vegan: isVegan,
         vegetarian: isVegetarian,
-        soldOut: isChecked,
+        soldOut: menuDetails.soldOut,
         assignedCategories: menuItemCategories.map(item => item.categoryId),
         assignedModifierGroups: menuItemModifiers.map(
           item => item.modifierGroupId,
@@ -367,8 +366,10 @@ const MenuItemDetails = () => {
     CustomActionSheet.current?.show();
   };
 
-  const toggleSwitch = () => {
-    setIsChecked(!isChecked);
+  const toggleSoldOut = () => {
+    const detail = {...menuDetails};
+    detail.soldOut = !detail.soldOut;
+    setMenuDetails(detail);
   };
 
   const onRemoveCategory = (index: number) => {
@@ -466,7 +467,6 @@ const MenuItemDetails = () => {
       menu,
       menuDetails,
       action,
-      isChecked,
       showLoading,
       setShowLoading,
       onSubmit,
@@ -484,7 +484,7 @@ const MenuItemDetails = () => {
       setMenuItemCategories,
       menuItemModifiers,
       setMenuItemModifiers,
-      toggleSwitch,
+      toggleSoldOut,
       onSelectCategories,
       onSelectModifiers,
       onRemoveCategory,

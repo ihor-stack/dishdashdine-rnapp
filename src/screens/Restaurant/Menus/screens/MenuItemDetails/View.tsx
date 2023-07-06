@@ -27,8 +27,6 @@ export interface MenuItemDetailsViewProps {
   menu: IAdminMenus;
   menuDetails: IAdminMenuItem;
   action: string;
-  isChecked: boolean;
-  setIsChecked: boolean;
   showLoading: boolean;
   setShowLoading: boolean;
   onSubmit: any;
@@ -46,7 +44,7 @@ export interface MenuItemDetailsViewProps {
   setMenuItemCategories: any;
   menuItemModifiers: IAdminCategories[];
   setMenuItemModifiers: any;
-  toggleSwitch: () => void;
+  toggleSoldOut: () => void;
   onSelectCategories: () => Promise<void>;
   onSelectModifiers: () => Promise<void>;
   onRemoveCategory: (index: number) => void;
@@ -65,7 +63,6 @@ export interface MenuItemDetailsViewProps {
 const MenuItemDetailsView: React.FC<MenuItemDetailsViewProps> = ({
   action,
   menuDetails,
-  isChecked,
   showLoading,
   onSubmit,
   control,
@@ -76,7 +73,7 @@ const MenuItemDetailsView: React.FC<MenuItemDetailsViewProps> = ({
   CustomActionSheet,
   menuItemCategories,
   menuItemModifiers,
-  toggleSwitch,
+  toggleSoldOut,
   onSelectCategories,
   onSelectModifiers,
   onRemoveCategory,
@@ -110,9 +107,9 @@ const MenuItemDetailsView: React.FC<MenuItemDetailsViewProps> = ({
               false: 'rgba(171, 187, 194, 0.26)',
               true: 'rgba(224, 4, 4, 0.25)',
             }}
-            thumbColor={isChecked ? Colors.ember : Colors.darkGrey}
-            value={isChecked}
-            onValueChange={toggleSwitch}
+            thumbColor={menuDetails.soldOut ? Colors.ember : Colors.darkGrey}
+            value={menuDetails.soldOut}
+            onValueChange={toggleSoldOut}
             style={
               Platform.OS === 'ios' ? {transform: [{scaleX: 0.8}, {scaleY: 0.8}]} : {transform: [{scaleX: 1.2}, {scaleY: 1.2}]}
             }
