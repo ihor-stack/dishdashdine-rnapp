@@ -405,30 +405,32 @@ const AddressFilter = () => {
               )}
             </VStack>
           </DynamicPressable>
-          <VStack space={1} bgColor={Colors.white} p={3}>
-            <FlatList
-              style={myAddresses?.length > 3 ? {height: 250} : {height: 'auto'}}
-              data={myAddresses}
-              keyExtractor={item => item.id}
-              renderItem={renderAddressListitem}
-              ListHeaderComponent={() => (
-                <Text color={Colors.grey} bold>
-                  Saved addresses
-                </Text>
-              )}
-              ItemSeparatorComponent={() => (
-                <Divider bgColor={Colors.lightGrey} />
-              )}
-              ListEmptyComponent={() => (
-                <DynamicView paddingTop={5}>
-                  <EmptyState
-                    title="No address found"
-                    message={'You have no saved addresses'}
-                  />
-                </DynamicView>
-              )}
-            />
-          </VStack>
+          {!currentUser?.noAuth && (
+            <VStack space={1} bgColor={Colors.white} p={3}>
+              <FlatList
+                style={myAddresses?.length > 3 ? {height: 250} : {height: 'auto'}}
+                data={myAddresses}
+                keyExtractor={item => item.id}
+                renderItem={renderAddressListitem}
+                ListHeaderComponent={() => (
+                  <Text color={Colors.grey} bold>
+                    Saved addresses
+                  </Text>
+                )}
+                ItemSeparatorComponent={() => (
+                  <Divider bgColor={Colors.lightGrey} />
+                )}
+                ListEmptyComponent={() => (
+                  <DynamicView paddingTop={5}>
+                    <EmptyState
+                      title="No address found"
+                      message={'You have no saved addresses'}
+                    />
+                  </DynamicView>
+                )}
+              />
+            </VStack>
+          )}
           <VStack bgColor={Colors.white}>
             <VStack space={4} p={3}>
               <Text color={Colors.grey} bold>
