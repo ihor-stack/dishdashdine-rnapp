@@ -79,9 +79,7 @@ const BasicInformationView = (props: BasicInformationViewProps) => {
       style={{
         backgroundColor: Colors.white,
       }}
-      contentContainerStyle={{
-        flexGrow: 1,
-      }}>
+      contentContainerStyle={{flexGrow: 1}}>
       <DynamicView paddingTop={19} paddingHorizontal={12}>
         <DynamicText style={styles.basicInfoHeader}>
           Basic Information
@@ -221,6 +219,26 @@ const BasicInformationView = (props: BasicInformationViewProps) => {
               />
             )}
             name="city"
+          />
+        </DynamicView>
+        <DynamicText style={styles.textLabelStyle}>County</DynamicText>
+        <DynamicView style={styles.textInputView}>
+          <Controller
+            control={control}
+            rules={{required: true}}
+            render={({field: {onChange, onBlur, value}}) => (
+              <DynamicTextInput
+                fontSize={14}
+                lineHeight={18.23}
+                fontFamily={fonts.DMSans400Regular}
+                color={Colors.black}
+                style={styles.textInputStyle}
+                value={value}
+                onBlur={onBlur}
+                onChangeText={onChange}
+              />
+            )}
+            name="county"
           />
         </DynamicView>
         <DynamicText style={styles.textLabelStyle}>Postcode</DynamicText>

@@ -109,8 +109,6 @@ const BasicInformation = () => {
     );
 
     if (isBannerImage) {
-      setLogoImage(null);
-
       setBannerImage({
         base64Payload: image?.data,
         fileName:
@@ -121,8 +119,6 @@ const BasicInformation = () => {
       });
       setBannerImagePath(image?.path);
     } else {
-      setBannerImage(null);
-
       setLogoImage({
         base64Payload: image?.data,
         fileName:
@@ -224,12 +220,12 @@ const BasicInformation = () => {
   ) => {
     setShowLoading(true);
     try {
-      const respones = await RestaurantService.createRestaurant({
+      const response = await RestaurantService.createRestaurant({
         ...data,
         bannerImage,
         logoImage,
       });
-      if (respones) {
+      if (response) {
         await dispatch(fetchAllRestaurants()).unwrap();
         handleSuccessToast();
       } else {
@@ -239,12 +235,14 @@ const BasicInformation = () => {
       const errs = error.errors;
       captureErrorException(error);
       setShowLoading(false);
+      let index = 0;
       each(
         errs,
-        ({description}: {code: string; description: string}, index: number) => {
+        (description: string, field: string) => {
           setTimeout(() => {
             handleErrorToast(description);
           }, 600 * index);
+          index++;
         },
       );
     }
