@@ -20,8 +20,8 @@ const request = async (options: AxiosRequestConfig) => {
     };
   }
 
-  // console.log('headers:', headers);
-  console.log('options:', options);
+  console.log('headers:', headers);
+  console.log('options:', JSON.stringify(options));
 
   axios.defaults.baseURL = API_BASE_URL;
   axios.defaults.timeout = 30000;

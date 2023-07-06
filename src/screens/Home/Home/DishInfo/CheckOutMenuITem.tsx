@@ -9,7 +9,7 @@ import {
   CollapseBody,
 } from 'accordion-collapse-react-native';
 import SwipeableFlatList from 'react-native-swipeable-list';
-import {Pressable, StyleSheet, View, ScrollView} from 'react-native';
+import {Pressable, StyleSheet, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
@@ -20,9 +20,9 @@ import {SheetManager} from 'react-native-actions-sheet';
 import CheckoutMenutItemHeader from '@/screens/Home/Home/DishInfo/CheckoutMenutItemHeader';
 import CheckoutMenutitemBody from '@/screens/Home/Home/DishInfo/CheckoutMenutitemBody';
 import {
-  addItemToOrder,
-  fetchActiveOrder,
-  fetchCompletedOrder,
+  updateItemToOrder,
+  //fetchActiveOrder,
+  //fetchCompletedOrder,
   fetchOrderRestaurant,
   removeItemToOrder,
 } from '@/store/order/thunk';
@@ -97,11 +97,14 @@ const CheckOutMenuITem = ({
   const updateOrderItems = async (_order: UpdateQuantityParams) => {
     try {
       const result = await dispatch(
-        addItemToOrder({
+        updateItemToOrder({
           id: order?.id,
+          lineItemId: _order.orderLineItemId,
           data: _order,
         }),
-      ).unwrap();
+      );
+
+      console.log('result:', result);
 
       if (__DEV__) {
         console.log('success updateItemToOrder', JSON.stringify(result));
@@ -109,6 +112,9 @@ const CheckOutMenuITem = ({
 
       onQuantityChanged();
     } catch (e: any) {
+      // TODO: Display error message
+      console.log('error:', e);
+
       captureErrorException(e);
     }
   };
@@ -117,6 +123,9 @@ const CheckOutMenuITem = ({
     item: IOrderLineItem,
     type: 'add' | 'subtract',
   ) => {
+    console.log('item.itemId', item.itemId);
+    console.log('item.orderLineItemId', item.orderLineItemId);
+
     if (disableBtn || (type === 'subtract' && Number(item.quantity) <= 1)) {
       return;
     }
@@ -135,13 +144,13 @@ const CheckOutMenuITem = ({
 
     const total = Number(item.itemPrice + item.modifierPrice) * quantity;
 
+    // Update matching item with the given new quantity and total
     newData = newData.map(i => {
       if (
         i.orderLineItemId === item.orderLineItemId &&
         i.itemId === item.itemId
       ) {
         newItem = {...i, quantity, total};
-
         return newItem;
       } else {
         return i;
@@ -166,7 +175,7 @@ const CheckOutMenuITem = ({
     await updateOrderItems({
       itemId: newItem.itemId,
       menuId: newItem.menuId,
-      quantity: isAdd ? 1 : -1,
+      quantity,
       orderLineItemId: newItem.orderLineItemId,
       modifierGroupSelections,
     });
@@ -222,7 +231,7 @@ const CheckOutMenuITem = ({
               itemName={item?.itemName}
               itemPrice={item?.total}
             />
-            
+
           </CollapseHeader>
           <CollapseBody marginLeft={30} marginBottom={15} marginTop={-15}>
             {!isEmpty(item.selectedModifierGroups) && (
