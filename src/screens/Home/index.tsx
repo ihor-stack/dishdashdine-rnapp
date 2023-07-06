@@ -1,6 +1,8 @@
-import React, {useEffect} from 'react';
-import {Platform, StatusBar} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Platform, StatusBar, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {useNavigation} from '@react-navigation/native';
+
 import {DynamicImage} from '@/components';
 import Home from './Home';
 import Browse from './Browse/index';
@@ -9,7 +11,6 @@ import FavoritesStack from './Favourites';
 import Account from './Account';
 import {HomeBottomTabParamList} from '@/navigation/types';
 import {useDispatch, useSelector} from 'react-redux';
-import {getUserCurrentAddress} from '@/store/account/thunk';
 import {
   accountSelectors,
   setDevicePushToken,
@@ -39,6 +40,10 @@ import UserService from '@/api/user';
 import {IUser} from '@/api/user';
 import RestaurantEventCateringModal from './Home/DishInfo/RestaurantEventCateringModal';
 import {fetchAppPromo} from '@/store/home/thunk';
+
+import DishSpinner from '@/components/DishSpinner';
+import {clearCurrentUser} from '@/store/account';
+import {forceSignOut} from '@/utils/app-actions';
 
 const homeActive = require('@/assets/images/home-active.png');
 const homeInActive = require('@/assets/images/home-inactive.png');
@@ -252,6 +257,21 @@ const HomeTabs = () => {
               component={Account}
             />
           </>
+        ) || (
+          <HomeBottomTab.Screen
+            options={{
+              tabBarIcon: () => (
+                <DynamicImage
+                  resizeMode="contain"
+                  source={accountInActive}
+                  width={22}
+                  height={22}
+                />
+              ),
+            }}
+            name="Sign In"
+            component={SignInComponent}
+          />
         )}
       </HomeBottomTab.Navigator>
 
@@ -269,5 +289,30 @@ const HomeTabs = () => {
     </>
   );
 };
+
+function SignInComponent() {
+  const dispatch = useDispatch<any>();
+  const navigation =
+    useNavigation<NavigationProp<AccountDetailsStackNavParamList>>();
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSignOut = async () => {
+    setIsLoading(true);
+    dispatch(clearCurrentUser());
+    await forceSignOut(dispatch, navigation);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    onSignOut();
+  }, []);
+
+  return (
+    <View>
+      {isLoading && <DishSpinner />}
+    </View>
+  );
+}
 
 export default HomeTabs;
