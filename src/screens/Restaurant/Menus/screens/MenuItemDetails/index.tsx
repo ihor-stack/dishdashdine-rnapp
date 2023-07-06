@@ -219,7 +219,7 @@ const MenuItemDetails = () => {
         menuItemParams,
       );
 
-      console.log(`request restaurant_id:${restaurantId || restaurant.restaurantId} params:${JSON.stringify(params)}`);
+      console.log(`request restaurant_id:${restaurantId || restaurant.restaurantId} params:${JSON.stringify(menuItemParams)}`);
       console.log('response:', response);
 
       if (response) {
@@ -249,28 +249,29 @@ const MenuItemDetails = () => {
   const onUpdateMenuITem = async (data: MenuItemDetailsFormType) => {
     setShowLoading(true);
     try {
+      const menuItemParams = {
+        ...data,
+        temperature: Number(temperature),
+        largeImage,
+        glutenFree: isGlutenFree,
+        vegan: isVegan,
+        vegetarian: isVegetarian,
+        soldOut: isChecked,
+        assignedCategories: menuItemCategories.map(item => item.categoryId),
+        assignedModifierGroups: menuItemModifiers.map(
+          item => item.modifierGroupId,
+        ),
+        otherDietaryRequirement: '',
+        // largeImagePath: largeImage,
+      };
       const response = await RestaurantService.updateRestaurantMenuItem(
         restaurantId || restaurant.restaurantId,
         itemId,
-        {
-          ...data,
-          temperature: Number(temperature),
-          largeImage,
-          glutenFree: isGlutenFree,
-          vegan: isVegan,
-          vegetarian: isVegetarian,
-          soldOut: isChecked,
-          assignedCategories: menuItemCategories.map(item => item.categoryId),
-          assignedModifierGroups: menuItemModifiers.map(
-            item => item.modifierGroupId,
-          ),
-          otherDietaryRequirement: '',
-          // largeImagePath: largeImage,
-        },
+        menuItemParams,
       );
 
       if (response) {
-        await dispatch(
+        const result = await dispatch(
           fetchRestaurantMenuItems(restaurantId || restaurant.restaurantId),
         ).unwrap();
         handleSuccessToast();

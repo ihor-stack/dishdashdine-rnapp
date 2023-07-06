@@ -24,7 +24,7 @@ import {RefreshControl} from 'react-native';
 import {FAKE_DATA} from '@/screens/Restaurant/Menus/screens';
 
 const MenuItem = () => {
-  const {navigate} = useNavigation<any>();
+  const navigation = useNavigation<any>();
   const dispatch = useDispatch<any>();
   const params = useRoute().params as any;
   const restaurantId = params?.id;
@@ -42,6 +42,13 @@ const MenuItem = () => {
   useEffect(() => {
     init();
   }, [restaurantId, categoryId, dispatch]);
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      // The screen is focused, refresh menu items
+      init();
+    });
+  }, [navigation]);
 
   useEffect(() => {
     const newData = [...categoryItemsCopy];
@@ -106,7 +113,7 @@ const MenuItem = () => {
         key={index}
         style={styles.renderItemView}
         onPress={() => {
-          navigate('MenuItemDetails', {
+          navigation.navigate('MenuItemDetails', {
             id: restaurantId,
             itemId: item.itemId,
             menu,
@@ -180,7 +187,7 @@ const MenuItem = () => {
           label="Add New Menu Item"
           variant="primary"
           onPress={() => {
-            navigate('MenuItemDetails', {
+            navigation.navigate('MenuItemDetails', {
               restaurantId,
               itemId: menu.menuId,
               action: 'add',
