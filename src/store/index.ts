@@ -25,6 +25,10 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefault => {
     const defaultMiddlewares = getDefault({
+      /*
+      immutableCheck: false,
+      serializableCheck: false,
+      */
       serializableCheck: {
         ignoredActions: [
           'persist/REGISTER',
