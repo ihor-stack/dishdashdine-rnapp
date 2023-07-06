@@ -1,11 +1,10 @@
 import React from 'react';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {HomeStackParamList} from '@/navigation/types';
-import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import Home from './Home';
 import {Search, SearchResult} from './Search';
 import DishInfo from './DishInfo';
-import {Address, Distance, Login, Register} from '@/screens/Onboarding/screens';
+import {Address, Distance, Register} from '@/screens/Onboarding/screens';
 import {NavigationHeader} from '@/components';
 import CustomizeItemOrder from './DishInfo/CustomizeItemOrder';
 import OrderDetails from '../Orders/OrderDetails';
