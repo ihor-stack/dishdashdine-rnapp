@@ -140,11 +140,13 @@ const AddressFilter = () => {
       if (response) {
         const {
           result: {
+            name,
             geometry: {location},
           },
         } = response;
         if (location) {
           const {lat, lng} = location;
+          await dispatch(setCurrentUserAddress(name));
           await dispatch(
             setCurrentUserLocation({latitude: lat, longitude: lng}),
           );
@@ -213,10 +215,6 @@ const AddressFilter = () => {
     latitude: number;
     longitude: number;
   }) => {
-    if (currentUser?.noAuth) {
-      return;
-    }
-
     setIsSaving(true);
     try {
       await dispatch(
