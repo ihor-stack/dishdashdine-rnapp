@@ -43,7 +43,7 @@ const TopSection = ({y, restaurant}: TopSectionProps) => {
   const [distance, setDistance] = useState<string>('');
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
-  const takingOrdersUntil = moment(restaurant.takingOrdersUntil).format(
+  const takingOrdersUntil = moment.utc(restaurant.takingOrdersUntil).format(
     'hh:mma',
   );
 
