@@ -56,7 +56,7 @@ const OrderStatus = () => {
   const isFrom = params?.isFrom;
   const order: IOrder = useSelector(orderSelectors.selectSelectedOrder);
   const isLoading: boolean = useSelector(orderSelectors.loadingSelectedOrder);
-  const isDisplayOrderNumber = ![
+  const isDisplayOrderNumber = order?.orderStatus && ![
     ORDER_STATUS_ENUM.NEW,
     ORDER_STATUS_ENUM.SUBMITTED,
   ].includes(order.orderStatus);
