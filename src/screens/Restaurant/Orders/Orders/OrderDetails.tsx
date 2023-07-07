@@ -150,16 +150,16 @@ const OrderDetails = ({ order }: OrderDetailsProps) => {
                 </DynamicView>
                 <DynamicView marginLeft={15} marginTop={2}>
                   {!isEmpty(lineItem.selectedModifierGroups) &&
-                    lineItem.selectedModifierGroups?.map((modGroup: any) => {
+                    lineItem.selectedModifierGroups?.map((modGroup: any, index: number) => {
                       return (
-                        <DynamicView>
+                        <DynamicView key={index}>
                           <DynamicText style={styles.addOnsHeader}>
                             {modGroup.modifierGroupName}:
                           </DynamicText>
-                          {modGroup.selectedItems?.map((selectedItems: any) => {
+                          {modGroup.selectedItems?.map((selectedItems: any, index: number) => {
                             if (selectedItems.quantity > 0) {
                               return (
-                                <DynamicView>
+                                <DynamicView key={index}>
                                   <DynamicText
                                     paddingLeft={5}
                                     fontFamily={fonts.DMSans400Regular}
