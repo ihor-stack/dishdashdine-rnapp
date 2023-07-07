@@ -2,7 +2,6 @@ import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
-  useMemo,
   useState,
 } from 'react';
 import {
@@ -32,7 +31,6 @@ import OrderPending from './Tabs/OrderPending';
 import {ms} from 'react-native-size-matters';
 import {ORDER_TABS} from '@/constants';
 import {useToast} from 'native-base';
-import DishToast from '@/components/DishToast';
 import {setShowOrderFilter} from '@/store/home';
 import {useDispatch, useSelector} from 'react-redux';
 import DishRestaurantSearchBar from '@/components/DishRestaurantSearchBar';
