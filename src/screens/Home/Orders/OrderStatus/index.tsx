@@ -56,6 +56,10 @@ const OrderStatus = () => {
   const isFrom = params?.isFrom;
   const order: IOrder = useSelector(orderSelectors.selectSelectedOrder);
   const isLoading: boolean = useSelector(orderSelectors.loadingSelectedOrder);
+  const isDisplayOrderNumber = ![
+    ORDER_STATUS_ENUM.NEW,
+    ORDER_STATUS_ENUM.SUBMITTED,
+  ].includes(order.orderStatus);
 
   useEffect(() => {
     if (orderId) {
@@ -161,9 +165,12 @@ const OrderStatus = () => {
     return (
       <>
         <DynamicImage width={150} height={150} source={restaurant} />
-        <DynamicView paddingTop={33}>
-          <DynamicText style={styles.orderStatusDesc}>
-            Your order number is,{'\n'} {order?.reference?.slice(-6)}
+        <DynamicView paddingTop={33} paddingBottom={33} alignItems='center'>
+          <DynamicText style={styles.orderStatusImageDesc}>
+            Your order number is,
+          </DynamicText>
+          <DynamicText style={[styles.orderStatusImageDesc, styles.colorRedText]}>
+            {order?.reference}
           </DynamicText>
         </DynamicView>
         <DynamicView paddingTop={10}>
@@ -274,7 +281,17 @@ const OrderStatus = () => {
                   : renderImage()}
           </DynamicView>
           {!isReadyCollection && !isOutForDelivery && !isCancelled && (
-            <>
+            <DynamicView flex={1}>
+              {isDisplayOrderNumber && (
+                <DynamicView paddingTop={33} paddingBottom={33} alignItems='center'>
+                  <DynamicText style={styles.orderStatusImageDesc}>
+                    Your order number is,
+                  </DynamicText>
+                  <DynamicText style={[styles.orderStatusImageDesc, styles.colorRedText]}>
+                    {order?.reference}
+                  </DynamicText>
+                </DynamicView>
+              )}
               <DynamicView backgroundColor={Colors.white}>
                 <DishOrderProgress steps={4} activeIndex={orderStatus - 1} />
                 <DynamicView marginLeft={10} marginTop={21}>
@@ -294,17 +311,8 @@ const OrderStatus = () => {
                     )}
                   />
                 )}
-            </>
+            </DynamicView>
           )}
-          <ActivityIndicator
-            animating={isRefreshing}
-            size="large"
-            color={Colors.ember}
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          />
           <DynamicView
             paddingHorizontal={10}
             marginTop="auto"

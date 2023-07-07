@@ -14,12 +14,21 @@ export default StyleSheet.create({
     lineHeight: 16,
     color: Colors.grey,
   },
+  colorRedText: {
+    color: Colors.red,
+  },
   orderStatusDesc: {
     fontFamily: fonts.DMSans500Medium,
     fontSize: 24,
     lineHeight: 31,
     color: Colors.black,
     textAlign: "center",
+  },
+  orderStatusImageDesc: {
+    fontFamily: fonts.DMSans500Medium,
+    fontSize: 16,
+    lineHeight: 21,
+    color: Colors.black,
   },
   orderTitleText: {
     fontFamily: fonts.DMSans500Medium,
