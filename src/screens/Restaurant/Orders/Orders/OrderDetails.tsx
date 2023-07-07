@@ -7,7 +7,6 @@ import { isEmpty } from 'lodash';
 import AdminOrderStatus from './AdminOrderStatus';
 import { IAdminOrders } from '@/api/admin_restaurant/model';
 import moment from 'moment';
-import MyOrderCollectionTime from '@/screens/Home/Orders/OrderSummary/MyOrderCollectionTime';
 import Feather from 'react-native-vector-icons/Feather';
 import { ORDER_TYPE } from '@/constants';
 
