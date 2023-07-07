@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react';
+import React, {useCallback, useEffect, useLayoutEffect, useState} from 'react';
 import {
   DynamicImage,
   DynamicPressable,
@@ -30,7 +25,6 @@ import OrderAll from './Tabs/OrderAll';
 import OrderPending from './Tabs/OrderPending';
 import {ms} from 'react-native-size-matters';
 import {ORDER_TABS} from '@/constants';
-import {useToast} from 'native-base';
 import {setShowOrderFilter} from '@/store/home';
 import {useDispatch, useSelector} from 'react-redux';
 import DishRestaurantSearchBar from '@/components/DishRestaurantSearchBar';
@@ -58,7 +52,6 @@ const RestaurantOrder = () => {
   const [index, setIndex] = useState(0);
   const [searchText, setSearchText] = useState<string>('');
   const [routes] = useState(ORDER_TABS);
-  const toast = useToast();
   const dispatch = useDispatch<any>();
   const params = useRoute().params as any;
   const restaurantId = params?.id;
