@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import DishSpinner from '@/components/DishSpinner';
 import OrderInfoAvatar from '@/screens/Home/Orders/OrderInfoAvatar';
 import {Divider} from 'native-base';
 import {Colors, fonts} from '@/themes';
 import OrderDetailsLists from '@/screens/Home/Orders/OrderDetails/OrderDetailsLists';
-import {DynamicImage, DynamicText, DynamicView} from '@/components';
+import {DynamicImage, DynamicPressable, DynamicText, DynamicView} from '@/components';
 import OrderPreferrence from '@/screens/Home/Orders/OrderDetails/OrderPreferrence';
 import AddPromoCode from '@/screens/Home/Orders/OrderDetails/AddPromoCode';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -59,6 +59,8 @@ const OrderDetailsView = (props: OrderDetailsViewProps) => {
     onSelectedTip,
   } = props;
 
+  const [displayTip, setDisplayTip] = useState(false);
+
   return (
     <>
       {isLoading && <DishSpinner />}
@@ -95,23 +97,39 @@ const OrderDetailsView = (props: OrderDetailsViewProps) => {
                   </DynamicText>
                 </DynamicView>
               </DynamicView>
-              <DynamicView
-                backgroundColor={Colors.lightGrey}
-                borderRadius={100}>
-                <Entypo
-                  name="chevron-small-down"
-                  color={Colors.black}
-                  size={29}
-                />
-              </DynamicView>
+              <DynamicPressable onPress={() => setDisplayTip(!displayTip)}>
+                {displayTip && (
+                  <DynamicView
+                    backgroundColor={Colors.lightGrey}
+                    borderRadius={100}>
+                    <Entypo
+                      name="chevron-small-down"
+                      color={Colors.black}
+                      size={29}
+                    />
+                  </DynamicView>
+                ) || (
+                  <DynamicView
+                    backgroundColor={Colors.lightGrey}
+                    borderRadius={100}>
+                    <Entypo
+                      name="chevron-small-right"
+                      color={Colors.black}
+                      size={29}
+                    />
+                  </DynamicView>
+                )}
+              </DynamicPressable>
             </DynamicView>
           </DynamicView>
-          <DynamicView paddingTop={15}>
-            <OrderTips
-              subTotal={order.subTotal}
-              onSelectedTip={onSelectedTip}
-            />
-          </DynamicView>
+          {displayTip && (
+            <DynamicView paddingTop={15}>
+              <OrderTips
+                subTotal={order.subTotal}
+                onSelectedTip={onSelectedTip}
+              />
+            </DynamicView>
+          )}
         </DynamicView>
         <Divider bgColor={Colors.lightGrey} />
         <OrderCollectionTime
