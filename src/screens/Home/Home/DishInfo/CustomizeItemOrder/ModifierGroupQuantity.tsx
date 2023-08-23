@@ -39,10 +39,15 @@ const ModifierGroupQuantity = ({
   hidePricing,
   hideQtyStepper,
 }: ModefierGroupQuantityProps) => {
+  const [isExpanded, setIsExpanded] = useState(true);
   const id = useId();
   const activeSelections = modifierGroup.modifierGroupItems.filter((x) => x.quantity > 0).length
   return (
-    <Collapse isExpanded touchableOpacityProps={{activeOpacity: 1}}>
+    <Collapse
+      isExpanded={isExpanded}
+      touchableOpacityProps={{activeOpacity: 1}}
+      onToggle={(_isExpanded: boolean) => setIsExpanded(_isExpanded)}
+    >
       <CollapseHeader
         flexDirection="row"
         justifyContent="space-between"
@@ -54,9 +59,15 @@ const ModifierGroupQuantity = ({
           <DynamicText style={styles.title}>{title}</DynamicText>
           <DynamicText style={styles.subTitle}>{description}</DynamicText>
         </DynamicView>
-        <DynamicView paddingRight={11}>
-          <AntDesign size={12} name="down" color={Colors.black} />
-        </DynamicView>
+        {isExpanded && (
+          <DynamicView paddingRight={11}>
+            <AntDesign size={12} name="down" color={Colors.black} />
+          </DynamicView>
+        ) || (
+          <DynamicView paddingRight={11}>
+            <AntDesign size={12} name="right" color={Colors.black} />
+          </DynamicView>
+        )}
       </CollapseHeader>
       <CollapseBody style={styles.collapseBody}>
         <Stack direction={{base: 'column', md: 'row'}} paddingTop={2} space={1}>

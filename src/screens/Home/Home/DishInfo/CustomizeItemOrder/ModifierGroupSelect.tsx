@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Collapse,
   CollapseHeader,
@@ -27,12 +27,16 @@ const ModifierGroupSelect = ({
   modifierGroup,
   onToggle,
 }: ModifierGroupSelectProps) => {
+  const [isExpanded, setIsExpanded] = useState(true);
+
   return (
     <Collapse
-      isExpanded
+      isExpanded={isExpanded}
       touchableOpacityProps={{
         activeOpacity: 1,
-      }}>
+      }}
+      onToggle={(_isExpanded: boolean) => setIsExpanded(_isExpanded)}
+    >
       <CollapseHeader
         flexDirection="row"
         justifyContent="space-between"
@@ -44,9 +48,15 @@ const ModifierGroupSelect = ({
           <DynamicText style={styles.title}>{title}</DynamicText>
           <DynamicText style={styles.subTitle}>{description}</DynamicText>
         </DynamicView>
-        <DynamicView paddingRight={11}>
-          <AntDesign size={12} name="down" color={Colors.black} />
-        </DynamicView>
+        {isExpanded && (
+          <DynamicView paddingRight={11}>
+            <AntDesign size={12} name="down" color={Colors.black} />
+          </DynamicView>
+        ) || (
+          <DynamicView paddingRight={11}>
+            <AntDesign size={12} name="right" color={Colors.black} />
+          </DynamicView>
+        )}
       </CollapseHeader>
       <CollapseBody
         style={{
