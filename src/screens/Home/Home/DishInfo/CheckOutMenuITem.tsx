@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {DynamicView} from '@/components';
 import {Colors} from '@/themes';
-import {Divider, useToast} from 'native-base';
+import {Divider} from 'native-base';
 import {isEmpty, size} from 'lodash';
 import {
   Collapse,
@@ -74,7 +74,6 @@ const CheckOutMenuITem = ({
   disableSwipe,
   onQuantityChanged,
 }: CheckOutMenuITemProps) => {
-  const toast = useToast();
   const [disableBtn, setDisableBtn] = useState(false);
   const [orderLineItems, setOrderLineItems] = useState<any[]>([]);
 
