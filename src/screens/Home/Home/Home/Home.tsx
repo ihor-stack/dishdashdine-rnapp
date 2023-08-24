@@ -62,9 +62,6 @@ const Home = () => {
       getData(currentLocation);
       setInitialized(true);
     }
-    if (isInitialized) {
-      getData(currentLocation);
-    }
   }, [currentLocation, homeOrderType]);
 
   useEffect(() => {
