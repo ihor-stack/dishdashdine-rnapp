@@ -81,42 +81,37 @@ const Home = () => {
     await getDataRefresh(currentLocation);
   }, [currentLocation, currentDistance, dispatch, currentUser, homeOrderType]);
 
+  /**
+   * Get restaurant data for the current locations
+   */
   const getData = async (currentLocationProps: any) => {
-    try {
-      await dispatch(
-        fetchRestaurant({
-          Latitude: currentLocationProps.latitude,
-          Longitude: currentLocationProps.longitude,
-          RadiusMiles: currentDistance || DEFAULT_DISTANCE,
-          OrderType: homeOrderType,
-          // IncludeOpenOnly: true,
-          IncludeOrderRestaurants: homeOrderType === 0 ? true : null,
-          IncludeCateringRestaurants: homeOrderType === null ? true : null,
-          LocationQuery:
-            homeOrderType === 0 || homeOrderType === 1 ? true : null,
-        }),
-      );
+    await dispatch(
+      fetchRestaurant({
+        Latitude: currentLocationProps.latitude,
+        Longitude: currentLocationProps.longitude,
+        RadiusMiles: currentDistance || DEFAULT_DISTANCE,
+        OrderType: homeOrderType,
+        // IncludeOpenOnly: true,
+        IncludeOrderRestaurants: homeOrderType === 0 ? true : null,
+        IncludeCateringRestaurants: homeOrderType === null ? true : null,
+        LocationQuery: homeOrderType === 0 || homeOrderType === 1 ? true : null,
+      }),
+    );
 
-      if (!currentUser?.noAuth) {
-        await dispatch(fetchMyFavorites());
-        await dispatch(fetchAppPromo());
+    if (!currentUser?.noAuth) {
+      await dispatch(fetchMyFavorites());
+      await dispatch(fetchAppPromo());
 
-        await dispatch(fetchAddress());
-        await dispatch(getDefaultAddress());
+      await dispatch(fetchAddress());
+      await dispatch(getDefaultAddress());
 
-        await dispatch(fetchTaxonomy());
-        await dispatch(fetchMyReviews());
+      await dispatch(fetchTaxonomy());
+      await dispatch(fetchMyReviews());
 
-        if (currentUser?.emailConfirmed) {
-          await Promise.allSettled([
-            dispatch(fetchActiveOrder()),
-            dispatch(fetchCompletedOrder()),
-          ]);
-        }
+      if (currentUser?.emailConfirmed) {
+        await dispatch(fetchActiveOrder());
+        await dispatch(fetchCompletedOrder());
       }
-
-    } catch (e) {
-      setRefreshing(false);
     }
   };
 
