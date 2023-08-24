@@ -2,7 +2,6 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import * as yup from 'yup';
-import DishToast from '@/components/DishToast';
 
 import AddNewAddressView from './View';
 import {useDispatch} from 'react-redux';
@@ -136,111 +135,27 @@ const AddNewAddress = () => {
     if (errors) {
       if (errors.streetNo) {
         return showWarningMessage('Warning', String(errors.streetNo?.message));
-        // toast.show({
-        //   placement: 'top',
-        //   duration: 2500,
-        //   render: () => {
-        //     return (
-        //       // <DishToast
-        //       //   title="Warning"
-        //       //   message={String(errors.streetNo?.message)}
-        //       //   variant="warning"
-        //       // />
-
-        //     );
-        //   },
-        // });
       }
       if (errors.streetName) {
         return showWarningMessage(
           'Warning',
           String(errors.streetName?.message),
         );
-        // toast.show({
-        //   placement: 'top',
-        //   duration: 2500,
-        //   render: () => {
-        //     return (
-        //       // <DishToast
-        //       //   title="Warning"
-        //       //   message={String(errors.streetName?.message)}
-        //       //   variant="warning"
-        //       // />
-
-        //     );
-        //   },
-        // });
       }
       if (errors.city) {
         return showWarningMessage('Warning', String(errors.city?.message));
-        // toast.show({
-        //   placement: 'top',
-        //   duration: 2500,
-        //   render: () => {
-        //     return (
-        //       // <DishToast
-        //       //   title="Warning"
-        //       //   message={String(errors.city?.message)}
-        //       //   variant="warning"
-        //       // />
-
-        //     );
-        //   },
-        // });
       }
       if (errors.country) {
         return showWarningMessage('Warning', String(errors.country?.message));
-        // toast.show({
-        //   placement: 'top',
-        //   duration: 2500,
-        //   render: () => {
-        //     return (
-        //       // <DishToast
-        //       //   title="Warning"
-        //       //   message={String(errors.country?.message)}
-        //       //   variant="warning"
-        //       // />
-
-        //     );
-        //   },
-        // });
       }
       if (errors.postCode) {
         return showWarningMessage('Warning', String(errors.postCode?.message));
-        // toast.show({
-        //   placement: 'top',
-        //   duration: 2500,
-        //   render: () => {
-        //     return (
-        //       // <DishToast
-        //       //   title="Warning"
-        //       //   message={String(errors.postCode?.message)}
-        //       //   variant="warning"
-        //       // />
-
-        //     );
-        //   },
-        // });
       }
       if (errors.addressType) {
         return showWarningMessage(
           'Warning',
           String(errors.addressType?.message),
         );
-        // toast.show({
-        //   placement: 'top',
-        //   duration: 2500,
-        //   render: () => {
-        //     return (
-        //       // <DishToast
-        //       //   title="Warning"
-        //       //   message={String(errors.addressType?.message)}
-        //       //   variant="warning"
-        //       // />
-
-        //     );
-        //   },
-        // });
       }
     }
   };
@@ -300,11 +215,6 @@ const AddNewAddress = () => {
           duration: 2500,
           render: () => {
             return (
-              // <DishToast
-              //   title="New Address"
-              //   message="You have successfully added the new address."
-              //   variant="success"
-              // />
               showSuccessMessage(
                 'New Address',
                 'You have successfully added the new address.',
@@ -329,20 +239,6 @@ const AddNewAddress = () => {
       captureErrorException(error);
 
       showWarningMessage('Warning', error.message);
-      // toast.show({
-      //   placement: 'top',
-      //   duration: 1500,
-      //   render: () => {
-      //     return (
-      //       // <DishToast
-      //       //   title="Warning"
-      //       //   message={error.message}
-      //       //   variant="error"
-      //       // />
-
-      //     );
-      //   },
-      // });
     }
   };
 
@@ -359,11 +255,6 @@ const AddNewAddress = () => {
           duration: 2500,
           render: () => {
             return (
-              // <DishToast
-              //   title="Default Address set!"
-              //   message="You have successfully set a default address."
-              //   variant="success"
-              // />
               showSuccessMessage(
                 'Default Address set!',
                 'You have successfully set a default address.',
