@@ -40,11 +40,13 @@ const CheckOutModal = (props: CheckOutModalProps) => {
   const lineItem: IOrderLineItem[] = order?.lineItems;
 
   const initOrder = async () => {
-    const hasOrder: IOrder = await dispatch(
-      fetchRestaurantOrder(order.id),
-    ).unwrap();
-    if (!isEmpty(hasOrder)) {
-      setSelectedOrder(hasOrder);
+    if (order) {
+      const hasOrder: IOrder = await dispatch(
+        fetchRestaurantOrder(order.id),
+      ).unwrap();
+      if (!isEmpty(hasOrder)) {
+        setSelectedOrder(hasOrder);
+      }
     }
   };
 
