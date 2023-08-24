@@ -31,7 +31,6 @@ const CheckOutModal = (props: CheckOutModalProps) => {
 
   const [isCheckOut, setIsCheckOut] = useState(false);
   const [isFrom, setIsFrom] = useState('');
-  const [orderId, setOrderId] = useState('');
   const [selectedOrder, setSelectedOrder] = useState<IOrder | undefined>(undefined);
 
   const restaurant = useSelector(restaurantSelectors.selectRestaurant);
@@ -97,7 +96,6 @@ const CheckOutModal = (props: CheckOutModalProps) => {
       onBeforeShow={(data: any) => {
         setSelectedOrder(data?.order);
         setIsFrom(data?.isFrom);
-        setOrderId(data?.orderId);
         setIsCheckOut(false);
 
         if (data?.orderId) {
