@@ -74,14 +74,14 @@ const MainScreen = () => {
   useEffect(() => {
     requestUserPermission();
 
-    console.log('BackgroundTimer.runBackgroundTimer');
     BackgroundTimer.runBackgroundTimer(() => {
+      console.log('BackgroundTimer.runBackgroundTimer');
       if (currentUser && !currentUser?.noAuth) {
         if (currentUser?.primaryUserRole === 'User') {
-          if (currentUser?.emailConfirmed) {
-            dispatch(fetchActiveOrder());
-            dispatch(fetchCompletedOrder());
-          }
+          // if (currentUser?.emailConfirmed) {
+          //   dispatch(fetchActiveOrder());
+          //   dispatch(fetchCompletedOrder());
+          // }
         } else {
           if (restaurant && restaurant?.restaurantId) {
             fetchAdminRestaurantOrders();
