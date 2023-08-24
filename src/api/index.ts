@@ -20,6 +20,11 @@ const request = async (options: AxiosRequestConfig) => {
     };
   }
 
+  if (__DEV__) {
+    // console.log('headers:', headers);
+    console.log('request:', JSON.stringify(options));
+  }
+
   axios.defaults.baseURL = API_BASE_URL;
   axios.defaults.timeout = 30000;
   axios.defaults.transformResponse = data => {
