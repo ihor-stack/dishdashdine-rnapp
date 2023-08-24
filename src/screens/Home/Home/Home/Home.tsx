@@ -39,7 +39,6 @@ const Home = () => {
   const navigation = useNavigation<any>();
 
   const [refreshing, setRefreshing] = useState(false);
-  const [isInitialized, setInitialized] = useState(false);
   const restaurants: any[] = useSelector(restaurantSelectors.selectRestaurants);
 
   const currentLocation = useSelector(
@@ -58,17 +57,10 @@ const Home = () => {
   const appPromo: any[] = useSelector(homeSelectors.selectAppPromo);
 
   useEffect(() => {
-    if (!isInitialized && !refreshing) {
+    if (!refreshing) {
       getData(currentLocation);
-      setInitialized(true);
     }
   }, [currentLocation, homeOrderType]);
-
-  useEffect(() => {
-    if (isInitialized && currentLocation) {
-      getData(currentLocation);
-    }
-  }, [homeOrderType]);
 
   const onRefresh = useCallback(async () => {
     await getData(currentLocation);
