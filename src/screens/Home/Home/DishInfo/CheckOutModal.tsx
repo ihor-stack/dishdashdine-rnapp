@@ -28,10 +28,11 @@ export interface CheckOutModalProps extends SheetProps {}
 const CheckOutModal = (props: CheckOutModalProps) => {
   const navigation = useNavigation();
   const dispatch = useDispatch<any>();
+
   const [isCheckOut, setIsCheckOut] = useState(false);
   const [isFrom, setIsFrom] = useState('');
   const [orderId, setOrderId] = useState('');
-  const [selectedOrder, setSelectedOrder] = useState<IOrder>({});
+  const [selectedOrder, setSelectedOrder] = useState<IOrder | undefined>(undefined);
 
   const restaurant = useSelector(restaurantSelectors.selectRestaurant);
   const orderType = useSelector(homeSelectors.showOrderType);
