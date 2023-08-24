@@ -2,7 +2,6 @@ import React, {useCallback, useState, useEffect} from 'react';
 import {Box, Text, useToast, VStack} from 'native-base';
 import {DynamicView, SafeAreaViewContainer} from '@/components';
 import Colors from '@/themes/colors';
-import Orders from './Orders';
 import Cards from './Cards';
 import Header from './Header';
 import SearchAndSortFilters from './SearchAndSortFilters';
@@ -24,12 +23,11 @@ import AddressFilter from '@/screens/Home/AddressFilter';
 import DistanceFilter from '@/screens/Home/DistanceFilter';
 import SortAndFilter from '@/screens/Home/SortAndFilter';
 import {homeSelectors} from '@/store/home';
-import {IAddress, IOrder} from '@/api/generic';
+import {IAddress} from '@/api/generic';
 import {IUser} from '@/api/user';
 import {addressSelectors} from '@/store/address';
 import {fetchAppPromo} from '@/store/home/thunk';
 import {fetchMyReviews} from '@/store/my-reviews/thunk';
-import {orderSelectors} from '@/store/order';
 
 const FAKE_DATA: any[] = Array.from({
   length: 10,
