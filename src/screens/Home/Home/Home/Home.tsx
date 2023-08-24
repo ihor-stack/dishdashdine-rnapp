@@ -56,9 +56,6 @@ const Home = () => {
   const defaultAddress = useSelector(
     addressSelectors.selectDefaultAddress,
   ) as IAddress;
-  const completedOrders: IOrder[] = useSelector(
-    orderSelectors.selectCompletedOrder,
-  );
 
   const appPromo: any[] = useSelector(homeSelectors.selectAppPromo);
 
