@@ -1,7 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import React, {useEffect, useState} from 'react';
 
-import AddressService from '@/api/address';
 import {IAddress} from '@/api/generic';
 import {fetchAddress, deleteAddress, getDefaultAddress} from '@/store/address/thunk';
 import {addressSelectors} from '@/store/address';
@@ -22,7 +21,7 @@ const Address = () => {
 
   const onRefresh = React.useCallback(async () => {
     setRefreshing(true);
-    await dispatch(fetchAddress());
+    dispatch(fetchAddress());
     dispatch(getDefaultAddress());
     setRefreshing(false);
   }, []);
@@ -35,7 +34,7 @@ const Address = () => {
     // } catch (error) {
     //   console.log('error:', error);
     // }
-    await dispatch(fetchAddress());
+    dispatch(fetchAddress());
     setRefreshing(false);
   };
 
