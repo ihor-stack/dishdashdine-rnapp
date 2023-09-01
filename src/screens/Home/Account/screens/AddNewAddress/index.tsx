@@ -133,8 +133,11 @@ const AddNewAddress = () => {
 
   const onValidateInputs = () => {
     if (errors) {
-      if (errors.streetNo) {
-        return showWarningMessage('Warning', String(errors.streetNo?.message));
+      if (errors.streetNumber) {
+        return showWarningMessage(
+          'Warning',
+          String(errors.streetNumber.message),
+        );
       }
       if (errors.streetName) {
         return showWarningMessage(
