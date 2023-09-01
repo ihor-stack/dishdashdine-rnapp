@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import {SheetManager} from 'react-native-actions-sheet';
 import {useDispatch, useSelector} from 'react-redux';
-import {filter, isEmpty, isNull, isUndefined, sumBy} from 'lodash';
+import {filter, isEmpty, isNull, isUndefined, sum, sumBy} from 'lodash';
 import {showMessage} from 'react-native-flash-message';
 import {useRoute} from '@react-navigation/native';
 
@@ -79,13 +79,14 @@ const CustomizeItemOrder = () => {
   }, [myAddresses]);
 
   useEffect(() => {
-    const computed = Number(menuItem.price) * quantity;
+    const itemPrice = Number(menuItem.price);
 
-    const totalPrice = sumBy(_modifierGroup, (o: any) => o.totalPrice);
+    // Add modifier price
+    const _modifierSubtotal = sumBy(_modifierGroup, (o: any) => o.totalPrice);
+    const modifierSubtotal = isUndefined(_modifierSubtotal) ? 0 : Number(_modifierSubtotal);
 
-    const _totalPrice = isUndefined(totalPrice) ? 0 : Number(totalPrice);
-
-    const totalComputed = Number(computed) + _totalPrice;
+    const eachTotal = Number(itemPrice) + modifierSubtotal;
+    const totalComputed = eachTotal * quantity;
 
     setPrices(totalComputed);
   }, [quantity, menuItem, _modifierGroup]);
@@ -295,7 +296,7 @@ const CustomizeItemOrder = () => {
             }
           });
 
-          const totalPrice = sumBy(newItems, o => o.quantity * o.price);
+          const totalPrice = sumModifierItems(newItems, group.includedInPrice);
 
           return {
             ...groupItem,
@@ -347,7 +348,7 @@ const CustomizeItemOrder = () => {
           }
         });
 
-        const totalPrice = sumBy(newItems, o => o.quantity * o.price);
+        const totalPrice = sumModifierItems(newItems, group.includedInPrice);
 
         return {
           ...groupItem,
@@ -406,5 +407,22 @@ const CustomizeItemOrder = () => {
     />
   );
 };
+
+function sumModifierItems(items: any[], includedInPrice: number) {
+  const prices = [];
+  for (const item of items) {
+    for (let j = 0; j < item.quantity; j++) {
+      prices.push(item.price);
+    }
+  }
+
+  // Sort prices from highest to lowest
+  prices.sort((a, b) => b - a);
+
+  // Remove the highest includedInPrice items
+  prices.splice(0, includedInPrice);
+
+  return sum(prices);
+}
 
 export default CustomizeItemOrder;
