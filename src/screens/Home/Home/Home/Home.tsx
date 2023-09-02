@@ -62,10 +62,6 @@ const Home = () => {
     }
   }, [currentLocation, homeOrderType]);
 
-  const onRefresh = useCallback(async () => {
-    await getData(currentLocation);
-  }, [currentLocation, currentDistance, dispatch, currentUser, homeOrderType]);
-
   const onPullToRefresh = useCallback(async () => {
     await getDataRefresh(currentLocation);
   }, [currentLocation, currentDistance, dispatch, currentUser, homeOrderType]);
@@ -183,14 +179,11 @@ const Home = () => {
     return Restaurants({
       restaurant: item,
       index,
-      toast,
       dispatch,
       navigation,
       currentLocation,
       currentDistance,
       homeOrderType,
-      defaultAddress,
-      onRefresh,
     });
   };
 

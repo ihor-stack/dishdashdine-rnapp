@@ -1,13 +1,10 @@
 import React from 'react';
 import {Box} from 'native-base';
 import RestaurantItem from '../../RestaurantItem';
-import Recommendations from '../../Recommendations';
 import {IAddress, IFindRestaurantParams, IRestaurant} from '@/api/generic';
 import RestaurantService from '@/api/restaurant';
 import {captureErrorException} from '@/utils/error-handler';
-import DishToast from '@/components/DishToast';
-import {fetchMyFavorites, fetchRestaurant} from '@/store/restaurants/thunk';
-import {DEFAULT_DISTANCE, ORDER_TYPE} from '@/constants';
+import {DEFAULT_DISTANCE} from '@/constants';
 import {setSelectedRestaurant} from '@/store/restaurants';
 import {isNull} from 'lodash';
 import {showSuccessMessage} from '@/components/DishFlashMessage';
@@ -17,29 +14,23 @@ import {showSuccessMessage} from '@/components/DishFlashMessage';
 export interface RestaurantsProps {
   index: number;
   restaurant: IRestaurant;
-  toast?: any;
   dispatch?: any;
   navigation?: any;
   currentLocation: any;
   currentDistance: number;
   homeOrderType: number;
-  defaultAddress: IAddress;
-  onRefresh: any;
 }
 
 export const Restaurants = ({
   restaurant,
   index,
-  toast,
   dispatch,
   navigation,
   currentLocation,
   currentDistance,
   homeOrderType,
-  defaultAddress,
-  onRefresh
 }: RestaurantsProps) => {
-  
+
   const onPressFavorite = async (
     restaurantId: string,
     isFavourite: boolean,
@@ -71,7 +62,7 @@ export const Restaurants = ({
           isFavourite: !isFavourite,
         },
       );
-     
+
       if (response) {
         showSuccessMessage(
           isFavourite ? 'Remove to Favourite' : ' Added to Favourite',
@@ -79,7 +70,6 @@ export const Restaurants = ({
             ? 'Successfully removed to your favourites!'
             : 'Successfully added to your favourites!',
         );
-        onRefresh()
       }
     } catch (error: any) {
       captureErrorException(error);
