@@ -24,8 +24,8 @@ import {
   DynamicView,
 } from '@/components';
 import {Colors, fonts} from '@/themes';
-import {IPreparationTimes, IRestaurant} from '@/api/generic';
-import { displayPrepTime } from '@/utils/restaurant';
+import {IRestaurant} from '@/api/generic';
+import {displayPrepTime} from '@/utils/restaurant';
 
 const noProfile = require('@/assets/images/no-image-found.jpeg');
 const noBanner = require('@/assets/images/blank.jpg');
