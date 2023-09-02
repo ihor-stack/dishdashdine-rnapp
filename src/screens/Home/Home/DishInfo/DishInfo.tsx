@@ -27,7 +27,7 @@ import {
 } from '@react-navigation/native';
 import {Pressable} from 'native-base';
 import {useDispatch, useSelector} from 'react-redux';
-import {flattenDeep, isEmpty, rest} from 'lodash';
+import {flattenDeep, isEmpty} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import {SheetManager} from 'react-native-actions-sheet';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
@@ -85,7 +85,6 @@ const DishInfo = () => {
   const scrollYLayouts = useSharedValue<LayoutRectangle[]>([]);
   const scrollXLayouts = useSharedValue<LayoutRectangle[]>([]);
 
-  const [isLoading, setIsLoading] = useState(false);
   const [activeOrder, setActiveOrder] = useState<IOrder | any>({});
   const [popularMenus, setPopularMenus] = useState([]);
   const [orderStatus, setOrderStatus] = useState<number>(0);
@@ -420,7 +419,6 @@ const DishInfo = () => {
 
   return (
     <>
-      {isLoading && <DishSpinner />}
       <Animated.ScrollView
         showsVerticalScrollIndicator
         scrollEventThrottle={16}
