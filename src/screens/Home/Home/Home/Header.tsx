@@ -21,7 +21,6 @@ const Header = () => {
 
   const address: any = useSelector(accountSelectors.selectCurrentUserAddress);
   const radius: number = useSelector(accountSelectors.selectCurrentUserRadius);
-  const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
   const toggleShowAddress = useCallback(() => {
     dispatch(setShowAddressFilter());
