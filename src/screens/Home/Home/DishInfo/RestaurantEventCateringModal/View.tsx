@@ -6,7 +6,6 @@ import RestaurantInfoAvatar from '../RestaurantInfoAvatar';
 import {Colors, fonts} from '@/themes';
 import {Checkbox, Divider, ScrollView} from 'native-base';
 import DishButton from '@/components/DishButton';
-import DishDatePicker from '@/components/DishDatePicker';
 import {Controller} from 'react-hook-form';
 import DishInputDatePicker from '@/components/DishInputDatePicker';
 
