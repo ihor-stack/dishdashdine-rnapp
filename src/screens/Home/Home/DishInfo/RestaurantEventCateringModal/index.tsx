@@ -34,7 +34,6 @@ const RestaurantEventCateringModal = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [curDate, setCurDate] = useState(new Date());
-  const [open, setOpen] = useState(false);
   const toast = useToast();
 
   const {
@@ -137,8 +136,6 @@ const RestaurantEventCateringModal = () => {
       setIsLoading,
       curDate,
       setCurDate,
-      open,
-      setOpen,
       dispatch,
       onSubmit,
       setValue,

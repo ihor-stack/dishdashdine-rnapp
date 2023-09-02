@@ -19,8 +19,6 @@ export interface RestaurantEventCateringModalProps {
   setIsLoading: any;
   curDate: any;
   setCurDate: any;
-  open: any;
-  setOpen: any;
   dispatch: any;
   onSubmit: any;
   setValue: any;
@@ -206,20 +204,6 @@ const RestaurantEventCateringModalView = (
           />
         </DynamicView>
       </ScrollView>
-      {/*<DishDatePicker*/}
-      {/*  date={curDate}*/}
-      {/*  value={curDate}*/}
-      {/*  open={open}*/}
-      {/*  placeholder={undefined}*/}
-      {/*  placeholderTextColor={Colors.grey}*/}
-      {/*  onCancel={() => {*/}
-      {/*    setOpen(false);*/}
-      {/*  }}*/}
-      {/*  onDateChanged={(val: any) => {*/}
-      {/*    setCurDate(val.date);*/}
-      {/*    setValue('eventDate', val.formatted);*/}
-      {/*  }}*/}
-      {/*/>*/}
     </ActionSheet>
   );
 };
