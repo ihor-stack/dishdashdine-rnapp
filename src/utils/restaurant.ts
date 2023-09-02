@@ -6,9 +6,9 @@ function displayPrepTime(restaurant: IRestaurant) {
   // In minutes
   let prepTimeMin = restaurant.prepTimeMin;
   let prepTimeMax = restaurant.prepTimeMax;
-  const enabledTime = preparationTimes.filter((item: IPreparationTimes) => {
-    return item.enabled
-  })
+  const enabledTime = (preparationTimes || []).filter((item: IPreparationTimes) => {
+    return item.enabled;
+  });
 
   if (enabledTime.length > 0) {
     prepTimeMin = enabledTime[0].prepTimeMin;

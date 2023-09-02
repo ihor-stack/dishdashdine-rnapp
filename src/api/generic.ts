@@ -226,7 +226,7 @@ export interface IRestaurant {
   bannerImagePath: string;
   logoImagePath: string;
   openingHours: IOpeningHours;
-  preparationTimes: IPreparationTimes[];
+  preparationTimes?: IPreparationTimes[];
   owner: IOwner;
   menus: string[];
   categories: ICategories;
