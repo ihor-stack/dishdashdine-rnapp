@@ -67,6 +67,10 @@ const HomeTabs = () => {
   const currentUser = useSelector(accountSelectors.selectCurrentUser) as IUser;
 
   useEffect(() => {
+    if (__DEV__) {
+      console.log('HomeTabs useEffect');
+    }
+
     const requestIOSPermission = async () => {
       try {
         await requestGeolocationAuthorization();
