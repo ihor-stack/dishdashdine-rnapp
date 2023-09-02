@@ -14,6 +14,7 @@ export const fetchOrder = createAsyncThunk<IOrder[]>(
   'order/fetchOrder',
   async () => {
     const response: any = await OrderService.getOrder();
+    console.log('fetchOrder response:', response);
     if (!isArray(response) && response?.$values) {
       return response.$values;
     } else if (isArray(response)) {
@@ -40,6 +41,7 @@ export const fetchActiveOrder = createAsyncThunk<IOrder[]>(
   'order/fetchActiveOrder',
   async () => {
     const response: any = await OrderService.getOrder();
+    console.log('fetchActiveOrder response:', response);
     if (!isArray(response) && response?.$values) {
       return response.$values;
     } else if (isArray(response)) {
@@ -103,6 +105,7 @@ export const fetchCompletedOrder = createAsyncThunk<IOrder[]>(
   'order/fetchCompletedOrder',
   async () => {
     const response: any = await OrderService.getOrder();
+    console.log('fetchCompletedOrder response:', response);
     if (!isArray(response) && response?.$values) {
       return response.$values;
     } else if (isArray(response)) {

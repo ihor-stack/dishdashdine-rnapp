@@ -29,6 +29,8 @@ const request = async (options: AxiosRequestConfig) => {
   axios.defaults.timeout = 30000;
   axios.defaults.transformResponse = data => {
     try {
+      // console.log('the request:', JSON.stringify(options));
+      // console.log('data:', data);
       return JSON.parse(data);
     } catch (error) {
       return error;

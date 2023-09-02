@@ -18,6 +18,7 @@ export const getDefaultAddress = createAsyncThunk<IAddress>(
   'address/getDefaultAddress',
   async () => {
     const response: any = await AddressService.getDefaultAddress();
+    console.log('getDefaultAddress response:', response);
     if (!isArray(response) && response?.$values) {
       return response.$values;
     } else {
