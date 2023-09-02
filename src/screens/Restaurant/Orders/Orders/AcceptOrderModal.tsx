@@ -37,7 +37,7 @@ const AcceptOrderViewModal = (props: AcceptOrderViewProps) => {
   ) as IAdminRestaurant;
 
   const fetchAdminRestaurantOrders = async () => {
-    await Promise.allSettled([
+    await Promise.all([
       dispatch(
         getAllRestaurantOrders({
           RestaurantId: restaurant.restaurantId,

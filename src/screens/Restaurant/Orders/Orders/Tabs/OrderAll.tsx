@@ -69,7 +69,7 @@ const OrderAll: React.FC<OrderAllProps> = ({searchText, restaurantId}) => {
     }
 
     await dispatch(getAllRestaurantOrders(params));
-    await Promise.allSettled([
+    await Promise.all([
       dispatch(getAllRestaurantPendingOrders(params)),
       dispatch(getAllRestaurantActiveOrders(params)),
       dispatch(getAllRestaurantCompletedOrders(params)),

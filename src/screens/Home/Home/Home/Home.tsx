@@ -130,7 +130,7 @@ const Home = () => {
         await dispatch(fetchMyReviews());
 
         if (currentUser?.emailConfirmed) {
-          await Promise.allSettled([
+          await Promise.all([
             dispatch(fetchActiveOrder()),
             dispatch(fetchCompletedOrder()),
           ]);

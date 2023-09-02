@@ -169,7 +169,7 @@ const DishInfo = () => {
         }
       }
       // dispatch(fetchOrder());
-      Promise.allSettled([
+      await Promise.all([
         dispatch(fetchActiveOrder()),
         dispatch(fetchCompletedOrder()),
       ]);
