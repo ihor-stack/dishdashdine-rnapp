@@ -1,9 +1,8 @@
 import {useWindowDimensions} from 'react-native';
 import React, {useState} from 'react';
 import {SheetManager} from 'react-native-actions-sheet';
-import {IEventCatering, IRestaurant} from '@/api/generic';
+import {IEventCatering} from '@/api/generic';
 import {useToast} from 'native-base';
-import DishToast from '@/components/DishToast';
 import RestaurantService from '@/api/restaurant';
 import {captureErrorException} from '@/utils/error-handler';
 import {useDispatch, useSelector} from 'react-redux';
@@ -43,7 +42,6 @@ const RestaurantEventCateringModal = () => {
     control,
     handleSubmit,
     formState: {errors},
-    clearErrors,
     setValue,
   } = useForm<RestaurantEventCateringModalFormType>({
     resolver: yupResolver(
@@ -61,15 +59,6 @@ const RestaurantEventCateringModal = () => {
     ),
   });
   const handleErrorToast = (message: string) => {
-    // toast.show({
-    //   placement: 'top',
-    //   duration: 2500,
-    //   render: () => {
-    //     return (
-    //       <DishToast title="Warning" message={message} variant="warning" />
-    //     );
-    //   },
-    // });
     showWarningMessage('Warning', message);
   };
 
@@ -78,16 +67,9 @@ const RestaurantEventCateringModal = () => {
       placement: 'top',
       duration: 2500,
       render: () => {
-        return (
-          // <DishToast
-          //   title="Form submitted"
-          //   message="Thank you for submitting your form."
-          //   variant="success"
-          // />
-          showSuccessMessage(
-            'Form submitted',
-            'Thank you for submitting your form.',
-          )
+        return showSuccessMessage(
+          'Form submitted',
+          'Thank you for submitting your form.',
         );
       },
       async onCloseComplete() {
