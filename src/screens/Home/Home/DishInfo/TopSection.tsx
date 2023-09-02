@@ -15,7 +15,6 @@ import {isEmpty} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import {SharedElement} from 'react-navigation-shared-element';
 import ChefHat from '@/assets/svg/chefHat.svg';
-import { VStack, Text } from 'native-base';
 
 import {
   AnimatedText,
