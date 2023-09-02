@@ -24,7 +24,6 @@ interface RestaurantEventCateringModalFormType extends IEventCatering {
 }
 
 const RestaurantEventCateringModal = () => {
-  // const {isChecked, onChange} = props;
   const {width} = useWindowDimensions();
   const dispatch = useDispatch<any>();
   const restaurant = useSelector(restaurantSelectors.selectRestaurant);
@@ -71,9 +70,6 @@ const RestaurantEventCateringModal = () => {
           'Thank you for submitting your form.',
         );
       },
-      async onCloseComplete() {
-        await SheetManager.hide('EventsCateringModal');
-      },
     });
   };
 
@@ -89,9 +85,9 @@ const RestaurantEventCateringModal = () => {
         ...data,
         eventDate: curDate.toISOString(),
       });
-      await dispatch(getRestaurant(restaurant?.restaurantId));
-      handleSuccessToast();
       setIsLoading(false);
+      await SheetManager.hide('EventsCateringModal');
+      handleSuccessToast();
     } catch (e: any) {
       setIsLoading(false);
       captureErrorException(e);
