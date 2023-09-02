@@ -196,6 +196,9 @@ const DishInfo = () => {
     }
   }, [activeMenu]);
 
+  /**
+   * Refresh data when pull to refresh is triggered
+   */
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
     await init();
