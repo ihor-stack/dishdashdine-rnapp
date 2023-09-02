@@ -21,8 +21,6 @@ import CheckoutMenutItemHeader from '@/screens/Home/Home/DishInfo/CheckoutMenutI
 import CheckoutMenutitemBody from '@/screens/Home/Home/DishInfo/CheckoutMenutitemBody';
 import {
   updateItemToOrder,
-  //fetchActiveOrder,
-  //fetchCompletedOrder,
   fetchOrderRestaurant,
   removeItemToOrder,
 } from '@/store/order/thunk';
@@ -286,7 +284,7 @@ const CheckOutMenuITem = ({
 
   const renderSwipableCartItems = (item: IOrderLineItem, index: number) => {
     return (
-      <>
+      <Fragment key={index}>
         <GestureHandlerRootView>
           <Swipeable
             key={`Swipeable_${index}`}
@@ -321,7 +319,7 @@ const CheckOutMenuITem = ({
         {index !== size(orderLineItems) - 1 && (
           <Divider bgColor={Colors.lightGrey} padding={0.1} marginBottom={4} />
         )}
-      </>
+      </Fragment>
     );
   };
 
