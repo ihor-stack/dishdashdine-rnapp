@@ -65,7 +65,10 @@ const OrderTips = ({subTotal, onSelectedTip}: OrderTipsProps) => {
           selected: true,
         };
       } else {
-        return m;
+        return {
+          ...m,
+          selected: false,
+        };
       }
     });
     setTipsArray(newData);
