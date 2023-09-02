@@ -26,7 +26,6 @@ export interface OrderDetailsViewProps {
   reqNapkins: boolean;
   setReqUtensils: React.Dispatch<React.SetStateAction<boolean>>;
   setReqNapkins: React.Dispatch<React.SetStateAction<boolean>>;
-  setTipAmount: React.Dispatch<React.SetStateAction<number>>;
   collectIndex: number;
   collectDate: Date;
   setCollectIndex: React.Dispatch<React.SetStateAction<number>>;
@@ -47,7 +46,6 @@ const OrderDetailsView = (props: OrderDetailsViewProps) => {
     reqNapkins,
     setReqUtensils,
     setReqNapkins,
-    setTipAmount,
     collectIndex,
     collectDate,
     setCollectIndex,

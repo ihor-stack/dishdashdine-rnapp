@@ -91,7 +91,6 @@ const OrderDetails = () => {
   }, []);
 
   const onSelectedTip = async (amount: number) => {
-    // setTipAmount(amount);
     try {
       setIsLoading(true);
       await dispatch(addOrderTip({id: order.id, data: {tipAmount: amount}}));
@@ -252,7 +251,6 @@ const OrderDetails = () => {
       reqNapkins={reqNapkins}
       setReqUtensils={setReqUtensils}
       setReqNapkins={setReqNapkins}
-      setTipAmount={setTipAmount}
       collectIndex={collectIndex}
       collectDate={collectDate}
       setCollectIndex={setCollectIndex}
