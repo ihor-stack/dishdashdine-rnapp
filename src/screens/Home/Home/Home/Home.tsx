@@ -74,18 +74,20 @@ const Home = () => {
    * Get restaurant data for the current locations
    */
   const getData = async (currentLocationProps: any) => {
-    await dispatch(
-      fetchRestaurant({
-        Latitude: currentLocationProps.latitude,
-        Longitude: currentLocationProps.longitude,
-        RadiusMiles: currentDistance || DEFAULT_DISTANCE,
-        OrderType: homeOrderType,
-        // IncludeOpenOnly: true,
-        IncludeOrderRestaurants: homeOrderType === 0 ? true : null,
-        IncludeCateringRestaurants: homeOrderType === null ? true : null,
-        LocationQuery: homeOrderType === 0 || homeOrderType === 1 ? true : null,
-      }),
-    );
+    if (currentLocationProps) {
+      await dispatch(
+        fetchRestaurant({
+          Latitude: currentLocationProps.latitude,
+          Longitude: currentLocationProps.longitude,
+          RadiusMiles: currentDistance || DEFAULT_DISTANCE,
+          OrderType: homeOrderType,
+          // IncludeOpenOnly: true,
+          IncludeOrderRestaurants: homeOrderType === 0 ? true : null,
+          IncludeCateringRestaurants: homeOrderType === null ? true : null,
+          LocationQuery: homeOrderType === 0 || homeOrderType === 1 ? true : null,
+        }),
+      );
+    }
 
     if (!currentUser?.noAuth) {
       await dispatch(fetchMyFavorites());
