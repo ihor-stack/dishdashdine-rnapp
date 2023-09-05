@@ -1,18 +1,18 @@
-import { IPreparationTimes, IRestaurant } from '@/api/generic';
-import { displayTimeFromMinutes } from '@/utils/time';
+import {IRestaurant} from '@/api/generic';
+import {displayTimeFromMinutes} from '@/utils/time';
 
 function displayPrepTime(restaurant: IRestaurant) {
-  const { preparationTimes } = restaurant;
+  const {preparationTimes} = restaurant;
   // In minutes
   let prepTimeMin = restaurant.prepTimeMin;
   let prepTimeMax = restaurant.prepTimeMax;
-  const enabledTime = (preparationTimes || []).filter((item: IPreparationTimes) => {
-    return item.enabled;
-  });
+  const enabledTime = (preparationTimes || []).find(
+    item => item.enabled && item.preparationTimeMode === restaurant.currentMode,
+  );
 
-  if (enabledTime.length > 0) {
-    prepTimeMin = enabledTime[0].prepTimeMin;
-    prepTimeMax = enabledTime[0].prepTimeMax;
+  if (enabledTime) {
+    prepTimeMin = enabledTime.prepTimeMin;
+    prepTimeMax = enabledTime.prepTimeMax;
   }
 
   return displayPrepTimeFromRange([prepTimeMin, prepTimeMax]);
@@ -30,4 +30,4 @@ function displayPrepTimeFromRange([min, max]: [number, number]) {
   }
 }
 
-export { displayPrepTime, displayPrepTimeFromRange }
+export {displayPrepTime, displayPrepTimeFromRange};

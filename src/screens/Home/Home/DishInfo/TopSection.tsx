@@ -185,24 +185,24 @@ const TopSection = ({y, restaurant}: TopSectionProps) => {
               </DynamicView>
             </DynamicView>
             <DynamicView marginRight={25}>
-                <DynamicView flexDirection="row" alignItems="center">
-                  <AntDesign
-                    name="clockcircleo"
-                    color={Colors.black}
-                    size={27 / 2}
-                  />
-                  <DynamicView marginLeft={4}>
-                    <DynamicText
-                      fontFamily={fonts.DMSans500Medium}
-                      fontSize={13}
-                      lineHeight={16}
-                      marginTop={0}
-                      color={Colors.black}>
-                        {displayPrepTime(restaurant)}
-                    </DynamicText>
-                  </DynamicView>
+              <DynamicView flexDirection="row" alignItems="center">
+                <AntDesign
+                  name="clockcircleo"
+                  color={Colors.black}
+                  size={27 / 2}
+                />
+                <DynamicView marginLeft={4}>
+                  <DynamicText
+                    fontFamily={fonts.DMSans500Medium}
+                    fontSize={13}
+                    lineHeight={16}
+                    marginTop={0}
+                    color={Colors.black}>
+                    {displayPrepTime(restaurant)}
+                  </DynamicText>
                 </DynamicView>
               </DynamicView>
+            </DynamicView>
             <DynamicView>
               <DynamicView flexDirection="row" alignItems="center">
                 <AntDesign

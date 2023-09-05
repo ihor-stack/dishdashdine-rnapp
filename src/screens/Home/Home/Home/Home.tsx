@@ -11,7 +11,7 @@ import {restaurantSelectors} from '@/store/restaurants';
 import {accountSelectors} from '@/store/account';
 import {DEFAULT_DISTANCE} from '@/constants';
 import {fetchMyFavorites, fetchRestaurant} from '@/store/restaurants/thunk';
-import {isEmpty, rest, size} from 'lodash';
+import {isEmpty, size} from 'lodash';
 import NoRestaurants from './NoRestaurants';
 import {RestaurantsLoading} from '../Home/Orders/Restaurants/RestaurantsLoading';
 import {Restaurants} from '../Home/Orders/Restaurants';
@@ -160,8 +160,8 @@ const Home = () => {
               fontWeight={700}
               marginBottom={2}>
               {size(restaurants)}{' '}
-              {homeOrderType != 2 ? 'open restaurant' : 'offering catering'}
-              {size(restaurants) > 1 && homeOrderType != 2 ? 's' : null}
+              {homeOrderType !== 2 ? 'open restaurant' : 'offering catering'}
+              {size(restaurants) > 1 && homeOrderType !== 2 ? 's' : null}
             </Text>
           )}
         </DynamicView>

@@ -8,15 +8,12 @@ import {ms} from 'react-native-size-matters';
 import FastImage from 'react-native-fast-image';
 
 import Colors from '@/themes/colors';
-import { IPreparationTimes, IRestaurant } from '@/api/generic';
-import { DynamicPressable, DynamicView } from '@/components';
+import {IRestaurant} from '@/api/generic';
+import {DynamicPressable, DynamicView} from '@/components';
 import ChefHat from '@/assets/svg/chefHat.svg';
-import { displayPrepTime } from '@/utils/restaurant';
-import { displayTimeFromMinutes } from '@/utils/time';
+import {displayPrepTime} from '@/utils/restaurant';
 
 const logo = require('@/assets/images/restaurants/maghera_inn.png');
-
-const moment = require('moment');
 
 interface RestaurantItemProps {
   item: IRestaurant;

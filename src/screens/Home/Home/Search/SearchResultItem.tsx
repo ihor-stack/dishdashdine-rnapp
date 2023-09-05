@@ -5,14 +5,11 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Colors from '@/themes/colors';
 import {ms} from 'react-native-size-matters';
-import {IPreparationTimes, IRestaurant} from '@/api/generic';
+import {IRestaurant} from '@/api/generic';
 import FastImage from 'react-native-fast-image';
-import {DynamicPressable, DynamicView} from '@/components';
+import {DynamicPressable} from '@/components';
 
-import { displayPrepTime } from '@/utils/restaurant';
-
-// import {SharedElement} from 'react-navigation-shared-element';
-const moment = require('moment');
+import {displayPrepTime} from '@/utils/restaurant';
 
 const logo = require('@/assets/images/restaurants/maghera_inn.png');
 

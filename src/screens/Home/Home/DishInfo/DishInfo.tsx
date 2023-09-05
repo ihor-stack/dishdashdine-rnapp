@@ -53,7 +53,6 @@ import {
 } from '@/store/restaurants/thunk';
 import {restaurantSelectors} from '@/store/restaurants';
 import {IMenus, IOrder, IRestaurant} from '@/api/generic';
-import DishSpinner from '@/components/DishSpinner';
 import DishInfoOrderStatus from '@/screens/Home/Home/DishInfo/DishInfoOrderStatus';
 import {
   fetchActiveOrder,
@@ -247,9 +246,9 @@ const DishInfo = () => {
     }
   };
 
-  const onSheetCloseReview = async(data: undefined) => {
-    await init()
-  }
+  const onSheetCloseReview = async () => {
+    await init();
+  };
 
   const onViewBasket = async () => {
     if (activeOrder) {
@@ -264,7 +263,7 @@ const DishInfo = () => {
             isFrom: 'dish-info',
             orderId: activeOrder.id,
           },
-          onClose: onSheetCloseReview
+          onClose: onSheetCloseReview,
         });
 
         if (shouldRefresh) {
