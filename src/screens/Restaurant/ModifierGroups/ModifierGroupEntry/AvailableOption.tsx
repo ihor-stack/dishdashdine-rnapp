@@ -25,7 +25,7 @@ const AvailableOption = ({
 }: AvailableOptionProps) => {
   // Normalize price to 2 decimal places
   let price = item.price;
-  if (typeof(price) === 'number') {
+  if (typeof price === 'number') {
     price = price.toFixed(2);
   }
 
@@ -50,6 +50,7 @@ const AvailableOption = ({
           placeholder=""
           placeholderTextColor={Colors.grey}
           style={styles.textInputStyle}
+          keyboardType="decimal-pad"
           value={String(price)}
           onChangeText={text => updateRowItem(index, 'price', text)}
           onBlur={() => {

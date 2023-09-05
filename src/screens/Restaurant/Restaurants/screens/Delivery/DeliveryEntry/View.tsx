@@ -253,7 +253,7 @@ const RestaurantDeliveryEntryView: React.FC<
                   placeholder="£0.00"
                   placeholderTextColor={Colors.grey}
                   style={styles.textInputStyle}
-                  keyboardType="number-pad"
+                  keyboardType="decimal-pad"
                   value={value?.toString()}
                   onBlur={onBlur}
                   onChangeText={onChange}

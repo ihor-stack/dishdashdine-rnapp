@@ -223,7 +223,7 @@ const ModifierGroupEntryView: React.FC<ModifierGroupEntryViewProps> = ({
               style={styles.textInputStyle}
               value={groupItemPrice}
               onChangeText={setGroupItemPrice}
-              keyboardType="number-pad"
+              keyboardType="decimal-pad"
             />
           </DynamicView>
           <DynamicView flex={1} marginLeft={4}>

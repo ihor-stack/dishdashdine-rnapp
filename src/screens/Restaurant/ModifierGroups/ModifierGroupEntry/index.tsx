@@ -161,17 +161,14 @@ const ModifierGroupEntry = () => {
             );
 
       if (response) {
-        const result = await dispatch(fetchRestaurantModifiers(restaurantId));
-
+        await dispatch(fetchRestaurantModifiers(restaurantId));
         handleSuccessToast();
       }
     } catch (error: any) {
-      const errors = error?.errors;
-
       captureErrorException(error);
 
       each(
-        errors,
+        error?.errors,
         ({description}: {code: string; description: string}, index: number) => {
           setTimeout(() => {
             handleErrorToast(description);
