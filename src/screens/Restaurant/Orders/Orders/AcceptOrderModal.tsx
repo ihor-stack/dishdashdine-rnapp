@@ -1,6 +1,5 @@
 import {DynamicView} from '@/components';
 import DishButton from '@/components/DishButton';
-import DishToast from '@/components/DishToast';
 import {useToast} from 'native-base';
 import React, {useState} from 'react';
 import ActionSheet, {
@@ -23,7 +22,7 @@ import {
   getAllRestaurantPendingOrders,
 } from '@/store/admin_restaurant/restaurant/thunk';
 import {adminRestaurantSelectors} from '@/store/admin_restaurant/restaurant';
-import {showSuccessMessage} from '@/components/DishFlashMessage';
+import {showErrorMessage, showSuccessMessage} from '@/components/DishFlashMessage';
 
 export interface AcceptOrderViewProps extends SheetProps {}
 
@@ -91,6 +90,7 @@ const AcceptOrderViewModal = (props: AcceptOrderViewProps) => {
       }
     } catch (error) {
       setIsLoading(false);
+      showErrorMessage('Error', String(error));
       captureErrorException(error);
     }
   };
@@ -145,9 +145,9 @@ const AcceptOrderViewModal = (props: AcceptOrderViewProps) => {
             return showSuccessMessage(
               'Ready for collection',
               'Order has been marked as ready for collection',
-              );
-            },
-          });
+            );
+          },
+        });
       }
     } catch (error) {
       setIsLoading(false);
@@ -200,8 +200,9 @@ const AcceptOrderViewModal = (props: AcceptOrderViewProps) => {
           placement: 'top',
           duration: 2500,
           render: () => {
-            return (
-              showSuccessMessage('Order Completed', 'Order has been marked completed')
+            showSuccessMessage(
+              'Order Completed',
+              'Order has been marked completed',
             );
           },
         });
