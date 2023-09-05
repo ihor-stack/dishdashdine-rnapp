@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { FlatList, ScrollView, StyleSheet } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {ScrollView, StyleSheet} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {
@@ -7,32 +7,32 @@ import {
   DynamicPressable,
   DynamicText,
   DynamicView,
-  SafeAreaViewContainer,
 } from '@/components';
-import { fonts } from '@/themes/fonts';
-import { HOME_CARDS } from '@/constants/fakeData';
-import { useIsMounted } from '@/hooks/useIsMounted';
+import {fonts} from '@/themes/fonts';
+import {useIsMounted} from '@/hooks/useIsMounted';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchAppPromo } from '@/store/home/thunk';
-import { IAppPromo } from '@/api/generic';
-import { homeSelectors } from '@/store/home';
-import { Colors } from '@/themes';
-import { isEmpty } from 'lodash';
+import {Colors} from '@/themes';
+import {isEmpty} from 'lodash';
+import {IAppPromo} from '@/api/generic';
 
-const Cards = () => {
+type Props = {
+  appPromo: IAppPromo[];
+};
+
+const Cards = (props: Props) => {
+  const {appPromo} = props;
+
   const FAKE_DATA: any[] = Array.from({
     length: 10,
   });
   const [isLoading, setIsLoading] = useState(false);
   const isMounted = useIsMounted();
-  const appPromo: any[] = useSelector(homeSelectors.selectAppPromo);
 
   const renderCardItem = (item: any, index: number) => {
     return (
       <DynamicImageBackground
         key={index}
-        source={{ uri: item.imagePath }}
+        source={{uri: item.imagePath}}
         resizeMode="cover"
         aspectRatio={316 / 144}
         width={316}

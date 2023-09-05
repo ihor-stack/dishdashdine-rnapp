@@ -2,7 +2,7 @@ import React, {useCallback, useState, useEffect} from 'react';
 import {Box, Text, useToast, VStack} from 'native-base';
 import {DynamicView, SafeAreaViewContainer} from '@/components';
 import Colors from '@/themes/colors';
-import Cards from './Cards';
+import AppPromoCard from './Cards/AppPromoCard';
 import Header from './Header';
 import SearchAndSortFilters from './SearchAndSortFilters';
 import {FlatList, RefreshControl, StyleSheet} from 'react-native';
@@ -147,7 +147,7 @@ const Home = () => {
     <VStack bgColor={Colors.lightGrey} space={3}>
       <Box bgColor={Colors.white} pb={!isEmpty(appPromo) ? 5 : 0}>
         <SearchAndSortFilters />
-        {!isEmpty(appPromo) ? <Cards /> : null}
+        {!isEmpty(appPromo) ? <AppPromoCard appPromo={appPromo} /> : null}
       </Box>
 
       <Box bgColor={Colors.white}>
