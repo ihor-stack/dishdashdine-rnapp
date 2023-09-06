@@ -26,7 +26,7 @@ const OrderStatusHistory = ({statusHistory}: OrderStatusHistoryProps) => {
         marginLeft={10}
         key={index}>
         <DynamicText style={styles.orderTimeText}>
-          {moment(new Date(item.timestamp)).format('HH:mm').toString()}
+          {/* {moment(new Date(item.timestamp)).format('HH:mm').toString()} */}
         </DynamicText>
         <DynamicView marginLeft={14}>
           <DynamicText style={styles.orderDescription}>

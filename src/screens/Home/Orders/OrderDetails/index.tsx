@@ -187,7 +187,7 @@ const OrderDetails = () => {
           await dispatch(fetchActiveOrder());
           await dispatch(fetchCompletedOrder());
 
-          if (paymentIntent.status === 'Succeeded') {
+          if (paymentIntent.status === 'RequiresCapture') {
             toast.show({
               placement: 'top',
               duration: 1500,

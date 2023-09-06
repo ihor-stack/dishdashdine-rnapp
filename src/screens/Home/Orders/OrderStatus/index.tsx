@@ -1,12 +1,12 @@
-import { ActivityIndicator, Platform, StatusBar, Linking } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import {ActivityIndicator, Platform, StatusBar, Linking, ScrollView} from 'react-native';
+import React, {useEffect, useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import isEmpty from 'lodash/isEmpty';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { showMessage } from 'react-native-flash-message';
-import { useDispatch, useSelector } from 'react-redux';
-import { filter } from 'lodash';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {showMessage} from 'react-native-flash-message';
+import {useDispatch, useSelector} from 'react-redux';
+import {filter} from 'lodash';
 import moment from 'moment';
 import {
   NavigationProp,
@@ -21,15 +21,15 @@ import {
   DynamicText,
   DynamicView,
 } from '@/components';
-import { Colors } from '@/themes';
+import {Colors} from '@/themes';
 import DishOrderProgress from '@/components/DishOrderProgress';
 import DishButton from '@/components/DishButton';
-import { IOrder } from '@/api/generic';
+import {IOrder} from '@/api/generic';
 import styles from './styles';
-import { ORDER_STATUS, ORDER_STATUS_ENUM, ORDER_TYPE } from '@/constants';
+import {ORDER_STATUS, ORDER_STATUS_ENUM, ORDER_TYPE} from '@/constants';
 import OrderStatusHistory from '@/screens/Home/Orders/OrderStatus/OrderStatusHistory';
-import { orderSelectors } from '@/store/order';
-import { fetchOrderRestaurant } from '@/store/order/thunk';
+import {orderSelectors} from '@/store/order';
+import {fetchOrderRestaurant} from '@/store/order/thunk';
 import DishSpinner from '@/components/DishSpinner';
 
 const chef = require('@/assets/images/chef.png');
@@ -48,7 +48,7 @@ const OrderStatus = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [timer, setTimer] = useState<any>();
 
-  const { top } = useSafeAreaInsets();
+  const {top} = useSafeAreaInsets();
   const navigation = useNavigation<NavigationProp<any>>();
   const dispatch = useDispatch<any>();
   const params = useRoute().params as any;
@@ -56,10 +56,11 @@ const OrderStatus = () => {
   const isFrom = params?.isFrom;
   const order: IOrder = useSelector(orderSelectors.selectSelectedOrder);
   const isLoading: boolean = useSelector(orderSelectors.loadingSelectedOrder);
-  const isDisplayOrderNumber = order?.orderStatus && ![
-    ORDER_STATUS_ENUM.NEW,
-    ORDER_STATUS_ENUM.SUBMITTED,
-  ].includes(order.orderStatus);
+  const isDisplayOrderNumber =
+    order?.orderStatus &&
+    ![ORDER_STATUS_ENUM.NEW, ORDER_STATUS_ENUM.SUBMITTED].includes(
+      order?.orderStatus,
+    );
 
   useEffect(() => {
     if (orderId) {
@@ -73,7 +74,6 @@ const OrderStatus = () => {
       setIsRefreshing(false);
     }
   }, [order]);
-
 
   useEffect(() => {
     const oneSecInterval = setInterval(() => {
@@ -165,17 +165,18 @@ const OrderStatus = () => {
     return (
       <>
         <DynamicImage width={150} height={150} source={restaurant} />
-        <DynamicView paddingTop={33} paddingBottom={33} alignItems='center'>
+        <DynamicView paddingTop={33} paddingBottom={33} alignItems="center">
           <DynamicText style={styles.orderStatusImageDesc}>
             Your order number is,
           </DynamicText>
-          <DynamicText style={[styles.orderStatusImageDesc, styles.colorRedText]}>
+          <DynamicText
+            style={[styles.orderStatusImageDesc, styles.colorRedText]}>
             {order?.reference}
           </DynamicText>
         </DynamicView>
         <DynamicView paddingTop={10}>
           <DynamicText style={styles.colorGreyText}>
-            (Quote this when you arrive at the restaurant)
+            {`(Quote this when you arrive at the restaurant)`}
           </DynamicText>
         </DynamicView>
       </>
@@ -193,7 +194,7 @@ const OrderStatus = () => {
         </DynamicView>
         <DynamicView paddingTop={10}>
           <DynamicText style={styles.colorGreyText}>
-            (Estimated delivery time: 18:45)
+            {`(Estimated delivery time: 18:45)`}
           </DynamicText>
         </DynamicView>
       </>
@@ -211,7 +212,8 @@ const OrderStatus = () => {
         </DynamicView>
         <DynamicView paddingTop={10}>
           <DynamicText style={styles.colorGreyText}>
-            Don't worry, you haven't been charged for this order. We apologise for the inconvenience.
+            Don't worry, you haven't been charged for this order. We apologise
+            for the inconvenience.
           </DynamicText>
         </DynamicView>
       </>
@@ -275,20 +277,22 @@ const OrderStatus = () => {
             {isReadyCollection
               ? readyForCollectionView()
               : isOutForDelivery
-                ? readyForDeliveryView()
-                : isCancelled
-                  ? orderCancelView()
-                  : renderImage()}
+              ? readyForDeliveryView()
+              : isCancelled
+              ? orderCancelView()
+              : renderImage()}
           </DynamicView>
           {!isReadyCollection && !isOutForDelivery && !isCancelled && (
-            <DynamicView flex={1}>
-              {isDisplayOrderNumber && (
-                <DynamicView paddingTop={33} paddingBottom={33} alignItems='center'>
+            <ScrollView contentContainerStyle={{flex:1}}>
+              {order && (
+                <DynamicView
+                  alignItems="center">
                   <DynamicText style={styles.orderStatusImageDesc}>
-                    Your order number is,
+                    Your order number is
                   </DynamicText>
-                  <DynamicText style={[styles.orderStatusImageDesc, styles.colorRedText]}>
-                    {order?.reference}
+                  <DynamicText
+                    style={[styles.orderStatusImageDesc, styles.colorRedText]}>
+                    {order.reference}
                   </DynamicText>
                 </DynamicView>
               )}
@@ -311,8 +315,9 @@ const OrderStatus = () => {
                     )}
                   />
                 )}
-            </DynamicView>
+            </ScrollView>
           )}
+
           <DynamicView
             paddingHorizontal={10}
             marginTop="auto"
@@ -322,14 +327,14 @@ const OrderStatus = () => {
               <DynamicView alignItems="center">
                 {!isEmpty(order) && order.collectionTime && (
                   <DynamicText style={styles.colorGreyText}>
-                    Estimated{' '}
+                    Estimated
                     {order.orderType === ORDER_TYPE.COLLECTION
-                      ? 'collection'
-                      : 'delivery'}
-                    :{' '}
+                      ? ' collection'
+                      : 'delivery '}
+                    :
                     {moment(order.collectionTime)
                       .utc()
-                      .format('DD/MM/YYYY, hh:mm a')}
+                      .format(' DD/MM/YYYY, hh:mm a')}
                   </DynamicText>
                 )}
               </DynamicView>
