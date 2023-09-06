@@ -1,5 +1,5 @@
 import React, {useCallback, useState, useEffect} from 'react';
-import {Box, Text, useToast, VStack} from 'native-base';
+import {Box, Text, VStack} from 'native-base';
 import {DynamicView, SafeAreaViewContainer} from '@/components';
 import Colors from '@/themes/colors';
 import AppPromoCard from './Cards/AppPromoCard';
@@ -35,7 +35,6 @@ const FAKE_DATA: any[] = Array.from({
 
 const Home = () => {
   const dispatch = useDispatch<any>();
-  const toast = useToast();
   const navigation = useNavigation<any>();
 
   const [refreshing, setRefreshing] = useState(false);

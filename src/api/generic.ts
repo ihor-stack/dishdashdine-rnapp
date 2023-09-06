@@ -116,8 +116,9 @@ export interface IReviews {
 export interface IAppPromo {
   title: string;
   body: string;
-  link: string;
+  link?: string;
   imagePath: string;
+  restaurantId: string;
 }
 
 export interface ISupportTickets {

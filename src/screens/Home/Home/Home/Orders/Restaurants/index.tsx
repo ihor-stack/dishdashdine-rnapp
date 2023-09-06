@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box} from 'native-base';
 import RestaurantItem from '../../RestaurantItem';
-import {IAddress, IFindRestaurantParams, IRestaurant} from '@/api/generic';
+import {IFindRestaurantParams, IRestaurant} from '@/api/generic';
 import RestaurantService from '@/api/restaurant';
 import {captureErrorException} from '@/utils/error-handler';
 import {DEFAULT_DISTANCE} from '@/constants';

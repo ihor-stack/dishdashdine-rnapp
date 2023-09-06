@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useNavigation} from '@react-navigation/core';
 
 import {
   DynamicImageBackground,
@@ -19,8 +20,10 @@ type Props = {
   appPromo: IAppPromo[];
 };
 
-const Cards = (props: Props) => {
+const AppPromoCard = (props: Props) => {
   const {appPromo} = props;
+
+  const navigation = useNavigation<any>();
 
   const FAKE_DATA: any[] = Array.from({
     length: 10,
@@ -28,7 +31,7 @@ const Cards = (props: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const isMounted = useIsMounted();
 
-  const renderCardItem = (item: any, index: number) => {
+  const renderCardItem = (item: IAppPromo, index: number) => {
     return (
       <DynamicImageBackground
         key={index}
@@ -61,6 +64,9 @@ const Cards = (props: Props) => {
             width="43%"
             flexDirection="row"
             justifyContent="space-between"
+            onPress={() => {
+              navigation.navigate('DishInfo', {id: item.restaurantId});
+            }}
             alignItems="center">
             <DynamicText
               fontFamily={fonts.DMSans700Bold}
@@ -114,14 +120,14 @@ const Cards = (props: Props) => {
           return renderCardLoading(index);
         })
         : !isEmpty(appPromo) &&
-        appPromo?.map((item, index) => {
-          return renderCardItem(item, index);
-        })}
+          appPromo?.map((item, index) => {
+            return renderCardItem(item, index);
+          })}
     </ScrollView>
   );
 };
 
-export default Cards;
+export default AppPromoCard;
 
 const styles = StyleSheet.create({
   contentContainer: {
