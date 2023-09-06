@@ -31,6 +31,10 @@ const AppPromoCard = (props: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const isMounted = useIsMounted();
 
+  const filteredAppPromo = appPromo.filter(item => {
+    return item.restaurantId !== '00000000-0000-0000-0000-000000000000';
+  });
+
   const renderCardItem = (item: IAppPromo, index: number) => {
     return (
       <DynamicImageBackground
@@ -64,7 +68,7 @@ const AppPromoCard = (props: Props) => {
             width="43%"
             flexDirection="row"
             justifyContent="space-between"
-            onPress={() => {
+            onPress={async () => {
               navigation.navigate('DishInfo', {id: item.restaurantId});
             }}
             alignItems="center">
@@ -119,8 +123,8 @@ const AppPromoCard = (props: Props) => {
         ? FAKE_DATA.map((_, index) => {
           return renderCardLoading(index);
         })
-        : !isEmpty(appPromo) &&
-          appPromo?.map((item, index) => {
+        : !isEmpty(filteredAppPromo) &&
+          filteredAppPromo?.map((item, index) => {
             return renderCardItem(item, index);
           })}
     </ScrollView>
